@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* BLK Design System React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
@@ -36,20 +20,20 @@ class Footer extends React.Component {
         <Container>
           <Row>
             <Col md="3">
-              <h1 className="title">BLK•</h1>
+              <h1 className="title">DEV•Collab</h1>
             </Col>
             <Col md="3">
               <Nav>
                 <NavItem>
-                  <NavLink to="/" tag={Link}>
+                  <NavLink to="/landing-page" tag={Link}>
                     Home
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink to="/landing-page" tag={Link}>
                     Landing
                   </NavLink>
-                </NavItem>
+                </NavItem> */}
                 <NavItem>
                   <NavLink to="/register-page" tag={Link}>
                     Register
@@ -65,17 +49,17 @@ class Footer extends React.Component {
             <Col md="3">
               <Nav>
                 <NavItem>
-                  <NavLink href="https://creative-tim.com/contact-us?ref=blkdsr-footer">
+                  <NavLink href="#">
                     Contact Us
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="https://creative-tim.com/about-us?ref=blkdsr-footer">
+                  <NavLink href="#">
                     About Us
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="https://creative-tim.com/blog?ref=blkdsr-footer">
+                  <NavLink href="#">
                     Blog
                   </NavLink>
                 </NavItem>
@@ -92,16 +76,16 @@ class Footer extends React.Component {
                 <Button
                   className="btn-icon btn-neutral btn-round btn-simple"
                   color="default"
-                  href="https://twitter.com/creativetim"
+                  href="https://github.com/CainanB/devcollab"
                   id="tooltip622135962"
                   target="_blank"
                 >
-                  <i className="fab fa-twitter" />
+                  <i className="fab fa-github" />
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip622135962">
-                  Follow us
+                  Source Code
                 </UncontrolledTooltip>
-                <Button
+                {/* <Button
                   className="btn-icon btn-neutral btn-round btn-simple"
                   color="default"
                   href="https://www.facebook.com/creativetim"
@@ -112,8 +96,8 @@ class Footer extends React.Component {
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip230450801">
                   Like us
-                </UncontrolledTooltip>
-                <Button
+                </UncontrolledTooltip> */}
+                {/* <Button
                   className="btn-icon btn-neutral btn-round btn-simple"
                   color="default"
                   href="https://dribbble.com/creativetim"
@@ -124,7 +108,7 @@ class Footer extends React.Component {
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip318450378">
                   Follow us
-                </UncontrolledTooltip>
+                </UncontrolledTooltip> */}
               </div>
             </Col>
           </Row>
