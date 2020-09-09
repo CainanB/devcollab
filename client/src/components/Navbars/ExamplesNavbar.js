@@ -77,7 +77,7 @@ class PagesNavbar extends React.Component {
               id="navbar-brand"
               tag={Link}
             >
-              <span>DEV• </span>
+              <span>DEV•</span>
               Collab
             </NavbarBrand>
             <UncontrolledTooltip placement="bottom" target="navbar-brand">
@@ -104,7 +104,7 @@ class PagesNavbar extends React.Component {
               <Row>
                 <Col className="collapse-brand" xs="6">
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    BLK•React
+                    DEV•Collab
                   </a>
                 </Col>
                 <Col className="collapse-close text-right" xs="6">
@@ -170,7 +170,7 @@ class PagesNavbar extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/CainanB/devcollab" target="_blank">
+                <NavLink href="https://github.com/CainanB/devcollab/issues" target="_blank">
                   Have an issue?
                 </NavLink>
               </NavItem>

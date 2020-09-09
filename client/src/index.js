@@ -44,7 +44,7 @@ ReactDOM.render(
         path="/profile-page"
         render={props => <ProfilePage {...props} />}
       />
-      <Redirect from="/" to="/components" />
+      <Redirect from="/" to="/landing-page" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
