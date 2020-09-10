@@ -34,10 +34,19 @@ import NucleoIcons from "../views/IndexSections/NucleoIcons.js";
 import Signup from "../views/IndexSections/Signup.js";
 import Examples from "../views/IndexSections/Examples.js";
 import Download from "../views/IndexSections/Download.js";
+import {loadUser} from '../actions/auth'
+import setAuthToken from '../utils/setAuthToken'
+import store from '../store'
+
+if(localStorage.token){
+  setAuthToken(localStorage.token)
+}
+
 
 class Index extends React.Component {
   componentDidMount() {
     document.body.classList.toggle("index-page");
+    store.dispatch(loadUser())
   }
   componentWillUnmount() {
     document.body.classList.toggle("index-page");
