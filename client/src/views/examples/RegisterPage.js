@@ -134,9 +134,9 @@ class RegisterPage extends React.Component {
                       <CardHeader>
                         <CardImg
                           alt="..."
-                          src={require("../../assets/img/square-purple-1.png")}
+                          src={require("../../assets/img/square2.png")}
                         />
-                        <CardTitle tag="h4">Register</CardTitle>
+                        <CardTitle tag="h4" className="ml-2">Register</CardTitle>
                       </CardHeader>
                       <CardBody>
                         {/* FORM START */}
@@ -229,7 +229,7 @@ class RegisterPage extends React.Component {
                         </Form>
                       </CardBody>
                       <CardFooter>
-                        <Button form="registerForm" type="submit" className="btn-round" color="primary" size="lg">
+                        <Button form="registerForm" type="submit" className="btn-round" color="info" size="lg">
                           Get Started
                         </Button>
                       </CardFooter>

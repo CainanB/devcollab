@@ -482,7 +482,7 @@
     .square-1{
       height: 300px;
       width: 300px;
-      background-image: url($asset-base-path + "/img/square1.png");
+      background-image: url("../../../img/square1.png");
       top: 175px;
       right: 150px;
       opacity: 0.8;
@@ -491,7 +491,7 @@
     .square-2{
       height: 120px;
       width: 120px;
-      background-image: url($asset-base-path + "/img/square2.png");
+      background-image: url("../../../img/square2.png");
       opacity: 0.9;
       top: 310px;
       right: 390px;
