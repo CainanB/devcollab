@@ -24,6 +24,7 @@ import axios from 'axios';
 import {
   Button,
   CardHeader,
+  CardImg,
   CardFooter,
   Form,
   FormGroup,
@@ -160,7 +161,11 @@ class LandingPage extends React.Component {
                 <Col lg="5" md="6">
                 <Card className="card-register">
                       <CardHeader>
-                        <CardTitle tag="h4" className="ml-2 text-light">Sign in</CardTitle>
+                      <CardImg
+                          alt="..."
+                          src={require("../../assets/img/square2.png")}
+                        />
+                        <CardTitle tag="h4" style={{fontSize:'4em'}} className="ml-2 text-light">Sign in</CardTitle>
                       </CardHeader>
                       <CardBody>
                         {/* FORM START */}
