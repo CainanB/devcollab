@@ -16,18 +16,26 @@
 
 */
 import React from "react";
+import classnames from "classnames";
+import axios from 'axios';
 // react plugin used to create charts
-import { Line } from "react-chartjs-2";
+// import { Line } from "react-chartjs-2";
 // reactstrap components
 import {
   Button,
-  Card,
   CardHeader,
-  CardBody,
   CardFooter,
+  CardImg,
+  Form,
+  FormGroup,
+  Label,
+  InputGroup,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  Card,
+  CardBody,
   CardTitle,
-  ListGroupItem,
-  ListGroup,
   Container,
   Row,
   Col
@@ -37,9 +45,41 @@ import {
 import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
 import Footer from "../../components/Footer/Footer.js";
 
-import bigChartData from "../../variables/charts.js";
-
 class LandingPage extends React.Component {
+
+    state = {
+
+      email: "",
+      password: ""
+  
+    };
+    onFormChange=(e)=>{
+      this.setState({[e.target.name]: e.target.value})
+    }
+  
+    onFormSubmit = async (e) =>{
+      e.preventDefault();
+  
+            const newUser= {
+                  name: this.state.name,
+                  email: this.state.email,
+                  password: this.state.password
+              }
+  
+              try {
+  
+                  const config = {
+                      headers: {
+                          'Content-Type': 'application/json'
+                      }
+                  }
+                  const body = JSON.stringify(newUser)
+                  const res = await axios.post('/api/users', body, config)
+                  console.log(res.data)
+              } catch (error) {
+                  console.error(error.response.data)
+              }
+    }
   componentDidMount() {
     document.body.classList.toggle("landing-page");
   }
@@ -49,9 +89,10 @@ class LandingPage extends React.Component {
   render() {
     return (
       <>
+        <ExamplesNavbar />
 
         <div className="wrapper">
-        <ExamplesNavbar />
+
           <div className="page-header">
             <img
               alt="..."
@@ -85,14 +126,14 @@ class LandingPage extends React.Component {
             />
             <div className="content-center">
               <Row className="row-grid justify-content-between align-items-center text-left">
-                <Col lg="6" md="6">
+                <Col lg="5" md="5">
                   <h1 className="text-white">
                     Welcome to <br />
                     <span className="text-white">Dev Collab</span>
                   </h1>
                   <p className="text-white mb-3">
                     Dev collab is a tool for developers to connect, talk about their projects and collaborate all in one convenient place.
-                    Keep scrolling if you aren't sold yet. Otherwise register an account below.
+                    Keep scrolling if you aren't sold yet. Otherwise register an account by clicking "Get Started".
                   </p>
                   <div className="btn-wrapper mb-3">
                     <p className="category text-success d-inline">
@@ -113,14 +154,93 @@ class LandingPage extends React.Component {
                     </div>
                   </div>
                 </Col>
-                <Col lg="4" md="5">
-                  {/* <img
-                    alt="..."
-                    className="img-fluid"
-                    width="225px"
+                <Col lg="5" md="6">
+                <Card className="card-register">
+                      <CardHeader>
+                        {/* <CardImg
+                          alt="..."
+                          src={require("../../assets/img/square-purple-1.png")}
+                        /> */}
+                        <CardTitle tag="h4" className="ml-2 text-light">Sign in</CardTitle>
+                      </CardHeader>
+                      <CardBody>
+                        {/* FORM START */}
+                        <Form className="form" onSubmit={this.onFormSubmit} id="registerForm">
+                          <InputGroup
+                            className={classnames({
+                              "input-group-focus": this.state.fullNameFocus
+                            })}
+                            
+                          >
 
-                    src={require("../../assets/img/logoWhite.png")}
-                  /> */}
+                          </InputGroup>
+                          <InputGroup
+                            className={classnames({
+                              "input-group-focus": this.state.emailFocus
+                            })}
+                          >
+                            <InputGroupAddon addonType="prepend">
+                              <InputGroupText>
+                                <i className="tim-icons icon-email-85" />
+                              </InputGroupText>
+                            </InputGroupAddon>
+                            {/* EMAIL INPUT */}
+                            <Input
+                            value={this.state.email}
+                              name="email"
+                              onChange={this.onFormChange}
+                              placeholder="Email"
+                              type="text"
+                              onFocus={e => this.setState({ emailFocus: true })}
+                              onBlur={e => this.setState({ emailFocus: false })}
+                            />
+                          </InputGroup>
+                          <InputGroup
+                            className={classnames({
+                              "input-group-focus": this.state.passwordFocus
+                            })}
+                          >
+                            <InputGroupAddon addonType="prepend">
+                              <InputGroupText>
+                                <i className="tim-icons icon-lock-circle" />
+                              </InputGroupText>
+                            </InputGroupAddon>
+                            {/* PASSWORD INPUT */}
+                            <Input
+                            value={this.state.password}
+                              name="password"
+                              placeholder="Password"
+                              type="password"
+                              onChange={this.onFormChange}
+                              onFocus={e =>
+                                this.setState({ passwordFocus: true })
+                              }
+                              onBlur={e =>
+                                this.setState({ passwordFocus: false })
+                              }
+                            />
+                          </InputGroup>
+                          <FormGroup check className="text-left">
+                            <Label check>
+                              <Input type="checkbox" />
+                              <span className="form-check-sign" />I agree to the{" "}
+                              <a
+                                href="#pablo"
+                                onClick={e => e.preventDefault()}
+                              >
+                                terms and conditions
+                              </a>
+                              .
+                            </Label>
+                          </FormGroup>
+                        </Form>
+                      </CardBody>
+                      <CardFooter>
+                        <Button form="registerForm" type="submit" className="btn-round" color="secondary" size="lg">
+                          Sign in
+                        </Button>
+                      </CardFooter>
+                    </Card>
                 </Col>
               </Row>
             </div>
@@ -263,7 +383,7 @@ class LandingPage extends React.Component {
               className="path3"
               src={require("../../assets/img/path2.png")}
             />
-            <Container style={{paddingTop:"350px"}}>
+            <Container style={{paddingTop:"1em"}}>
               <Row className="justify-content-center">
                 <Col lg="12">
                   <h1 className="text-center">Connect through code</h1>
