@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
-import testreducer from './testreducer'
-
-
+import alert from './alert'
+import auth from './auth'
 
 export default combineReducers({
-    testreducer
+    alert,
+    auth
 });

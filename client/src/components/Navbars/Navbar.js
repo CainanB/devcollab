@@ -134,13 +134,16 @@ class PagesNavbar extends React.Component {
               </NavItem>
 
               <NavItem>
+                <Link to="/register-page"
+                >
                 <Button
                   className="nav-link d-none d-lg-block"
                   color="secondary"
-                  href="/register-page"
+                 
                 >
                   Register
                 </Button>
+                </Link>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/">

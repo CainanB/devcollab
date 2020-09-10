@@ -18,6 +18,10 @@
 import React from "react";
 import classnames from "classnames";
 import axios from 'axios';
+import {Link, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+import {login} from '../../actions/auth'
 // react plugin used to create charts
 // import { Line } from "react-chartjs-2";
 // reactstrap components

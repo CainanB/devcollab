@@ -18,6 +18,10 @@
 import React from "react";
 import classnames from "classnames";
 import axios from 'axios';
+import {Link, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {setAlert} from '../../actions/alert'
+import {register} from '../../actions/auth'
 // reactstrap components
 import {
   Button,
@@ -52,6 +56,7 @@ class RegisterPage extends React.Component {
     password: ""
 
   };
+  
   onFormChange=(e)=>{
     this.setState({[e.target.name]: e.target.value})
   }
@@ -65,21 +70,15 @@ class RegisterPage extends React.Component {
                 password: this.state.password
             }
 
-            try {
-
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-                const body = JSON.stringify(newUser)
-                const res = await axios.post('/api/users', body, config)
-                console.log(res.data)
-            } catch (error) {
-                console.error(error.response.data)
-            }
+            this.props.register({
+              ...newUser
+          })
   }
-  
+  componentWillMount(){
+    if(this.props.isAuthenticated){
+      return <Redirect to="/profile-page"/>
+    }
+  }
   componentDidMount() {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
@@ -110,6 +109,9 @@ class RegisterPage extends React.Component {
     });
   };
   render() {
+    if(this.props.isAuthenticated){
+      return <Redirect to="/profile-page"/>
+    }
     return (
       <>
         <Navbar />
@@ -281,4 +283,8 @@ class RegisterPage extends React.Component {
   }
 }
 
-export default RegisterPage;
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+export default connect(mapStateToProps, {setAlert, register})(RegisterPage)
