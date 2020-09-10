@@ -33,10 +33,10 @@ class PageHeader extends React.Component {
         <div className="squares square7" />
         <Container>
           <div className="content-center brand">
-            <h1 className="h1-seo">BLK• React</h1>
+            <h1 className="h1-seo">Dev Collab</h1>
             <h3 className="d-none d-sm-block">
-              A beautiful Design System for Bootstrap 4 (reactstrap) and React.
-              It's Free and Open Source.
+              A casual meeting place for developers of all skill levels to connect,
+              talk about projects, and make valuable contributions.
             </h3>
           </div>
         </Container>

@@ -16,7 +16,7 @@ import {
 class Footer extends React.Component {
   render() {
     return (
-      <footer className="footer">
+      <footer className="footer" style={{borderColor:'#435DB5'}}>
         <Container>
           <Row >
             <Col md="3" className="d-flex justify-content-center">
