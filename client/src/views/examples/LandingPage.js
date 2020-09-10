@@ -186,6 +186,7 @@ class LandingPage extends React.Component {
                             value={this.state.email}
                               name="email"
                               onChange={this.onFormChange}
+                              autoComplete="new-password"
                               placeholder="Email"
                               type="text"
                               onFocus={e => this.setState({ emailFocus: true })}

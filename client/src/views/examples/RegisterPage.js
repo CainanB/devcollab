@@ -158,6 +158,7 @@ class RegisterPage extends React.Component {
                               name="name"
                               placeholder="Full Name"
                               type="text"
+                              autoComplete="new-password"
                               onChange={this.onFormChange}
                               onFocus={e =>
                                 this.setState({ fullNameFocus: true })
@@ -182,6 +183,7 @@ class RegisterPage extends React.Component {
                             value={this.state.email}
                               name="email"
                               onChange={this.onFormChange}
+                              autoComplete="off"
                               placeholder="Email"
                               type="text"
                               onFocus={e => this.setState({ emailFocus: true })}
@@ -204,6 +206,7 @@ class RegisterPage extends React.Component {
                               name="password"
                               placeholder="Password"
                               type="password"
+                              autoComplete="off"
                               onChange={this.onFormChange}
                               onFocus={e =>
                                 this.setState({ passwordFocus: true })
