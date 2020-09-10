@@ -17,6 +17,7 @@
 */
 import React from "react";
 import classnames from "classnames";
+import axios from 'axios';
 // reactstrap components
 import {
   Button,
@@ -45,8 +46,40 @@ import Footer from "../../components/Footer/Footer.js";
 class RegisterPage extends React.Component {
   state = {
     squares1to6: "",
-    squares7and8: ""
+    squares7and8: "",
+    email: "",
+    name: "",
+    password: ""
+
   };
+  onFormChange=(e)=>{
+    this.setState({[e.target.name]: e.target.value})
+  }
+
+  onFormSubmit = async (e) =>{
+    e.preventDefault();
+
+          const newUser= {
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password
+            }
+
+            try {
+
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                const body = JSON.stringify(newUser)
+                const res = await axios.post('/api/users', body, config)
+                console.log(res.data)
+            } catch (error) {
+                console.error(error.response.data)
+            }
+  }
+  
   componentDidMount() {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
@@ -106,20 +139,26 @@ class RegisterPage extends React.Component {
                         <CardTitle tag="h4">Register</CardTitle>
                       </CardHeader>
                       <CardBody>
-                        <Form className="form">
+                        {/* FORM START */}
+                        <Form className="form" onSubmit={this.onFormSubmit} id="registerForm">
                           <InputGroup
                             className={classnames({
                               "input-group-focus": this.state.fullNameFocus
                             })}
+                            
                           >
                             <InputGroupAddon addonType="prepend">
                               <InputGroupText>
                                 <i className="tim-icons icon-single-02" />
                               </InputGroupText>
                             </InputGroupAddon>
+                            {/* NAME INPUT */}
                             <Input
+                            value={this.state.name}
+                              name="name"
                               placeholder="Full Name"
                               type="text"
+                              onChange={this.onFormChange}
                               onFocus={e =>
                                 this.setState({ fullNameFocus: true })
                               }
@@ -138,7 +177,11 @@ class RegisterPage extends React.Component {
                                 <i className="tim-icons icon-email-85" />
                               </InputGroupText>
                             </InputGroupAddon>
+                            {/* EMAIL INPUT */}
                             <Input
+                            value={this.state.email}
+                              name="email"
+                              onChange={this.onFormChange}
                               placeholder="Email"
                               type="text"
                               onFocus={e => this.setState({ emailFocus: true })}
@@ -155,9 +198,13 @@ class RegisterPage extends React.Component {
                                 <i className="tim-icons icon-lock-circle" />
                               </InputGroupText>
                             </InputGroupAddon>
+                            {/* PASSWORD INPUT */}
                             <Input
+                            value={this.state.password}
+                              name="password"
                               placeholder="Password"
-                              type="text"
+                              type="password"
+                              onChange={this.onFormChange}
                               onFocus={e =>
                                 this.setState({ passwordFocus: true })
                               }
@@ -182,7 +229,7 @@ class RegisterPage extends React.Component {
                         </Form>
                       </CardBody>
                       <CardFooter>
-                        <Button className="btn-round" color="primary" size="lg">
+                        <Button form="registerForm" type="submit" className="btn-round" color="primary" size="lg">
                           Get Started
                         </Button>
                       </CardFooter>
