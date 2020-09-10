@@ -454,7 +454,7 @@ class LandingPage extends React.Component {
             <img
               alt="..."
               className="path"
-              height="280px"
+              height="240px"
               src={require("../../assets/img/path3.png")}
             />
           </section>
