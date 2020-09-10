@@ -18,8 +18,8 @@ class Footer extends React.Component {
     return (
       <footer className="footer">
         <Container>
-          <Row>
-            <Col md="3">
+          <Row >
+            <Col md="3" className="d-flex justify-content-center">
               <h1 className="title">DEV•Collab</h1>
             </Col>
             <Col md="3">
@@ -71,7 +71,7 @@ class Footer extends React.Component {
               </Nav>
             </Col>
             <Col md="3">
-              <h3 className="title">Follow us:</h3>
+
               <div className="btn-wrapper profile">
                 <Button
                   className="btn-icon btn-neutral btn-round btn-simple"

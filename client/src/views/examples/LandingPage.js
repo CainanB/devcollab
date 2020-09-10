@@ -25,7 +25,6 @@ import {
   Button,
   CardHeader,
   CardFooter,
-  CardImg,
   Form,
   FormGroup,
   Label,
@@ -53,6 +52,7 @@ class LandingPage extends React.Component {
       password: ""
   
     };
+
     onFormChange=(e)=>{
       this.setState({[e.target.name]: e.target.value})
     }
@@ -79,13 +79,16 @@ class LandingPage extends React.Component {
               } catch (error) {
                   console.error(error.response.data)
               }
-    }
+  }
+
   componentDidMount() {
     document.body.classList.toggle("landing-page");
   }
+
   componentWillUnmount() {
     document.body.classList.toggle("landing-page");
   }
+
   render() {
     return (
       <>
@@ -125,7 +128,7 @@ class LandingPage extends React.Component {
               src={require("../../assets/img/cercuri.png")}
             />
             <div className="content-center">
-              <Row className="row-grid justify-content-between align-items-center text-left">
+              <Row className="row-grid justify-content-between align-items-center text-left mb-5">
                 <Col lg="5" md="5">
                   <h1 className="text-white">
                     Welcome to <br />
@@ -157,10 +160,6 @@ class LandingPage extends React.Component {
                 <Col lg="5" md="6">
                 <Card className="card-register">
                       <CardHeader>
-                        {/* <CardImg
-                          alt="..."
-                          src={require("../../assets/img/square-purple-1.png")}
-                        /> */}
                         <CardTitle tag="h4" className="ml-2 text-light">Sign in</CardTitle>
                       </CardHeader>
                       <CardBody>
@@ -170,9 +169,7 @@ class LandingPage extends React.Component {
                             className={classnames({
                               "input-group-focus": this.state.fullNameFocus
                             })}
-                            
                           >
-
                           </InputGroup>
                           <InputGroup
                             className={classnames({
@@ -207,7 +204,7 @@ class LandingPage extends React.Component {
                             </InputGroupAddon>
                             {/* PASSWORD INPUT */}
                             <Input
-                            value={this.state.password}
+                              value={this.state.password}
                               name="password"
                               placeholder="Password"
                               type="password"
@@ -236,7 +233,7 @@ class LandingPage extends React.Component {
                         </Form>
                       </CardBody>
                       <CardFooter>
-                        <Button form="registerForm" type="submit" className="btn-round" color="secondary" size="lg">
+                        <Button form="signinForm" type="submit" className="btn-round" color="secondary" size="lg">
                           Sign in
                         </Button>
                       </CardFooter>
@@ -260,14 +257,14 @@ class LandingPage extends React.Component {
                         <Card className="card-stats">
                           <CardBody>
                             <Row>
-                              <Col md="4" xs="5">
+                              <Col md="4" xs="5" className="pr-0">
                                 <div className="icon-big text-center icon-warning">
                                   <i className="tim-icons icon-atom text-warning" />
                                 </div>
                               </Col>
-                              <Col md="8" xs="7">
+                              <Col md="8" xs="7" className="pl-0">
                                 <div className="numbers">
-                                  <CardTitle style={{fontSize:"20px"}} tag="p">Front</CardTitle>
+                                  <CardTitle style={{fontSize:"20px"}} tag="p">Front-end</CardTitle>
                                   <p />
                                   <p className="card-category">React</p>
                                 </div>
@@ -281,12 +278,12 @@ class LandingPage extends React.Component {
                         <Card className="card-stats">
                           <CardBody>
                             <Row>
-                              <Col md="4" xs="5">
+                              <Col md="4" xs="5" className="pr-0">
                                 <div className="icon-big text-center icon-warning">
                                   <i className="tim-icons icon-coins text-white" />
                                 </div>
                               </Col>
-                              <Col md="8" xs="7">
+                              <Col md="8" xs="7" className="pl-0">
                                 <div className="numbers">
                                   <CardTitle style={{fontSize:"18px"}} tag="p">Database</CardTitle>
                                   <p />
@@ -303,14 +300,14 @@ class LandingPage extends React.Component {
                         <Card className="card-stats">
                           <CardBody>
                             <Row>
-                              <Col md="4" xs="5">
+                              <Col md="4" xs="5" className="pr-0">
                                 <div className="icon-big text-center icon-warning">
                                   <i className="tim-icons icon-components text-info" />
                                 </div>
                               </Col>
-                              <Col md="8" xs="7">
+                              <Col md="8" xs="7" className="pl-0">
                                 <div className="numbers">
-                                  <CardTitle style={{fontSize:"20px"}} tag="p">Back</CardTitle>
+                                  <CardTitle style={{fontSize:"20px"}} tag="p">Back-end</CardTitle>
                                   <p />
                                   <p className="card-category">Node</p>
                                 </div>
@@ -323,12 +320,12 @@ class LandingPage extends React.Component {
                         <Card className="card-stats">
                           <CardBody>
                             <Row>
-                              <Col md="4" xs="5">
+                              <Col md="4" xs="5" className="pr-0">
                                 <div className="icon-big text-center icon-warning">
                                   <i className="tim-icons icon-credit-card text-success" />
                                 </div>
                               </Col>
-                              <Col md="8" xs="7">
+                              <Col md="8" xs="7" className="pl-0">
                                 <div className="numbers">
                                   <CardTitle style={{fontSize:"20px"}} tag="p">VCS</CardTitle>
                                   <p />
