@@ -134,9 +134,9 @@ class RegisterPage extends React.Component {
                       <CardHeader>
                         <CardImg
                           alt="..."
-                          src={require("../../assets/img/square-purple-1.png")}
+                          src={require("../../assets/img/square2.png")}
                         />
-                        <CardTitle tag="h4">Register</CardTitle>
+                        <CardTitle tag="h4" className="ml-2">Register</CardTitle>
                       </CardHeader>
                       <CardBody>
                         {/* FORM START */}
@@ -158,6 +158,7 @@ class RegisterPage extends React.Component {
                               name="name"
                               placeholder="Full Name"
                               type="text"
+                              autoComplete="new-password"
                               onChange={this.onFormChange}
                               onFocus={e =>
                                 this.setState({ fullNameFocus: true })
@@ -182,6 +183,7 @@ class RegisterPage extends React.Component {
                             value={this.state.email}
                               name="email"
                               onChange={this.onFormChange}
+                              autoComplete="off"
                               placeholder="Email"
                               type="text"
                               onFocus={e => this.setState({ emailFocus: true })}
@@ -204,6 +206,7 @@ class RegisterPage extends React.Component {
                               name="password"
                               placeholder="Password"
                               type="password"
+                              autoComplete="off"
                               onChange={this.onFormChange}
                               onFocus={e =>
                                 this.setState({ passwordFocus: true })
@@ -229,7 +232,7 @@ class RegisterPage extends React.Component {
                         </Form>
                       </CardBody>
                       <CardFooter>
-                        <Button form="registerForm" type="submit" className="btn-round" color="primary" size="lg">
+                        <Button form="registerForm" type="submit" className="btn-round" color="info" size="lg">
                           Get Started
                         </Button>
                       </CardFooter>

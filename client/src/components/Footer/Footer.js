@@ -18,8 +18,8 @@ class Footer extends React.Component {
     return (
       <footer className="footer">
         <Container>
-          <Row>
-            <Col md="3">
+          <Row >
+            <Col md="3" className="d-flex justify-content-center">
               <h1 className="title">DEV•Collab</h1>
             </Col>
             <Col md="3">
@@ -29,11 +29,6 @@ class Footer extends React.Component {
                     Home
                   </NavLink>
                 </NavItem>
-                {/* <NavItem>
-                  <NavLink to="/landing-page" tag={Link}>
-                    Landing
-                  </NavLink>
-                </NavItem> */}
                 <NavItem>
                   <NavLink to="/register-page" tag={Link}>
                     Register
@@ -49,18 +44,13 @@ class Footer extends React.Component {
             <Col md="3">
               <Nav>
                 <NavItem>
-                  <NavLink href="#">
+                  <NavLink href="https://www.linkedin.com/search/results/all/?keywords=micah%20peterson%20OR%20cainan%20barboza&origin=GLOBAL_SEARCH_HEADER">
                     Contact Us
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="#">
+                  <NavLink href="https://github.com/CainanB/devcollab">
                     About Us
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="#">
-                    Blog
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -71,8 +61,9 @@ class Footer extends React.Component {
               </Nav>
             </Col>
             <Col md="3">
-              <h3 className="title">Follow us:</h3>
+              <h3 className="mt-4">View Source Code</h3>
               <div className="btn-wrapper profile">
+                
                 <Button
                   className="btn-icon btn-neutral btn-round btn-simple"
                   color="default"
