@@ -17,7 +17,7 @@
 */
 
 import React from "react";
-import classnames from "classnames";
+// import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 // reactstrap components
@@ -26,21 +26,14 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Label,
-  FormGroup,
-  Form,
-  Input,
-  FormText,
   NavItem,
   NavLink,
   Nav,
-  Table,
   TabContent,
   TabPane,
   Container,
   Row,
   Col,
-  UncontrolledTooltip,
   UncontrolledCarousel
 } from "reactstrap";
 
@@ -166,9 +159,9 @@ class ProfilePage extends React.Component {
                       >
                         <NavItem>
                           <NavLink
-                            className={classnames({
-                              active: this.state.tabs === 1
-                            })}
+                            // className={classnames({
+                            //   active: this.state.tabs === 1
+                            // })}
                             onClick={e => this.toggleTabs(e, "tabs", 1)}
                             href="#"
                             className="bg-dark text-light"
@@ -179,9 +172,9 @@ class ProfilePage extends React.Component {
                         </NavItem>
                         <NavItem>
                           <NavLink
-                            className={classnames({
-                              active: this.state.tabs === 2
-                            })}
+                            // className={classnames({
+                            //   active: this.state.tabs === 2
+                            // })}
                             onClick={e => this.toggleTabs(e, "tabs", 2)}
                             href="#"
                             className="bg-dark text-light"
@@ -192,9 +185,9 @@ class ProfilePage extends React.Component {
                         </NavItem>
                         <NavItem>
                           <NavLink
-                            className={classnames({
-                              active: this.state.tabs === 3
-                            })}
+                            // className={classnames({
+                            //   active: this.state.tabs === 3
+                            // })}
                             onClick={e => this.toggleTabs(e, "tabs", 3)}
                             href="#"
                             className="bg-dark text-light"
@@ -211,9 +204,9 @@ class ProfilePage extends React.Component {
                         {/* Personal Website Tab */}
                         <TabPane tabId="tab1" className="text-left">
 
-                          <b>Portfolio:</b> <a href="https://petersonprojects.github.io" target="_blank"> petersonprojects.github.io </a> <br/>
-                          <b>Github:</b> <a href="https://github.com/petersonprojects" target="_blank"> github.com/petersonprojects </a> <br/>
-                          <b>Company:</b> <a href="https://www.digitalcrafts.com/" target="_blank"> digitalcrafts.com </a>
+                          <b>Portfolio:</b> <a rel="noopener noreferrer" href="https://petersonprojects.github.io" target="_blank"> petersonprojects.github.io </a> <br/>
+                          <b>Github:</b> <a rel="noopener noreferrer" href="https://github.com/petersonprojects" target="_blank"> github.com/petersonprojects </a> <br/>
+                          <b>Company:</b> <a rel="noopener noreferrer" href="https://www.digitalcrafts.com/" target="_blank"> digitalcrafts.com </a>
 
                         </TabPane>
 

@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux'
 // reactstrap components
 import {
   Button,
@@ -29,6 +30,57 @@ class PagesNavbar extends React.Component {
   }
   componentWillUnmount() {
     window.removeEventListener("scroll", this.changeColor);
+  }
+
+  updateNav = () => {
+
+      let navJSX;
+
+      if(this.props.isAuthenticated)
+      {
+  
+        navJSX = <><NavItem>
+        <Link to="/profile-page"
+        >
+        <Button
+          className="nav-link d-none d-lg-block"
+          color="secondary"
+        >
+          Profile
+        </Button>
+        </Link>
+      </NavItem>
+      <NavItem>
+        <NavLink tag={Link} to="/">
+          Sign out
+        </NavLink>
+      </NavItem> </>
+
+      }
+  
+      else if(!this.props.isAuthenticated || this.props.isAuthenticated === null)
+      {
+        navJSX = <><NavItem>
+          <Link to="/register-page"
+          >
+          <Button
+            className="nav-link d-none d-lg-block"
+            color="secondary"
+          >
+            Register
+          </Button>
+          </Link>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to="/">
+            Sign in
+          </NavLink>
+        </NavItem> </>
+  
+      }
+
+      return navJSX;
+  
   }
   changeColor = () => {
     if (
@@ -63,6 +115,7 @@ class PagesNavbar extends React.Component {
       collapseOut: ""
     });
   };
+
   render() {
     return (
       <Navbar
@@ -83,6 +136,8 @@ class PagesNavbar extends React.Component {
             <UncontrolledTooltip placement="bottom" target="navbar-brand">
               By Cainan Barboza and Micah Peterson
             </UncontrolledTooltip>
+
+            {console.log(this.props.isAuthenticated)}
             <button
               aria-expanded={this.state.collapseOpen}
               className="navbar-toggler navbar-toggler"
@@ -132,24 +187,10 @@ class PagesNavbar extends React.Component {
                   <p className="d-lg-none d-xl-none">Github</p>
                 </NavLink>
               </NavItem>
+              
+              {/* update navbar with profile and sign out button */}
+              {this.updateNav()}
 
-              <NavItem>
-                <Link to="/register-page"
-                >
-                <Button
-                  className="nav-link d-none d-lg-block"
-                  color="secondary"
-                 
-                >
-                  Register
-                </Button>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/">
-                  Sign in
-                </NavLink>
-              </NavItem>
               <NavItem>
                 <NavLink href="https://github.com/CainanB/devcollab/issues" target="_blank">
                   Have an issue?
@@ -163,4 +204,12 @@ class PagesNavbar extends React.Component {
   }
 }
 
-export default PagesNavbar;
+const mapStateToProps = state => {
+  return {
+
+    isAuthenticated: state.auth.isAuthenticated
+
+  }
+}
+
+export default connect(mapStateToProps, null)(PagesNavbar);
