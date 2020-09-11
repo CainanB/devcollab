@@ -77,7 +77,7 @@ class PagesNavbar extends React.Component {
             Sign in
           </NavLink>
         </NavItem> </>
-  
+
       }
 
       return navJSX;
@@ -190,6 +190,7 @@ class PagesNavbar extends React.Component {
               </NavItem>
               
               {/* update navbar with profile and sign out button */}
+
               {this.updateNav()}
 
               <NavItem>
