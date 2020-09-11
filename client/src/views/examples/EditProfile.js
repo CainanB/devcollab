@@ -35,9 +35,9 @@ class RegisterPage extends React.Component {
     state = {
     squares1to6: "",
     squares7and8: "",
-    email: "",
-    name: "",
-    password: ""
+    formData: {
+        
+    }
 
     };
 
@@ -137,7 +137,9 @@ class RegisterPage extends React.Component {
                                 </Col>
                             </Row>
 
-                            <CardTitle tag="h4" className="ml-2">Editor</CardTitle>
+                            <CardTitle tag="h4" className="ml-2">
+                                {this.props.isNewUser ? "Create" : "Edit"}
+                                </CardTitle>
 
 
                         </CardHeader>
@@ -444,6 +446,7 @@ class RegisterPage extends React.Component {
 
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    isNewUser: state.auth.isNewUser
 })
 export default connect(mapStateToProps, {setAlert, register})(RegisterPage)
