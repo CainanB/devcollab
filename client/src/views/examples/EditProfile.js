@@ -39,7 +39,7 @@ class RegisterPage extends React.Component {
     squares7and8: "",
 
 
-    status: ""
+    status: "",
 
     formData: {
         
@@ -95,17 +95,7 @@ class RegisterPage extends React.Component {
         });
     };
 
-//     updateCardTitle = () => {
-        
-//         if(this.props.isAuthenticated === true)
-//         {
-//             return <CardTitle tag="h4" className="ml-2">Editor</CardTitle>
-//         }
-//         else
-//         {
-//             return <CardTitle tag="h4" className="ml-2">Create <br/><span>Profile</span></CardTitle>
-//         }
-//     }
+
 
     setSelection = (e) => {
 
@@ -187,11 +177,9 @@ class RegisterPage extends React.Component {
                             </Row>
 
 
-//                             {this.updateCardTitle()}
-
                             <CardTitle tag="h4" className="ml-2">
                                 {this.props.isNewUser ? "Create" : "Edit"}
-                                </CardTitle>
+                            </CardTitle>
 
 
 
@@ -202,7 +190,6 @@ class RegisterPage extends React.Component {
                         {/* FORM START */}
 
                         <Form className="form" onSubmit={this.onFormSubmit} id="editForm">
-
 
                             {/* NAME INPUT */}
 
