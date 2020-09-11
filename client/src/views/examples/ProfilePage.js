@@ -20,6 +20,7 @@ import React from "react";
 // import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
+import { Link } from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -151,6 +152,7 @@ class ProfilePage extends React.Component {
                         src={require("../../assets/img/profile.jpeg")}
                       />
                       <h4 className="title">Micah Peterson</h4>
+                      <Button ><Link to="/edit-profile" ><b style={{color:'white'}}>Edit Profile</b></Link></Button>
                     </CardHeader>
                     <CardBody>
                       <Nav

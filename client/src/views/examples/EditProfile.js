@@ -5,7 +5,9 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAlert} from '../../actions/alert'
 import {register} from '../../actions/auth'
+import '../../assets/css/EditProfile.css'
 // reactstrap components
+import { Dropdown } from 'react-bootstrap';
 import {
   Button,
   Card,
@@ -35,6 +37,10 @@ class RegisterPage extends React.Component {
     state = {
     squares1to6: "",
     squares7and8: "",
+
+
+    status: ""
+
     formData: {
         
     }
@@ -42,7 +48,7 @@ class RegisterPage extends React.Component {
     };
 
     onFormChange=(e)=>{
-    this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.name]: e.target.value})
     }
 
     onFormSubmit = async (e) =>{
@@ -89,6 +95,47 @@ class RegisterPage extends React.Component {
         });
     };
 
+//     updateCardTitle = () => {
+        
+//         if(this.props.isAuthenticated === true)
+//         {
+//             return <CardTitle tag="h4" className="ml-2">Editor</CardTitle>
+//         }
+//         else
+//         {
+//             return <CardTitle tag="h4" className="ml-2">Create <br/><span>Profile</span></CardTitle>
+//         }
+//     }
+
+    setSelection = (e) => {
+
+        let selection = e.target.innerHTML;
+        
+        this.setState({
+            status: selection
+        })
+
+        console.log(`selection: ${selection}`)
+    }
+
+    checkSelected = () => {
+
+        if(this.state.status === "")
+        {
+            return <>Skill Level</>
+        }
+        else
+        {
+            return <>{this.state.status}</>
+        }
+    }
+
+    // handleImgHover = (e) => {
+
+    //     let image = document.getElementById('profImage')
+    //     image.addClass('profImage');
+    // }
+
     // begin render function 
 
     render() {
@@ -102,7 +149,7 @@ class RegisterPage extends React.Component {
             <div className="page-header-image" />
             <div className="content">
 
-            <Container>
+            <Container >
                 <Row>
                     <Col lg="12" md="12">
                     <div
@@ -115,7 +162,7 @@ class RegisterPage extends React.Component {
                         id="square8"
                         style={{ transform: this.state.squares7and8 }}
                     />
-                    <Card className="card-register">
+                    <Card className="card-register mb-5">
 
                         <CardHeader>
 
@@ -123,23 +170,29 @@ class RegisterPage extends React.Component {
 
                                 <Col xl={9} lg={9} md={9} sm={9} xs={9}>
                                     <CardImg
-                                    alt="..."
-                                    src={require("../../assets/img/square2.png")}
+                                        alt="..."
+                                        src={require("../../assets/img/square2.png")}
                                     />
                                 </Col>
                                 <Col xl={3} lg={3} md={3} sm={3} xs={3}>
                                     <img
                                     alt="..."
+                                    // onHover={(e)=>this.handleImgHover(e)}
+                                    // id="profImage"
                                     className="img-fluid rounded-circle shadow-lg"
-                                    style={{height:'150px', marginTop:'10px', width:'150px', border:'2px black solid'}}
+                                    style={{height:'150px', marginTop:'15px', width:'150px', border:'2px black solid'}}
                                     src={require("../../assets/img/profile.jpeg")}
                                     />
                                 </Col>
                             </Row>
 
+
+//                             {this.updateCardTitle()}
+
                             <CardTitle tag="h4" className="ml-2">
                                 {this.props.isNewUser ? "Create" : "Edit"}
                                 </CardTitle>
+
 
 
                         </CardHeader>
@@ -172,7 +225,7 @@ class RegisterPage extends React.Component {
                                 name="name"
                                 placeholder="Name or Nickname"
                                 type="text"
-                                autoComplete="new-password"
+                                autoComplete="off"
                                 onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ fullNameFocus: true })
@@ -188,9 +241,9 @@ class RegisterPage extends React.Component {
 
                             <InputGroup
 
-                                // className={classnames({
-                                //     "input-group-focus": this.state.emailFocus
-                                // })}
+                                className={classnames({
+                                    "input-group-focus": this.state.skillsFocus
+                                })}
                             >
 
                             <InputGroupAddon addonType="prepend">
@@ -206,8 +259,8 @@ class RegisterPage extends React.Component {
                                 autoComplete="off"
                                 placeholder="Skills"
                                 type="text"
-                                // onFocus={e => this.setState({ emailFocus: true })}
-                                // onBlur={e => this.setState({ emailFocus: false })}
+                                onFocus={e => this.setState({ skillsFocus: true })}
+                                onBlur={e => this.setState({ skillsFocus: false })}
                             />
                             </InputGroup>
 
@@ -215,39 +268,33 @@ class RegisterPage extends React.Component {
                             {/* STATUS INPUT */}
 
                             <InputGroup
-                            // className={classnames({
-                            //     "input-group-focus": this.state.passwordFocus
-                            // })}
+                            className={classnames({
+                                "input-group-focus": this.state.statusFocus
+                            })}
                             >
-                            <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                    <i className="tim-icons icon-laptop" />
-                                </InputGroupText>
-                            </InputGroupAddon>
 
-                            <Input
-                            //  value={this.state.status}
-                                name="status"
-                                placeholder="Status (how experienced are you in your listed skills)"
-                                type="text"
-                                autoComplete="off"
-                                onChange={this.onFormChange}
-                                // onFocus={e =>
-                                // this.setState({ passwordFocus: true })
-                                // }
-                                // onBlur={e =>
-                                // this.setState({ passwordFocus: false })
-                                // }
-                            />
+                            <Dropdown>
+                                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                                    {this.checkSelected()}
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Beginner">Beginner</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Junior">Junior</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Mid-Level">Mid-Level</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Senior">Senior</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+
+
                             </InputGroup>
-
 
                             {/* COMPANY INPUT */}
 
                             <InputGroup
-                            // className={classnames({
-                            //     "input-group-focus": this.state.passwordFocus
-                            // })}
+                            className={classnames({
+                                "input-group-focus": this.state.companyFocus
+                            })}
                             >
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText>
@@ -262,21 +309,21 @@ class RegisterPage extends React.Component {
                                 type="text"
                                 autoComplete="off"
                                 onChange={this.onFormChange}
-                                // onFocus={e =>
-                                // this.setState({ companyFocus: true })
-                                // }
-                                // onBlur={e =>
-                                // this.setState({ companyFocus: false })
-                                // }
+                                onFocus={e =>
+                                    this.setState({ companyFocus: true })
+                                }
+                                onBlur={e =>
+                                    this.setState({ companyFocus: false })
+                                }
                             />
                             </InputGroup>
 
                             {/* WEBSITE INPUT */}
 
                             <InputGroup
-                            // className={classnames({
-                            //     "input-group-focus": this.state.passwordFocus
-                            // })}
+                            className={classnames({
+                                "input-group-focus": this.state.websiteFocus
+                            })}
                             >
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText>
@@ -291,21 +338,21 @@ class RegisterPage extends React.Component {
                                 type="text"
                                 autoComplete="off"
                                 onChange={this.onFormChange}
-                                // onFocus={e =>
-                                // this.setState({ websiteFocus: true })
-                                // }
-                                // onBlur={e =>
-                                // this.setState({ websiteFocus: false })
-                                // }
+                                onFocus={e =>
+                                    this.setState({ websiteFocus: true })
+                                }
+                                onBlur={e =>
+                                    this.setState({ websiteFocus: false })
+                                }
                             />
                             </InputGroup>
 
                             {/* GitHub INPUT */}
 
                             <InputGroup
-                            // className={classnames({
-                            //     "input-group-focus": this.state.passwordFocus
-                            // })}
+                            className={classnames({
+                                "input-group-focus": this.state.gitFocus
+                            })}
                             >
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText>
@@ -320,21 +367,21 @@ class RegisterPage extends React.Component {
                                 type="text"
                                 autoComplete="off"
                                 onChange={this.onFormChange}
-                                // onFocus={e =>
-                                // this.setState({ gitFocus: true })
-                                // }
-                                // onBlur={e =>
-                                // this.setState({ gitFocus: false })
-                                // }
+                                onFocus={e =>
+                                    this.setState({ gitFocus: true })
+                                }
+                                onBlur={e =>
+                                    this.setState({ gitFocus: false })
+                                }
                             />
                             </InputGroup>
 
                             {/* LOCATION INPUT */}
 
                             <InputGroup
-                            // className={classnames({
-                            //     "input-group-focus": this.state.passwordFocus
-                            // })}
+                            className={classnames({
+                                "input-group-focus": this.state.locationFocus
+                            })}
                             >
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText>
@@ -349,21 +396,21 @@ class RegisterPage extends React.Component {
                                 type="text"
                                 autoComplete="off"
                                 onChange={this.onFormChange}
-                                // onFocus={e =>
-                                // this.setState({ locationFocus: true })
-                                // }
-                                // onBlur={e =>
-                                // this.setState({ locationFocus: false })
-                                // }
+                                onFocus={e =>
+                                    this.setState({ locationFocus: true })
+                                }
+                                onBlur={e =>
+                                    this.setState({ locationFocus: false })
+                                }
                             />
                             </InputGroup>
 
                             {/* BIO INPUT */}
 
                             <InputGroup
-                            // className={classnames({
-                            //     "input-group-focus": this.state.passwordFocus
-                            // })}
+                            className={classnames({
+                                "input-group-focus": this.state.bioFocus
+                            })}
                             >
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText>
@@ -372,20 +419,20 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <textarea
-                            //  value={this.state.location}
+                            //  value={this.state.bio}
                                 name="bio"
                                 placeholder="Bio"
                                 type="text"
                                 autoComplete="off"
                                 className="form-control"
-                                style={{borderTop:'1px info solid'}}
+                                // style={{borderTop:'1px info solid'}}
                                 onChange={this.onFormChange}
-                                // onFocus={e =>
-                                // this.setState({ bioFocus: true })
-                                // }
-                                // onBlur={e =>
-                                // this.setState({ bioFocus: false })
-                                // }
+                                onFocus={e =>
+                                    this.setState({ bioFocus: true })
+                                }
+                                onBlur={e =>
+                                    this.setState({ bioFocus: false })
+                                }
                             />
                             </InputGroup>
 
@@ -393,8 +440,8 @@ class RegisterPage extends React.Component {
 
                         </CardBody>
 
-                        <CardFooter>
-                            <Button form="registerForm" type="submit" className="btn-round" color="info" size="lg">
+                        <CardFooter style={{marginTop:'-10px'}}>
+                            <Button form="editForm" type="submit" className="btn-round" color="info" size="lg">
                                 Save Changes
                             </Button>
                         </CardFooter>
