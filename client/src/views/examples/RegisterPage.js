@@ -57,9 +57,12 @@ class RegisterPage extends React.Component {
             this.props.register({
               ...newUser
           })
+          
   }
   componentWillMount(){
-    if(this.props.isAuthenticated){
+    if(this.props.isAuthenticated && this.props.isNewUser){
+      return <Redirect to="/edit-profile"/>
+    }else{
       return <Redirect to="/profile-page"/>
     }
   }
@@ -93,8 +96,8 @@ class RegisterPage extends React.Component {
     });
   };
   render() {
-    if(this.props.isAuthenticated){
-      return <Redirect to="/profile-page"/>
+    if(this.props.isAuthenticated && this.props.isNewUser){
+      return <Redirect to="/edit-profile"/>
     }
     return (
       <>
@@ -269,6 +272,7 @@ class RegisterPage extends React.Component {
 
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  isNewUser: state.auth.isNewUser
 })
 export default connect(mapStateToProps, {setAlert, register})(RegisterPage)

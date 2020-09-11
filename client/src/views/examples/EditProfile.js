@@ -37,10 +37,13 @@ class RegisterPage extends React.Component {
     state = {
     squares1to6: "",
     squares7and8: "",
-    email: "",
-    name: "",
-    password: "",
+
+
     status: ""
+
+    formData: {
+        
+    }
 
     };
 
@@ -92,17 +95,17 @@ class RegisterPage extends React.Component {
         });
     };
 
-    updateCardTitle = () => {
+//     updateCardTitle = () => {
         
-        if(this.props.isAuthenticated === true)
-        {
-            return <CardTitle tag="h4" className="ml-2">Editor</CardTitle>
-        }
-        else
-        {
-            return <CardTitle tag="h4" className="ml-2">Create <br/><span>Profile</span></CardTitle>
-        }
-    }
+//         if(this.props.isAuthenticated === true)
+//         {
+//             return <CardTitle tag="h4" className="ml-2">Editor</CardTitle>
+//         }
+//         else
+//         {
+//             return <CardTitle tag="h4" className="ml-2">Create <br/><span>Profile</span></CardTitle>
+//         }
+//     }
 
     setSelection = (e) => {
 
@@ -183,7 +186,13 @@ class RegisterPage extends React.Component {
                                 </Col>
                             </Row>
 
-                            {this.updateCardTitle()}
+
+//                             {this.updateCardTitle()}
+
+                            <CardTitle tag="h4" className="ml-2">
+                                {this.props.isNewUser ? "Create" : "Edit"}
+                                </CardTitle>
+
 
 
                         </CardHeader>
@@ -484,6 +493,7 @@ class RegisterPage extends React.Component {
 
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    isNewUser: state.auth.isNewUser
 })
 export default connect(mapStateToProps, {setAlert, register})(RegisterPage)
