@@ -20,7 +20,6 @@ import classnames from "classnames";
 import axios from 'axios';
 import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import {login} from '../../actions/auth'
 // react plugin used to create charts
 // import { Line } from "react-chartjs-2";
@@ -63,27 +62,11 @@ class LandingPage extends React.Component {
     }
   
     onFormSubmit = async (e) =>{
+      
+      
       e.preventDefault();
   
-            const newUser= {
-                  name: this.state.name,
-                  email: this.state.email,
-                  password: this.state.password
-              }
-  
-              try {
-  
-                  const config = {
-                      headers: {
-                          'Content-Type': 'application/json'
-                      }
-                  }
-                  const body = JSON.stringify(newUser)
-                  const res = await axios.post('/api/users', body, config)
-                  console.log(res.data)
-              } catch (error) {
-                  console.error(error.response.data)
-              }
+      this.props.login({email: this.state.email, password: this.state.password})
   }
 
   componentDidMount() {
@@ -95,6 +78,9 @@ class LandingPage extends React.Component {
   }
 
   render() {
+    if(this.props.isAuthenticated){
+      return <Redirect to="/profile-page" />
+  }
     return (
       <>
         <Navbar />
@@ -147,14 +133,15 @@ class LandingPage extends React.Component {
                     <p className="category text-success d-inline">
                       Get Started
                     </p>
+                    <Link to="/register-page">
                     <Button
                       className="btn-link"
                       color="success"
-                      href="/register-page"
                       size="sm"
                     >
                       <i className="tim-icons icon-minimal-right" />
                     </Button>
+                    </Link>
                   </div>
                   <div className="btn-wrapper">
                     <div className="button-container">
@@ -173,7 +160,7 @@ class LandingPage extends React.Component {
                       </CardHeader>
                       <CardBody>
                         {/* FORM START */}
-                        <Form className="form" onSubmit={this.onFormSubmit} id="registerForm">
+                        <Form className="form" onSubmit={this.onFormSubmit} id="signinForm">
                           <InputGroup
                             className={classnames({
                               "input-group-focus": this.state.fullNameFocus
@@ -475,4 +462,10 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, {login})(LandingPage)
+
