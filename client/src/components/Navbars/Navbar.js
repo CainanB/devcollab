@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
+import {logout} from '../../actions/auth'
 // reactstrap components
 import {
   Button,
@@ -51,7 +52,7 @@ class PagesNavbar extends React.Component {
         </Link>
       </NavItem>
       <NavItem>
-        <NavLink tag={Link} to="/">
+        <NavLink tag={Link} to="/" onClick={this.props.logout}>
           Sign out
         </NavLink>
       </NavItem> </>
@@ -212,4 +213,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(PagesNavbar);
+export default connect(mapStateToProps, {logout})(PagesNavbar);
