@@ -4,7 +4,7 @@ import classnames from "classnames";
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAlert} from '../../actions/alert'
-import {register} from '../../actions/auth'
+import {createProfile, getProfile} from '../../actions/profile'
 import '../../assets/css/EditProfile.css'
 // reactstrap components
 import { Dropdown } from 'react-bootstrap';
@@ -37,35 +37,57 @@ class RegisterPage extends React.Component {
     state = {
     squares1to6: "",
     squares7and8: "",
+    isChanged: false,
 
-
-    status: ""
+    status: "",
 
     formData: {
-        
+        company: '',
+        website: '',
+        location: '',
+        skills: '',
+        githubusername: '',
+        bio: '',
+      
     }
 
     };
 
     onFormChange=(e)=>{
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({
+            formData :{
+                ...this.state.formData,
+                [e.target.name]: e.target.value
+            }
+            }, ()=>{console.log(this.state.formData, this.state.status)})
     }
 
     onFormSubmit = async (e) =>{
         e.preventDefault();
-
+        this.props.createProfile({...this.state.formData, status: this.state.status})
+        this.setState({
+            isChanged: true
+        })
+        
     }
 
-    componentWillMount(){
-
-        if(this.props.isAuthenticated)
-        {
-            return <Redirect to="/profile-page"/>
-        }
-    }
     componentDidMount() {
         document.body.classList.toggle("register-page");
         document.documentElement.addEventListener("mousemove", this.followCursor);
+        this.props.getProfile();
+        this.setState({
+            formData: {
+                ...this.state.formData,
+                company: this.props.profile.loading || !this.props.profile.profile.company ? '' : this.props.profile.profile.company,
+                website: this.props.profile.loading || !this.props.profile.profile.website ? '' : this.props.profile.profile.website,
+                location: this.props.profile.loading || !this.props.profile.profile.location ? '' : this.props.profile.profile.location,
+                skills: this.props.profile.loading || !this.props.profile.profile.skills ? '' : this.props.profile.profile.skills.toString(),
+                githubusername: this.props.profile.loading || !this.props.profile.profile.githubusername ? '' : this.props.profile.profile.githubusername,
+                bio: this.props.profile.loading || !this.props.profile.profile.bio ? '' : this.props.profile.profile.bio,
+            },
+            status: this.props.profile.loading || !this.props.profile.profile.status ? '' : this.props.profile.profile.status,
+         
+        })
     }
 
     componentWillUnmount() {
@@ -139,7 +161,9 @@ class RegisterPage extends React.Component {
     // begin render function 
 
     render() {
-
+    if(this.state.isChanged) {
+        return <Redirect to="/profile-page"/>
+    } 
     return (
         <>
         <Navbar />
@@ -187,10 +211,10 @@ class RegisterPage extends React.Component {
                             </Row>
 
 
-//                             {this.updateCardTitle()}
+{/* //                             {this.updateCardTitle()} */}
 
                             <CardTitle tag="h4" className="ml-2">
-                                {this.props.isNewUser ? "Create" : "Edit"}
+                                {this.props.profile == null ? "Create" : "Edit"}
                                 </CardTitle>
 
 
@@ -203,38 +227,33 @@ class RegisterPage extends React.Component {
 
                         <Form className="form" onSubmit={this.onFormSubmit} id="editForm">
 
+                                 {/* STATUS INPUT */}
 
-                            {/* NAME INPUT */}
-
-                            <InputGroup
-
-                                className={classnames({
-                                    "input-group-focus": this.state.fullNameFocus
-                                })}
-                            
+                                 <InputGroup
+                            className={classnames({
+                                "input-group-focus": this.state.statusFocus
+                            })}
                             >
 
-                            <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                    <i className="tim-icons icon-single-02" />
-                                </InputGroupText>
-                            </InputGroupAddon>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                                    {this.checkSelected()}
+                                </Dropdown.Toggle>
 
-                            <Input
-                                // value={this.state.name}
-                                name="name"
-                                placeholder="Name or Nickname"
-                                type="text"
-                                autoComplete="off"
-                                onChange={this.onFormChange}
-                                onFocus={e =>
-                                    this.setState({ fullNameFocus: true })
-                                }
-                                onBlur={e =>
-                                    this.setState({ fullNameFocus: false })
-                                }
-                            />
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Beginner">Beginner</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Junior">Junior</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Mid-Level">Mid-Level</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Senior">Senior</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+
+
                             </InputGroup>
+                           
+
+                        
+
 
 
                             {/* Skills INPUT */}
@@ -261,33 +280,13 @@ class RegisterPage extends React.Component {
                                 type="text"
                                 onFocus={e => this.setState({ skillsFocus: true })}
                                 onBlur={e => this.setState({ skillsFocus: false })}
+                                onChange={this.onFormChange}
+                                value={this.state.formData.skills}
                             />
                             </InputGroup>
 
 
-                            {/* STATUS INPUT */}
-
-                            <InputGroup
-                            className={classnames({
-                                "input-group-focus": this.state.statusFocus
-                            })}
-                            >
-
-                            <Dropdown>
-                                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                    {this.checkSelected()}
-                                </Dropdown.Toggle>
-
-                                <Dropdown.Menu>
-                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Beginner">Beginner</Dropdown.Item>
-                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Junior">Junior</Dropdown.Item>
-                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Mid-Level">Mid-Level</Dropdown.Item>
-                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Senior">Senior</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-
-
-                            </InputGroup>
+                       
 
                             {/* COMPANY INPUT */}
 
@@ -315,6 +314,8 @@ class RegisterPage extends React.Component {
                                 onBlur={e =>
                                     this.setState({ companyFocus: false })
                                 }
+                                onChange={this.onFormChange}
+                                value={this.state.formData.company}
                             />
                             </InputGroup>
 
@@ -344,6 +345,8 @@ class RegisterPage extends React.Component {
                                 onBlur={e =>
                                     this.setState({ websiteFocus: false })
                                 }
+                                onChange={this.onFormChange}
+                                value={this.state.formData.website}
                             />
                             </InputGroup>
 
@@ -361,8 +364,8 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.website}
-                                name="github"
+                            
+                                name="githubusername"
                                 placeholder="GitHub Username"
                                 type="text"
                                 autoComplete="off"
@@ -373,6 +376,8 @@ class RegisterPage extends React.Component {
                                 onBlur={e =>
                                     this.setState({ gitFocus: false })
                                 }
+                                onChange={this.onFormChange}
+                                value={this.state.formData.githubusername}
                             />
                             </InputGroup>
 
@@ -402,6 +407,8 @@ class RegisterPage extends React.Component {
                                 onBlur={e =>
                                     this.setState({ locationFocus: false })
                                 }
+                                onChange={this.onFormChange}
+                                value={this.state.formData.location}
                             />
                             </InputGroup>
 
@@ -419,7 +426,7 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <textarea
-                            //  value={this.state.bio}
+                                value={this.state.formData.bio}
                                 name="bio"
                                 placeholder="Bio"
                                 type="text"
@@ -433,6 +440,7 @@ class RegisterPage extends React.Component {
                                 onBlur={e =>
                                     this.setState({ bioFocus: false })
                                 }
+                                onChange={this.onFormChange}
                             />
                             </InputGroup>
 
@@ -494,6 +502,6 @@ class RegisterPage extends React.Component {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    isNewUser: state.auth.isNewUser
+    profile: state.profile
 })
-export default connect(mapStateToProps, {setAlert, register})(RegisterPage)
+export default connect(mapStateToProps, {setAlert,createProfile, getProfile})(RegisterPage)
