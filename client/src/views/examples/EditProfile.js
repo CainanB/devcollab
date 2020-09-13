@@ -38,7 +38,6 @@ class RegisterPage extends React.Component {
     squares1to6: "",
     squares7and8: "",
     isChanged: false,
-
     status: "",
 
     formData: {
@@ -117,17 +116,7 @@ class RegisterPage extends React.Component {
         });
     };
 
-//     updateCardTitle = () => {
-        
-//         if(this.props.isAuthenticated === true)
-//         {
-//             return <CardTitle tag="h4" className="ml-2">Editor</CardTitle>
-//         }
-//         else
-//         {
-//             return <CardTitle tag="h4" className="ml-2">Create <br/><span>Profile</span></CardTitle>
-//         }
-//     }
+
 
     setSelection = (e) => {
 
@@ -211,11 +200,13 @@ class RegisterPage extends React.Component {
                             </Row>
 
 
-{/* //                             {this.updateCardTitle()} */}
+
 
                             <CardTitle tag="h4" className="ml-2">
                                 {this.props.profile == null ? "Create" : "Edit"}
                                 </CardTitle>
+
+
 
 
 
@@ -227,6 +218,7 @@ class RegisterPage extends React.Component {
 
                         <Form className="form" onSubmit={this.onFormSubmit} id="editForm">
 
+
                                  {/* STATUS INPUT */}
 
                                  <InputGroup
@@ -234,6 +226,9 @@ class RegisterPage extends React.Component {
                                 "input-group-focus": this.state.statusFocus
                             })}
                             >
+
+                            {/* NAME INPUT */}
+
 
                             <Dropdown>
                                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
