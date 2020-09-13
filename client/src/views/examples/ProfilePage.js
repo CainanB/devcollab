@@ -41,6 +41,8 @@ import {
 // core components
 import Navbar from "../../components/Navbars/Navbar.js";
 import Footer from "../../components/Footer/Footer.js";
+import {getProfile} from '../../actions/profile'
+import {connect} from 'react-redux'
 
 const carouselItems = [
   {
@@ -75,6 +77,7 @@ class ProfilePage extends React.Component {
 
   componentDidMount()
   {
+    this.props.getProfile()
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
@@ -111,8 +114,15 @@ class ProfilePage extends React.Component {
   // start render
 
   render() {
+    if(this.props.profile.loading && this.props.profile.profile == null){
+      return (
+        <>Loading</>
+      )
+    }
+    const {bio, skills, status, website, company, githubusername, user} = this.props.profile.profile
     return (
       <>
+      
         <Navbar />
 
         <div className="wrapper">
@@ -131,13 +141,10 @@ class ProfilePage extends React.Component {
             <Container className="align-items-center mb-5">
               <Row>
                 <Col lg="5" md="5">
-                  <h1 className="profile-title text-left">Junior</h1>
+                  <h1 className="profile-title text-left">{status.split(" ")[0]}</h1>
                   <h5 className="text-on-back">Dev</h5>
                   <p className="profile-description">
-                    I am a junior developer looking for some help with my React projects.
-                    I recently graduated a coding bootcamp called Digitalcrafts where I learned full
-                    stack development. I used to be a baker by trade, but now it is a hobby and I am moving onto bigger and better
-                    things.
+                    {bio}
                   </p>
 
                 </Col>
@@ -151,7 +158,7 @@ class ProfilePage extends React.Component {
                         // their uploaded profile image
                         src={require("../../assets/img/profile.jpeg")}
                       />
-                      <h4 className="title">Micah Peterson</h4>
+                      <h4 className="title">{user.name}</h4>
                       <Button ><Link to="/edit-profile" ><b style={{color:'white'}}>Edit Profile</b></Link></Button>
                     </CardHeader>
                     <CardBody>
@@ -306,4 +313,13 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default ProfilePage;
+
+const mapStateToProps = state => {
+  return{
+    auth: state.auth,
+    profile: state.profile
+  }
+
+}
+
+export default connect(mapStateToProps,{getProfile})(ProfilePage);
