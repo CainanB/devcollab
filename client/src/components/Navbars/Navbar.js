@@ -159,7 +159,7 @@ class PagesNavbar extends React.Component {
             <div className="navbar-collapse-header">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <a href="#" onClick={e => e.preventDefault()}>
+                  <a href="/" onClick={e => e.preventDefault()}>
                     DEV•Collab
                   </a>
                 </Col>
@@ -189,9 +189,14 @@ class PagesNavbar extends React.Component {
                 </NavLink>
               </NavItem>
 
-              <NavItem className="mt-2 pb-2">
+              <NavItem>
                 <Link to="/posts">
-                  Posts
+                  <Button
+                    className="nav-link d-lg-block"
+                    color="secondary"
+                  >
+                    Posts
+                  </Button>
                 </Link>
               </NavItem>
               

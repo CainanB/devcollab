@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 // import axios from 'axios';
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAlert} from '../../actions/alert'
 import {createProfile, getProfile} from '../../actions/profile'
@@ -16,8 +16,6 @@ import {
   CardFooter,
   CardImg,
   CardTitle,
-  Label,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -39,7 +37,7 @@ class RegisterPage extends React.Component {
     squares7and8: "",
     isChanged: false,
     status: "",
-
+    saved: false,
     formData: {
         company: '',
         website: '',
@@ -47,7 +45,7 @@ class RegisterPage extends React.Component {
         skills: '',
         githubusername: '',
         bio: '',
-      
+    
     }
 
     };
@@ -57,8 +55,9 @@ class RegisterPage extends React.Component {
             formData :{
                 ...this.state.formData,
                 [e.target.name]: e.target.value
-            }
-            }, ()=>{console.log(this.state.formData, this.state.status)})
+            },
+            saved: false
+        }, ()=>{console.log(this.state.formData, this.state.status)})
     }
 
     onFormSubmit = async (e) =>{
@@ -139,6 +138,35 @@ class RegisterPage extends React.Component {
         {
             return <>{this.state.status}</>
         }
+    }
+
+    saveChanges = () => {
+        
+        this.setState({
+            saved: true
+        })
+
+        console.log(this.state.saved)
+
+    }
+
+    checkSaved = () => {
+
+        let jsx = <>Save Changes</>;
+
+        if(this.state.saved === true)
+        {
+            jsx = <>
+                <i className="tim-icons icon-check-2" style={{color:'white'}}></i>
+            </>
+        }
+        else
+        {
+            jsx = <>Save Changes</>
+        }
+
+        return jsx;
+
     }
 
     // handleImgHover = (e) => {
@@ -245,11 +273,6 @@ class RegisterPage extends React.Component {
 
 
                             </InputGroup>
-                           
-
-                        
-
-
 
                             {/* Skills INPUT */}
 
@@ -267,9 +290,7 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            // value={this.state.skills}
                                 name="skills"
-                                onChange={this.onFormChange}
                                 autoComplete="off"
                                 placeholder="Skills"
                                 type="text"
@@ -297,12 +318,10 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.company}
                                 name="company"
                                 placeholder="Company"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ companyFocus: true })
                                 }
@@ -328,12 +347,10 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.website}
                                 name="website"
                                 placeholder="Personal Website"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ websiteFocus: true })
                                 }
@@ -364,7 +381,6 @@ class RegisterPage extends React.Component {
                                 placeholder="GitHub Username"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ gitFocus: true })
                                 }
@@ -390,12 +406,10 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.location}
                                 name="location"
                                 placeholder="Location"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ locationFocus: true })
                                 }
@@ -427,8 +441,6 @@ class RegisterPage extends React.Component {
                                 type="text"
                                 autoComplete="off"
                                 className="form-control"
-                                // style={{borderTop:'1px info solid'}}
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ bioFocus: true })
                                 }
@@ -444,9 +456,26 @@ class RegisterPage extends React.Component {
                         </CardBody>
 
                         <CardFooter style={{marginTop:'-10px'}}>
-                            <Button form="editForm" type="submit" className="btn-round" color="info" size="lg">
-                                Save Changes
+
+                            <Button 
+                                    form="editForm"
+                                    type="submit"
+                                    className="btn-round" 
+                                    color="info" 
+                                    size="lg"
+                                    onClick={this.saveChanges}
+                            >
+                                {this.checkSaved()}
                             </Button>
+
+
+                            <Link to='/profile-page'>
+                                <Button className="btn-round" color="info" size="lg">
+
+                                Go To Profile
+                                </Button>
+                            </Link>
+
                         </CardFooter>
 
                     </Card>

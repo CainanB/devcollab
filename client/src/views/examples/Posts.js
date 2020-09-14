@@ -1,25 +1,15 @@
 
 import React from "react";
-import classnames from "classnames";
-import {Link, Redirect} from 'react-router-dom'
+// import classnames from "classnames";
+// import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {login} from '../../actions/auth'
+// import {login} from '../../actions/auth'
 
 import {
-    Button,
     CardHeader,
-    CardImg,
     CardFooter,
-    Form,
-    FormGroup,
-    Label,
-    InputGroup,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
     Card,
     CardBody,
-    CardTitle,
     Container,
     Row,
     Col
@@ -59,11 +49,11 @@ class Posts extends React.Component {
         {
             // increment by one here
             this.setState({
-                likeColor:'white'
+                likeColor:'#0077b6'
             })
         }
         // un-like
-        else if(this.state.likeColor === 'white')
+        else if(this.state.likeColor === '#0077b6')
         {
             // decrement by one here
             this.setState({
