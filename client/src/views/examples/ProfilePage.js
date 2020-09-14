@@ -130,11 +130,7 @@ class ProfilePage extends React.Component {
   render() {
 
     let color = this.state.commentColor;
-    if(this.props.profile.loading && this.props.profile.profile == null){
-      return (
-        <>Loading</>
-      )
-    }
+ 
 
     return (
       <>
