@@ -32,7 +32,9 @@ import Navbar from "../../components/Navbars/Navbar.js";
 import Footer from "../../components/Footer/Footer.js";
 
 class RegisterPage extends React.Component {
+
   state = {
+    
     squares1to6: "",
     squares7and8: "",
     email: "",

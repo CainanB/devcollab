@@ -1,27 +1,17 @@
 
 import React from "react";
-import classnames from "classnames";
-import {Link, Redirect} from 'react-router-dom'
+// import classnames from "classnames";
+// import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import PostItem from './PostItem'
 import {getPosts} from '../../actions/post'
 
 
 import {
-    Button,
     CardHeader,
-    CardImg,
     CardFooter,
-    Form,
-    FormGroup,
-    Label,
-    InputGroup,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
     Card,
     CardBody,
-    CardTitle,
     Container,
     Row,
     Col

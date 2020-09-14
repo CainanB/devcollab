@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 // import axios from 'axios';
-import {Redirect, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAlert} from '../../actions/alert'
 import {createProfile, getProfile} from '../../actions/profile'
@@ -16,8 +16,6 @@ import {
   CardFooter,
   CardImg,
   CardTitle,
-  Label,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -32,12 +30,13 @@ import {
 import Navbar from "../../components/Navbars/Navbar.js";
 import Footer from "../../components/Footer/Footer.js";
 
-class RegisterPage extends React.Component {
+class CreateProfile extends React.Component {
 
     state = {
     squares1to6: "",
     squares7and8: "",
     status: "",
+    saved: false,
 
     formData: {
         company: '',
@@ -46,7 +45,7 @@ class RegisterPage extends React.Component {
         skills: '',
         githubusername: '',
         bio: '',
-      
+    
     }
 
     };
@@ -56,14 +55,14 @@ class RegisterPage extends React.Component {
             formData :{
                 ...this.state.formData,
                 [e.target.name]: e.target.value
-            }
-            }, ()=>{console.log(this.state.formData, this.state.status)})
+            },
+            saved: false
+        }, ()=>{console.log(this.state.formData, this.state.status)})
     }
 
     onFormSubmit = async (e) =>{
         e.preventDefault();
         this.props.createProfile({...this.state.formData, status: this.state.status})
-      
         
     }
 
@@ -123,6 +122,35 @@ class RegisterPage extends React.Component {
         {
             return <>{this.state.status}</>
         }
+    }
+
+    saveChanges = () => {
+        
+        this.setState({
+            saved: true
+        })
+
+        console.log(this.state.saved)
+
+    }
+
+    checkSaved = () => {
+
+        let jsx = <>Save Changes</>;
+
+        if(this.state.saved === true)
+        {
+            jsx = <>
+                <i className="tim-icons icon-check-2" style={{color:'white'}}></i>
+            </>
+        }
+        else
+        {
+            jsx = <>Save Changes</>
+        }
+
+        return jsx;
+
     }
 
     // handleImgHover = (e) => {
@@ -198,7 +226,7 @@ class RegisterPage extends React.Component {
 
                         {/* FORM START */}
 
-                        <Form className="form" onSubmit={this.onFormSubmit} id="editForm">
+                        <Form className="form" onSubmit={this.onFormSubmit} id="createForm">
 
 
                                  {/* STATUS INPUT */}
@@ -249,9 +277,7 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            // value={this.state.skills}
                                 name="skills"
-                                onChange={this.onFormChange}
                                 autoComplete="off"
                                 placeholder="Skills"
                                 type="text"
@@ -279,12 +305,10 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.company}
                                 name="company"
                                 placeholder="Company"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ companyFocus: true })
                                 }
@@ -315,7 +339,6 @@ class RegisterPage extends React.Component {
                                 placeholder="Personal Website"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ websiteFocus: true })
                                 }
@@ -346,7 +369,6 @@ class RegisterPage extends React.Component {
                                 placeholder="GitHub Username"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ gitFocus: true })
                                 }
@@ -372,12 +394,10 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.location}
                                 name="location"
                                 placeholder="Location"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ locationFocus: true })
                                 }
@@ -410,7 +430,6 @@ class RegisterPage extends React.Component {
                                 autoComplete="off"
                                 className="form-control"
                                 // style={{borderTop:'1px info solid'}}
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ bioFocus: true })
                                 }
@@ -426,8 +445,14 @@ class RegisterPage extends React.Component {
                         </CardBody>
 
                         <CardFooter style={{marginTop:'-10px'}}>
-                            <Button form="editForm" type="submit" className="btn-round" color="info" size="lg">
-                                Save Changes
+                            <Button 
+                                form="createForm"  
+                                type="submit" 
+                                className="btn-round" 
+                                color="info" 
+                                size="lg">
+                                onClick={this.saveChanges}
+                                {this.checkSaved()}
                             </Button>
 
                             <Link to='/profile-page'>
@@ -489,4 +514,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     profile: state.profile
 })
-export default connect(mapStateToProps, {setAlert,createProfile, getProfile})(RegisterPage)
+export default connect(mapStateToProps, {setAlert,createProfile, getProfile})(CreateProfile)

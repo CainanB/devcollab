@@ -35,8 +35,7 @@ import {
   TabPane,
   Container,
   Row,
-  Col,
-  UncontrolledCarousel
+  Col
 } from "reactstrap";
 
 // core components
@@ -130,7 +129,6 @@ class ProfilePage extends React.Component {
   render() {
 
     let color = this.state.commentColor;
- 
 
     return (
       <>
