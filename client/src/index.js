@@ -28,6 +28,7 @@ import LandingPage from "./views/examples/LandingPage.js";
 import RegisterPage from "./views/examples/RegisterPage.js";
 import ProfilePage from "./views/examples/ProfilePage.js";
 import EditProfile from "./views/examples/EditProfile.js";
+import CreateProfile from "./views/examples/CreateProfile.js";
 import {Provider} from 'react-redux'
 import store from './store'
 
@@ -52,6 +53,10 @@ ReactDOM.render(
       <Route
         path="/edit-profile"
         render={props => <EditProfile {...props} />}
+      />
+      <Route
+        path="/create-profile"
+        render={props => <CreateProfile {...props} />}
       />
       <Redirect from="/" to="/landing-page" />
     </Switch>

@@ -77,6 +77,7 @@ class ProfilePage extends React.Component {
 
   componentDidMount()
   {
+    
     this.props.getProfile()
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
@@ -114,15 +115,12 @@ class ProfilePage extends React.Component {
   // start render
 
   render() {
-    if(this.props.profile.loading && this.props.profile.profile == null){
-      return (
-        <>Loading</>
-      )
-    }
-    const {bio, skills, status, website, company, githubusername, user} = this.props.profile.profile
+ 
+    // const {bio, skills, status, website, company, githubusername, user} = this.props.profile.profile
     return (
       <>
-      
+        {this.props.profile.loading || this.props.profile.profile == null ? <Button ><Link to="/create-profile" ><b style={{color:'white'}}>Create Profile</b></Link></Button> :(
+          <>
         <Navbar />
 
         <div className="wrapper">
@@ -141,10 +139,10 @@ class ProfilePage extends React.Component {
             <Container className="align-items-center mb-5">
               <Row>
                 <Col lg="5" md="5">
-                  <h1 className="profile-title text-left">{status.split(" ")[0]}</h1>
+                  <h1 className="profile-title text-left">{this.props.profile.profile.status.split(" ")[0]}</h1>
                   <h5 className="text-on-back">Dev</h5>
                   <p className="profile-description">
-                    {bio}
+                    {this.props.profile.profile.bio}
                   </p>
 
                 </Col>
@@ -158,7 +156,7 @@ class ProfilePage extends React.Component {
                         // their uploaded profile image
                         src={require("../../assets/img/profile.jpeg")}
                       />
-                      <h4 className="title">{user.name}</h4>
+                      <h4 className="title">{this.props.profile.profile.user.name}</h4>
                       <Button ><Link to="/edit-profile" ><b style={{color:'white'}}>Edit Profile</b></Link></Button>
                     </CardHeader>
                     <CardBody>
@@ -308,6 +306,8 @@ class ProfilePage extends React.Component {
           </section>
           <Footer />
         </div>
+        </>
+        )}
       </>
     );
   }
