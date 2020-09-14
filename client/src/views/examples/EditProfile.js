@@ -178,9 +178,9 @@ class RegisterPage extends React.Component {
     // begin render function 
 
     render() {
-    if(this.state.isChanged) {
-        return <Redirect to="/profile-page"/>
-    } 
+    // if(this.state.isChanged) {
+    //     return <Redirect to="/profile-page"/>
+    // } 
     return (
         <>
         <Navbar />

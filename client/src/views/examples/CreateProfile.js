@@ -450,9 +450,11 @@ class CreateProfile extends React.Component {
                                 type="submit" 
                                 className="btn-round" 
                                 color="info" 
-                                size="lg">
+                                size="lg"
                                 onClick={this.saveChanges}
+                            >
                                 {this.checkSaved()}
+                            
                             </Button>
 
                             <Link to='/profile-page'>
