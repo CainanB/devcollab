@@ -44,7 +44,7 @@ class PagesNavbar extends React.Component {
         <Link to="/profile-page"
         >
         <Button
-          className="nav-link d-none d-lg-block"
+          className="nav-link d-lg-block"
           color="secondary"
         >
           Profile
@@ -65,7 +65,7 @@ class PagesNavbar extends React.Component {
           <Link to="/register-page"
           >
           <Button
-            className="nav-link d-none d-lg-block"
+            className="nav-link d-lg-block"
             color="secondary"
           >
             Register
@@ -138,7 +138,7 @@ class PagesNavbar extends React.Component {
               By Cainan Barboza and Micah Peterson
             </UncontrolledTooltip>
 
-            {console.log(this.props.isAuthenticated)}
+
             <button
               aria-expanded={this.state.collapseOpen}
               className="navbar-toggler navbar-toggler"
@@ -159,7 +159,7 @@ class PagesNavbar extends React.Component {
             <div className="navbar-collapse-header">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <a href="#" onClick={e => e.preventDefault()}>
                     DEV•Collab
                   </a>
                 </Col>
