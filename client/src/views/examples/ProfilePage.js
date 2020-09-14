@@ -130,7 +130,6 @@ class ProfilePage extends React.Component {
 
     let color = this.state.commentColor;
 
-
     return (
       <>
         {this.props.profile.loading || this.props.profile.profile == null ? <Button ><Link to="/create-profile" ><b style={{color:'white'}}>Create Profile</b></Link></Button> :(
