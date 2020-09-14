@@ -188,6 +188,12 @@ class PagesNavbar extends React.Component {
                   <p className="d-lg-none d-xl-none">Github</p>
                 </NavLink>
               </NavItem>
+
+              <NavItem className="mt-2 pb-2">
+                <Link to="/posts">
+                  Posts
+                </Link>
+              </NavItem>
               
               {/* update navbar with profile and sign out button */}
 
