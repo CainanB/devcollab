@@ -27,6 +27,7 @@ import {
   Card,
   CardHeader,
   CardBody,
+  CardFooter,
   NavItem,
   NavLink,
   Nav,
@@ -44,24 +45,6 @@ import Footer from "../../components/Footer/Footer.js";
 import {getProfile} from '../../actions/profile'
 import {connect} from 'react-redux'
 
-const carouselItems = [
-  {
-    src: require("../../assets/img/denys.jpg"),
-    altText: "Slide 1",
-    caption: "Big City Life, United States"
-  },
-  {
-    src: require("../../assets/img/fabien-bazanegue.jpg"),
-    altText: "Slide 2",
-    caption: "Somewhere Beyond, United States"
-  },
-  {
-    src: require("../../assets/img/mark-finn.jpg"),
-    altText: "Slide 3",
-    caption: "Stocks, United States"
-  }
-];
-
 let ps = null;
 
 class ProfilePage extends React.Component {
@@ -70,7 +53,9 @@ class ProfilePage extends React.Component {
     super(props);
 
     this.state = {
-      tabs: 1
+      tabs: 1,
+      commentColor: '#6c757d',
+      textAreaJSX: null
     }
 
   }
@@ -111,9 +96,38 @@ class ProfilePage extends React.Component {
 
   }
 
+  showComments = (postID) => {
+
+    // show comments by searching DB for post ID
+
+    // temp is the JSX that displays information from the database
+    let temp = <>
+        <span>Cainan Barboza - </span>
+        <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
+    </>
+
+    // this code is used to toggle the colors (active inactive)
+    if(this.state.commentColor === '#6c757d')
+    {
+        this.setState({
+            commentColor:'white',
+            textAreaJSX: temp
+        })
+    }
+    else if(this.state.commentColor === 'white')
+    {
+        this.setState({
+            commentColor:'#6c757d',
+            textAreaJSX: null
+        })
+    }
+
+  }
+
   // start render
 
   render() {
+    let color = this.state.commentColor;
     if(this.props.profile.loading && this.props.profile.profile == null){
       return (
         <>Loading</>
@@ -289,17 +303,60 @@ class ProfilePage extends React.Component {
                     
                 </Col>
 
-                <Card>
+                <Card className="mt-5" id="! postID here !">
 
                     <CardHeader>
-                      <b style={{fontSize:'3em'}}>Post Title</b> <span className="text-muted">from Micah Peterson</span>
+                        <img
+                            alt="..."
+                            className="img-center img-fluid rounded-circle"
+                            width="50px"
+                            height="50px"
+                            style={{display:'inline-block', marginBottom:'35px', marginRight:'10px'}}
+                            // their uploaded profile image
+                            src={require("../../assets/img/profile.jpeg")}
+                        />
+                        <b style={{fontSize:'3em'}}>Post Title</b> <span className="text-muted">from Micah Peterson</span>
                     </CardHeader>
-                    
-                    <CardBody style={{color:'white'}}>
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+                    <CardBody style={{color:'white', paddingTop:'0px'}}>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                     </CardBody>
 
-                </Card>
+                    <CardFooter>
+
+
+                        {/* Likes */}
+                        <i 
+                            className="fa fa-thumbs-up fa-2x ml-2 iconHov"
+                            aria-hidden="true"
+                        >
+                        </i>
+                        <span> 15 {/* post num likes from DB */}</span>
+
+
+                        {/* Comments */}
+                        <i 
+                            className="fas fa-comments fa-2x ml-5 iconHov"
+                            aria-hidden="true"
+                            onClick={this.showComments}
+                            style={{color:color}}
+                        >
+                        </i>
+                        <span> 3 {/* num comments from DB */}</span>
+
+                        <Row className="mt-3">
+                            <Col>
+                                {this.state.textAreaJSX}
+                            </Col>
+                        </Row>
+
+                    </CardFooter>
+
+                </Card> 
+
+                {/* End of Single Post */}
+                {/* Repeat for each post in DB */}
+
               </Row>
             </Container>
           </section>
