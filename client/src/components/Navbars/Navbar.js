@@ -159,7 +159,7 @@ class PagesNavbar extends React.Component {
             <div className="navbar-collapse-header">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <a href="#" onClick={e => e.preventDefault()}>
+                  <a href="/" onClick={e => e.preventDefault()}>
                     DEV•Collab
                   </a>
                 </Col>

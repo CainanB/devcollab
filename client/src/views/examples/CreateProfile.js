@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 // import axios from 'axios';
-import {Redirect, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAlert} from '../../actions/alert'
 import {createProfile, getProfile} from '../../actions/profile'
@@ -16,8 +16,6 @@ import {
   CardFooter,
   CardImg,
   CardTitle,
-  Label,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -126,6 +124,16 @@ class CreateProfile extends React.Component {
         }
     }
 
+    saveChanges = () => {
+        
+        this.setState({
+            saved: true
+        })
+
+        console.log(this.state.saved)
+
+    }
+
     checkSaved = () => {
 
         let jsx = <>Save Changes</>;
@@ -218,7 +226,7 @@ class CreateProfile extends React.Component {
 
                         {/* FORM START */}
 
-                        <Form className="form" onSubmit={this.onFormSubmit} id="editForm">
+                        <Form className="form" onSubmit={this.onFormSubmit} id="createForm">
 
 
                                  {/* STATUS INPUT */}
@@ -269,9 +277,7 @@ class CreateProfile extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            // value={this.state.skills}
                                 name="skills"
-                                onChange={this.onFormChange}
                                 autoComplete="off"
                                 placeholder="Skills"
                                 type="text"
@@ -299,12 +305,10 @@ class CreateProfile extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.company}
                                 name="company"
                                 placeholder="Company"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ companyFocus: true })
                                 }
@@ -335,7 +339,6 @@ class CreateProfile extends React.Component {
                                 placeholder="Personal Website"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ websiteFocus: true })
                                 }
@@ -366,7 +369,6 @@ class CreateProfile extends React.Component {
                                 placeholder="GitHub Username"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ gitFocus: true })
                                 }
@@ -392,12 +394,10 @@ class CreateProfile extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.location}
                                 name="location"
                                 placeholder="Location"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ locationFocus: true })
                                 }
@@ -430,7 +430,6 @@ class CreateProfile extends React.Component {
                                 autoComplete="off"
                                 className="form-control"
                                 // style={{borderTop:'1px info solid'}}
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ bioFocus: true })
                                 }
@@ -446,7 +445,13 @@ class CreateProfile extends React.Component {
                         </CardBody>
 
                         <CardFooter style={{marginTop:'-10px'}}>
-                            <Button form="editForm" className="btn-round" color="info" size="lg">
+                            <Button 
+                                form="createForm"  
+                                type="submit" 
+                                className="btn-round" 
+                                color="info" 
+                                size="lg">
+                                onClick={this.saveChanges}
                                 {this.checkSaved()}
                             </Button>
 

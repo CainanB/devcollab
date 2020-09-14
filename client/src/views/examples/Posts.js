@@ -1,25 +1,15 @@
 
 import React from "react";
-import classnames from "classnames";
-import {Link, Redirect} from 'react-router-dom'
+// import classnames from "classnames";
+// import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {login} from '../../actions/auth'
+// import {login} from '../../actions/auth'
 
 import {
-    Button,
     CardHeader,
-    CardImg,
     CardFooter,
-    Form,
-    FormGroup,
-    Label,
-    InputGroup,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
     Card,
     CardBody,
-    CardTitle,
     Container,
     Row,
     Col

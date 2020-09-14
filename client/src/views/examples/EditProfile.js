@@ -16,8 +16,6 @@ import {
   CardFooter,
   CardImg,
   CardTitle,
-  Label,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -292,9 +290,7 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            // value={this.state.skills}
                                 name="skills"
-                                onChange={this.onFormChange}
                                 autoComplete="off"
                                 placeholder="Skills"
                                 type="text"
@@ -322,12 +318,10 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.company}
                                 name="company"
                                 placeholder="Company"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ companyFocus: true })
                                 }
@@ -353,12 +347,10 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.website}
                                 name="website"
                                 placeholder="Personal Website"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ websiteFocus: true })
                                 }
@@ -389,7 +381,6 @@ class RegisterPage extends React.Component {
                                 placeholder="GitHub Username"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ gitFocus: true })
                                 }
@@ -415,12 +406,10 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
 
                             <Input
-                            //  value={this.state.location}
                                 name="location"
                                 placeholder="Location"
                                 type="text"
                                 autoComplete="off"
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ locationFocus: true })
                                 }
@@ -452,8 +441,6 @@ class RegisterPage extends React.Component {
                                 type="text"
                                 autoComplete="off"
                                 className="form-control"
-                                // style={{borderTop:'1px info solid'}}
-                                onChange={this.onFormChange}
                                 onFocus={e =>
                                     this.setState({ bioFocus: true })
                                 }
@@ -471,7 +458,8 @@ class RegisterPage extends React.Component {
                         <CardFooter style={{marginTop:'-10px'}}>
 
                             <Button 
-                                    form="editForm" 
+                                    form="editForm"
+                                    type="submit"
                                     className="btn-round" 
                                     color="info" 
                                     size="lg"

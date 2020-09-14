@@ -35,8 +35,7 @@ import {
   TabPane,
   Container,
   Row,
-  Col,
-  UncontrolledCarousel
+  Col
 } from "reactstrap";
 
 // core components
