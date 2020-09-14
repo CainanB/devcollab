@@ -242,7 +242,7 @@ class ProfilePage extends React.Component {
               </Row>
             </Container>
           </div>
-          <div className="section">
+          {/* <div className="section">
             <Container>
               <Row className="justify-content-between">
                 <Col md="5">
@@ -278,18 +278,15 @@ class ProfilePage extends React.Component {
                 </Col>
               </Row>
             </Container>
-          </div>
+          </div> */}
           <section className="section pt-1">
             <Container>
               <Row>
                 <Col md="12">
-                  <Card className="card-plain">
-                    <CardHeader>
+                  
                       <h1 className="profile-title text-left">Posts</h1>
                       <h5 className="text-on-back">my</h5>
-                    </CardHeader>
-
-                  </Card>
+                    
                 </Col>
 
                 <Card>
