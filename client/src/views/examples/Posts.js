@@ -49,11 +49,11 @@ class Posts extends React.Component {
         {
             // increment by one here
             this.setState({
-                likeColor:'white'
+                likeColor:'#0077b6'
             })
         }
         // un-like
-        else if(this.state.likeColor === 'white')
+        else if(this.state.likeColor === '#0077b6')
         {
             // decrement by one here
             this.setState({
