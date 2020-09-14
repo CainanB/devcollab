@@ -1,12 +1,12 @@
 
 import React from "react";
-// import classnames from "classnames";
+import classnames from "classnames";
 // import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import PostItem from './PostItem'
 import {getPosts} from '../../actions/post'
 
-
+import {Dropdown} from 'react-bootstrap';
 import {
     CardHeader,
     CardFooter,
@@ -14,6 +14,13 @@ import {
     CardBody,
     Container,
     Row,
+    Button,
+    Form,
+    FormControl,
+    Input,
+    InputGroup,
+    InputGroupAddon,
+    InputGroupText,
     Col
 } from "reactstrap";
 
@@ -27,18 +34,195 @@ class Posts extends React.Component {
     {
         super()
 
-     
+        this.state = {
+            showForm: false,
+            tech: "",
+            techArray: []
+        }
     }
- componentDidMount = () => {
-   this.props.getPosts()
- }
- 
 
-   
+    componentDidMount = () => {
+        this.props.getPosts()
+    }
+
+    setSelection = (e) => {
+
+        let selection = e.target.innerHTML;
+        let array = [...this.state.techArray, selection];
+        let uniqueArray = [];
+
+        array.forEach(item => {
+            if(!uniqueArray.includes(item))
+            {
+                uniqueArray.push(item);
+            }
+        })
+        
+        this.setState({
+            tech: selection,
+            techArray: [...uniqueArray]
+        })
+
+    }
+
+    displayTechArray = () => {
+
+        let jsx = null;
+        let array = this.state.techArray;
+
+        if(array.length === 0)
+        {
+            jsx = null;
+        }
+        else
+        {
+            jsx = array.map(item => {
+
+                return <Button onClick={(e)=>e.preventDefault()}> {item}</Button>
+            })
+        }
+
+        return jsx;
+
+    }
+
+    checkSelected = () => {
+
+        if(this.state.tech === "")
+        {
+            return <>Primary Language</>
+        }
+        else
+        {
+            return <>{this.state.tech}</>
+        }
+    }
+
+    handleCreatePost = () => {
+
+        let condition = this.state.showForm;
+
+        if(condition === true)
+        {
+            this.setState({
+                showForm: false
+            })
+        }
+        else if(condition === false)
+        {
+            this.setState({
+                showForm: true
+            })
+        }
+    }
+
+    showFormJSX = () => {
+
+        let jsx = null;
+
+        if(this.state.showForm === true)
+        {
+            jsx = <Form className="form" onSubmit={this.onFormSubmit} id="createPost">
+                    {/* TECHNOLOGY INPUT */}
+
+                        <InputGroup>
+
+                            <Dropdown >
+                                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                                    Add Technology Used
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu> 
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="JavaScript">JavaScript</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="HTML">HTML</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="CSS">CSS</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Python">Python</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Node">Node</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="React">React</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Bootstrap">Bootstrap</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Redux">Redux</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="postgreSQL">postgreSQL</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="mongoDB">mongoDB</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Java">Java</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+
+
+                        </InputGroup>
+
+                        {this.displayTechArray()}
+
+                    {/* POST TITLE INPUT */}
+
+                    <InputGroup
+
+                        className={classnames({
+                        "input-group-focus": this.state.titleFocus
+                        })}
+                    >
+
+                    <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                    <i className="tim-icons icon-bullet-list-67" />
+                    </InputGroupText>
+                    </InputGroupAddon>
+
+                    <Input
+                        name="title"
+                        autoComplete="off"
+                        placeholder="Post Title"
+                        type="text"
+                        onFocus={e => this.setState({ titleFocus: true })}
+                        onBlur={e => this.setState({ titleFocus: false })}
+                        onChange={this.onFormChange}
+                    />
+                    </InputGroup>
+
+
+
+                    {/* TEXT INPUT */}
+
+                    <InputGroup
+                        className={classnames({
+                            "input-group-focus": this.state.textFocus
+                        })}
+                    >
+                    <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                            <i className="tim-icons icon-paper" />
+                        </InputGroupText>
+                    </InputGroupAddon>
+
+                    <textarea
+                        name="textArea"
+                        placeholder="Post text"
+                        type="text"
+                        autoComplete="off"
+                        className="form-control"
+                        onFocus={e =>
+                            this.setState({ textFocus: true })
+                        }
+                        onBlur={e =>
+                            this.setState({ textFocus: false })
+                        }
+                        onChange={this.onFormChange}
+                    />
+                    </InputGroup>
+
+                    </Form>
+        }
+        else
+        {
+            jsx = null;
+        }
+
+
+        return jsx;
+
+    }
+
 
     render() {
-
-    
 
     return (
 
@@ -50,7 +234,19 @@ class Posts extends React.Component {
         <div className="wrapper">
 
             <div className="page-header" style={{minHeight:'250px'}}>
-                <Container style={{marginTop:'50vh'}}>
+                <Container style={{marginTop:'15vh'}}>
+
+                    <Button
+                        size='lg'
+                        color="success"
+                        onClick={this.handleCreatePost}
+                    >
+                        Create Post
+                    </Button>
+
+                    {this.showFormJSX()}
+
+                    <br/>
                     All Posts (more info will go here but placeholder for now)
                 </Container>
             </div>
@@ -59,17 +255,12 @@ class Posts extends React.Component {
             {this.props.post.posts.map(post =>{
                 return <PostItem key={post._id} post={post}/>
             })}
-              
 
                 {/* End of Single Post */}
                 {/* Repeat for each post in DB */}
                 {/* Will add pagination later and display ~10 posts per page */}
 
             </Container>
-
-
-
-
 
             <Footer />
 
