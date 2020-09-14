@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 // import axios from 'axios';
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAlert} from '../../actions/alert'
 import {createProfile, getProfile} from '../../actions/profile'
@@ -39,7 +39,7 @@ class RegisterPage extends React.Component {
     squares7and8: "",
     isChanged: false,
     status: "",
-
+    saved: false,
     formData: {
         company: '',
         website: '',
@@ -47,7 +47,7 @@ class RegisterPage extends React.Component {
         skills: '',
         githubusername: '',
         bio: '',
-      
+    
     }
 
     };
@@ -57,8 +57,9 @@ class RegisterPage extends React.Component {
             formData :{
                 ...this.state.formData,
                 [e.target.name]: e.target.value
-            }
-            }, ()=>{console.log(this.state.formData, this.state.status)})
+            },
+            saved: false
+        }, ()=>{console.log(this.state.formData, this.state.status)})
     }
 
     onFormSubmit = async (e) =>{
@@ -139,6 +140,35 @@ class RegisterPage extends React.Component {
         {
             return <>{this.state.status}</>
         }
+    }
+
+    saveChanges = () => {
+        
+        this.setState({
+            saved: true
+        })
+
+        console.log(this.state.saved)
+
+    }
+
+    checkSaved = () => {
+
+        let jsx = <>Save Changes</>;
+
+        if(this.state.saved === true)
+        {
+            jsx = <>
+                <i className="tim-icons icon-check-2" style={{color:'white'}}></i>
+            </>
+        }
+        else
+        {
+            jsx = <>Save Changes</>
+        }
+
+        return jsx;
+
     }
 
     // handleImgHover = (e) => {
@@ -245,11 +275,6 @@ class RegisterPage extends React.Component {
 
 
                             </InputGroup>
-                           
-
-                        
-
-
 
                             {/* Skills INPUT */}
 
@@ -444,9 +469,25 @@ class RegisterPage extends React.Component {
                         </CardBody>
 
                         <CardFooter style={{marginTop:'-10px'}}>
-                            <Button form="editForm" type="submit" className="btn-round" color="info" size="lg">
-                                Save Changes
+
+                            <Button 
+                                    form="editForm" 
+                                    className="btn-round" 
+                                    color="info" 
+                                    size="lg"
+                                    onClick={this.saveChanges}
+                            >
+                                {this.checkSaved()}
                             </Button>
+
+
+                            <Link to='/profile-page'>
+                                <Button className="btn-round" color="info" size="lg">
+
+                                Go To Profile
+                                </Button>
+                            </Link>
+
                         </CardFooter>
 
                     </Card>

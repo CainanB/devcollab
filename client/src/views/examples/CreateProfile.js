@@ -32,12 +32,13 @@ import {
 import Navbar from "../../components/Navbars/Navbar.js";
 import Footer from "../../components/Footer/Footer.js";
 
-class RegisterPage extends React.Component {
+class CreateProfile extends React.Component {
 
     state = {
     squares1to6: "",
     squares7and8: "",
     status: "",
+    saved: false,
 
     formData: {
         company: '',
@@ -46,7 +47,7 @@ class RegisterPage extends React.Component {
         skills: '',
         githubusername: '',
         bio: '',
-      
+    
     }
 
     };
@@ -56,14 +57,14 @@ class RegisterPage extends React.Component {
             formData :{
                 ...this.state.formData,
                 [e.target.name]: e.target.value
-            }
-            }, ()=>{console.log(this.state.formData, this.state.status)})
+            },
+            saved: false
+        }, ()=>{console.log(this.state.formData, this.state.status)})
     }
 
     onFormSubmit = async (e) =>{
         e.preventDefault();
         this.props.createProfile({...this.state.formData, status: this.state.status})
-      
         
     }
 
@@ -123,6 +124,25 @@ class RegisterPage extends React.Component {
         {
             return <>{this.state.status}</>
         }
+    }
+
+    checkSaved = () => {
+
+        let jsx = <>Save Changes</>;
+
+        if(this.state.saved === true)
+        {
+            jsx = <>
+                <i className="tim-icons icon-check-2" style={{color:'white'}}></i>
+            </>
+        }
+        else
+        {
+            jsx = <>Save Changes</>
+        }
+
+        return jsx;
+
     }
 
     // handleImgHover = (e) => {
@@ -426,8 +446,8 @@ class RegisterPage extends React.Component {
                         </CardBody>
 
                         <CardFooter style={{marginTop:'-10px'}}>
-                            <Button form="editForm" type="submit" className="btn-round" color="info" size="lg">
-                                Save Changes
+                            <Button form="editForm" className="btn-round" color="info" size="lg">
+                                {this.checkSaved()}
                             </Button>
 
                             <Link to='/profile-page'>
@@ -489,4 +509,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     profile: state.profile
 })
-export default connect(mapStateToProps, {setAlert,createProfile, getProfile})(RegisterPage)
+export default connect(mapStateToProps, {setAlert,createProfile, getProfile})(CreateProfile)
