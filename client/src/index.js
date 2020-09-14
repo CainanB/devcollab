@@ -63,9 +63,13 @@ ReactDOM.render(
         path="/create-profile"
         render={props => <CreateProfile {...props} />}
 
+      />
+
+      <Route 
+
         path="/posts"
         render={props => <Posts {...props} />}
-
+        
       />
       <Redirect from="/" to="/landing-page" />
     </Switch>
