@@ -66,6 +66,26 @@ router.get('/', auth, async (req, res)=>{
     }
 })
 
+// @route  GET api/posts/me
+// @desc   Get all posts by specific user
+// @access Private
+
+router.get('/me', auth, async (req, res)=>{
+
+    try {
+        const posts = await Post.find().sort({
+            date: -1
+        })
+
+        const userPosts = posts.filter(post => post.user.toString() === req.user.id)
+        res.json(userPosts)
+    
+    } catch (error) {
+        console.error(error.message)
+        res.send(500).send('Server Error')
+    }
+})
+
 
 // @route  GET api/posts/:id
 // @desc   Get post by id

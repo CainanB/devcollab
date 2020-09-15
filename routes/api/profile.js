@@ -20,12 +20,17 @@ router.get('/me', auth, async (req, res) => {
             user: req.user.id
         }).populate('user', ['name', 'avatar']);
 
+        const posts = await Post.find().sort({
+            date: -1
+        })
+        const userPosts = posts.filter(post => post.user.toString() === req.user.id)
+
         if (!profile) {
             return res.status(400).json({
                 msg: "There is no profile for this user"
             })
         }
-        res.json(profile)
+        res.json({profile, userPosts})
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
