@@ -83,7 +83,7 @@ class RegisterPage extends React.Component {
                 githubusername: this.props.profile.loading || !this.props.profile.profile.githubusername ? '' : this.props.profile.profile.githubusername,
                 bio: this.props.profile.loading || !this.props.profile.profile.bio ? '' : this.props.profile.profile.bio,
             },
-            status: this.props.profile.loading || !this.props.profile.profile.status ? '' : this.props.profile.profile.status,
+            status: this.props.profile.loading || !this.props.profile.profile.status ? '' : this.props.profile.profile.status.toString(),
          
         })
     }

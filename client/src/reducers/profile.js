@@ -11,12 +11,13 @@ const initialState = {
 
 export default function(state = initialState, action){
     const {type, payload} = action
+    console.log(payload)
 
     switch(type){
         case GET_PROFILE:
             return{
                 ...state,
-                profile: {...payload},
+                profile: {...payload.profile, userPosts: payload.userPosts},
                 loading: false
             }
         case PROFILE_ERROR:

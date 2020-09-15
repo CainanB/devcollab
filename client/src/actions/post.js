@@ -7,6 +7,7 @@ import {
     UPDATE_LIKES,
     ADD_POST,
     DELETE_POST
+   
 } from './constants'
 
 // Get posts
@@ -25,6 +26,7 @@ export const getPosts = () => async dispatch =>{
         })
     }
 }
+
 
 // Add like
 export const addLike = (postId) => async dispatch =>{
