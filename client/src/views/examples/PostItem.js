@@ -68,7 +68,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
             <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
         </>
 
-   
+
 
     }
 
@@ -79,21 +79,41 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
         <Card className="mt-5" id="! postID here !">
 
 <CardHeader>
-    <img
-        alt="..."
-        className="img-center img-fluid rounded-circle"
-        width="50px"
-        height="50px"
-        style={{display:'inline-block', marginBottom:'35px', marginRight:'10px'}}
-        // their uploaded profile image
-        src={require("../../assets/img/profile.jpeg")}
-    />
-    <b style={{fontSize:'3em'}}>{title}</b> <span className="text-muted">{name}</span>
+    <Row>
+        <Col xs={10} sm={10} md={10} lg={10} xl={10} className="pr-0">
+            <img
+                alt="..."
+                className="img-center img-fluid rounded-circle"
+                width="50px"
+                height="50px"
+                style={{display:'inline-block', marginBottom:'35px', marginRight:'10px'}}
+                // their uploaded profile image
+                src={require("../../assets/img/profile.jpeg")}
+            />
+            <b style={{fontSize:'2em'}}>{title}</b> <span className="text-muted">{name}</span>
+        </Col>
+
+        <Col xs={2} sm={2} md={2} lg={2} xl={2} className="d-flex justify-content-end pl-0">
+
+            {!auth.loading && user === auth.user._id ? (
+                        <Button 
+                            size="sm" 
+                            onClick={(e) => deletePost(_id)}
+                            style={{height:'50px'}}
+                        >
+                            X
+                        </Button>
+                    ): null}
+
+        </Col>
+
+
+    </Row>
 </CardHeader>
 
 <CardBody style={{color:'white', paddingTop:'0px'}}>
-    Technologies used: {technologies} <br/>
-   {text}
+    <i className="tim-icons icon-settings" style={{display:'inline'}}></i><em> {technologies}</em><br/><br/>
+    <span>{text}</span>
 </CardBody>
 
 <CardFooter>
@@ -136,12 +156,9 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
     <Row className="mt-3">
         <Col>
-        Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
+            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
         </Col>
-        {!auth.loading && user === auth.user._id ? (
-                  <button onClick={(e)=> deletePost(_id)}>delete
-                </button>
-            ): null}
+
     </Row>
 
 
