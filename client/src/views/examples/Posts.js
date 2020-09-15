@@ -80,24 +80,12 @@ class Posts extends React.Component {
         {
             jsx = array.map(item => {
 
-                return <Button onClick={(e)=>e.preventDefault()}> {item}</Button>
+                return <Button  className="mb-2" onClick={(e)=>e.preventDefault()}> {item}</Button>
             })
         }
 
         return jsx;
 
-    }
-
-    checkSelected = () => {
-
-        if(this.state.tech === "")
-        {
-            return <>Primary Language</>
-        }
-        else
-        {
-            return <>{this.state.tech}</>
-        }
     }
 
     handleCreatePost = () => {
@@ -131,7 +119,7 @@ class Posts extends React.Component {
 
                             <Dropdown >
                                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                    Add Technology Used
+                                    Add Technology
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu> 
@@ -146,6 +134,10 @@ class Posts extends React.Component {
                                     <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="postgreSQL">postgreSQL</Dropdown.Item>
                                     <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="mongoDB">mongoDB</Dropdown.Item>
                                     <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Java">Java</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="C++">C++</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="C#">C#</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id=".NET">.NET</Dropdown.Item>
+                                    <Dropdown.Item onClick={(e)=>this.setSelection(e)} id="Other">Other</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
 
@@ -159,14 +151,14 @@ class Posts extends React.Component {
                     <InputGroup
 
                         className={classnames({
-                        "input-group-focus": this.state.titleFocus
+                            "input-group-focus": this.state.titleFocus
                         })}
                     >
 
                     <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                    <i className="tim-icons icon-bullet-list-67" />
-                    </InputGroupText>
+                        <InputGroupText>
+                            <i className="tim-icons icon-bullet-list-67" />
+                        </InputGroupText>   
                     </InputGroupAddon>
 
                     <Input
@@ -267,7 +259,7 @@ class Posts extends React.Component {
                     {this.showFormJSX()}
 
                     <br/>
-                    All Posts (more info will go here but placeholder for now)
+
                 </Container>
             </div>
 
