@@ -193,7 +193,7 @@ class PagesNavbar extends React.Component {
                   href="https://github.com/CainanB/devcollab"
                   rel="noopener noreferrer"
                   target="_blank"
-                  title="Follow us on Twitter"
+                  title="Find us on GitHub"
                 >
                   <i className="fab fa-github" />
                   <p className="d-lg-none d-xl-none">Github</p>
