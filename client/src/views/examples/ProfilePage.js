@@ -163,7 +163,7 @@ class ProfilePage extends React.Component {
                   </p>
 
                 </Col>
-                <Col className="ml-auto mr-auto" lg="5" md="7">
+                <Col className="ml-auto mr-auto mt-3" lg="5" md="7">
                   <Card className="card-coin card-plain">
                     <CardHeader>
                       <img
@@ -174,7 +174,17 @@ class ProfilePage extends React.Component {
                         src={require("../../assets/img/profile.jpeg")}
                       />
                       <h4 className="title">{this.props.profile.profile.user.name}</h4>
+
+                      <h5 className="text-center"><i className="tim-icons icon-square-pin"></i> Houston</h5>
                       <Link to="/edit-profile" ><Button ><b style={{color:'white'}}>Edit Profile</b></Button></Link>
+
+
+                      {/* LOCATION */}
+
+                      
+
+                      
+
                     </CardHeader>
                     <CardBody>
                       <Nav
@@ -204,10 +214,10 @@ class ProfilePage extends React.Component {
                             className="bg-dark text-light"
                             style={{border:'gray 1px solid'}}
                           >
-                            Education
+                            Skills
                           </NavLink>
                         </NavItem>
-                        <NavItem>
+                        {/* <NavItem>
                           <NavLink
                             // className={classnames({
                             //   active: this.state.tabs === 3
@@ -219,37 +229,36 @@ class ProfilePage extends React.Component {
                           >
                             Experience
                           </NavLink>
-                        </NavItem>
+                        </NavItem> */}
                       </Nav>
                       <TabContent
                         className="tab-subcategories"
                         activeTab={"tab" + this.state.tabs}
                       >
                         {/* Personal Website Tab */}
-                        <TabPane tabId="tab1" className="text-left">
+                        <TabPane tabId="tab1" className="text-left" style={{fontSize:'1.2em'}}>
 
-                          <b>Portfolio:</b> <a rel="noopener noreferrer" href="https://petersonprojects.github.io" target="_blank"> petersonprojects.github.io </a> <br/>
-                          <b>Github:</b> <a rel="noopener noreferrer" href="https://github.com/petersonprojects" target="_blank"> github.com/petersonprojects </a> <br/>
-                          <b>Company:</b> <a rel="noopener noreferrer" href="https://www.digitalcrafts.com/" target="_blank"> digitalcrafts.com </a>
+                          <i className="tim-icons icon-single-02"></i><b> Portfolio </b> <a rel="noopener noreferrer" href="https://petersonprojects.github.io" target="_blank"> petersonprojects.github.io </a> <br/>
+                          <i className="fab fa-github"></i><b> Github </b> <a rel="noopener noreferrer" href="https://github.com/petersonprojects" target="_blank"> github.com/petersonprojects </a> <br/>
+                          <i className="tim-icons icon-bank"></i><b> Company </b> <a rel="noopener noreferrer" href="https://www.digitalcrafts.com/" target="_blank"> digitalcrafts.com </a>
 
                         </TabPane>
 
-                        {/* Education Tab */}
-                        <TabPane tabId="tab2" className="text-left">
+                        {/* Skills Tab */}
+                        <TabPane tabId="tab2" className="text-center" style={{fontSize:'1.5em'}}>
 
-                          <b>University:</b> University of Texas at Austin <br/>
-                          <b>Technical/Vocational:</b> Digitalcrafts
+                          <b>JavaScript, React, Redux, HTML, CSS</b>
                           
                         </TabPane>
 
                         {/* Experience Tab */}
-                        <TabPane tabId="tab3" className="text-left">
+                        {/* <TabPane tabId="tab3" className="text-left">
                         
                           <b>Company: </b>Easy Tiger <br/>
                           <b>Role: </b>Asst. Manager <br/>
                           <b>Skills: </b>baking, leadership, food-service, communication
                         
-                        </TabPane>
+                        </TabPane> */}
                       </TabContent>
                     </CardBody>
                   </Card>
@@ -297,14 +306,14 @@ class ProfilePage extends React.Component {
           <section className="section pt-1">
             <Container>
               <Row>
-                <Col md="12">
+                <Col md="12" className="ml-0 pl-0">
                   
-                      <h1 className="profile-title text-left">Posts</h1>
-                      <h5 className="text-on-back">my</h5>
+                      {/* <h1 className="profile-title text-left">my</h1> */}
+                      <h5 className="text-on-back">posts</h5>
                     
                 </Col>
 
-                <Card className="mt-5" id="! postID here !">
+                <Card className="mt-1" id="! postID here !">
 
                     <CardHeader>
                         <img
