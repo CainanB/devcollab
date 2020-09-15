@@ -107,7 +107,6 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
         </Col>
 
-
     </Row>
 </CardHeader>
 
