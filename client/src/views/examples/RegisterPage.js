@@ -275,6 +275,7 @@ class RegisterPage extends React.Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+
   isNewUser: state.auth.isNewUser
 })
 export default connect(mapStateToProps, {setAlert, register})(RegisterPage)
