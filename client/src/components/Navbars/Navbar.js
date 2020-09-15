@@ -40,7 +40,18 @@ class PagesNavbar extends React.Component {
       if(this.props.isAuthenticated)
       {
   
-        navJSX = <><NavItem>
+        navJSX = <>
+         <NavItem>
+                <Link to="/posts">
+                  <Button
+                    className="nav-link d-lg-block"
+                    color="secondary"
+                  >
+                    Posts
+                  </Button>
+                </Link>
+              </NavItem>
+        <NavItem>
         <Link to="/profile-page"
         >
         <Button
@@ -189,16 +200,7 @@ class PagesNavbar extends React.Component {
                 </NavLink>
               </NavItem>
 
-              <NavItem>
-                <Link to="/posts">
-                  <Button
-                    className="nav-link d-lg-block"
-                    color="secondary"
-                  >
-                    Posts
-                  </Button>
-                </Link>
-              </NavItem>
+             
               
               {/* update navbar with profile and sign out button */}
 

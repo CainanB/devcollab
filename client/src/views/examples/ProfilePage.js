@@ -132,7 +132,10 @@ class ProfilePage extends React.Component {
 
     return (
       <>
-        {this.props.profile.loading || this.props.profile.profile == null ? <Button ><Link to="/create-profile" ><b style={{color:'white'}}>Create Profile</b></Link></Button> :(
+        {/* {this.props.profile.profile == null ? <Link to="/create-profile" ><Button ><b style={{color:'white'}}>Create Profile</b></Button></Link> :
+        !this.props.profile.loading ? ( */}
+        {this.props.profile.loading && this.props.profile.profile == null ? "Loading" :(
+           
           <>
         <Navbar />
 
@@ -170,7 +173,7 @@ class ProfilePage extends React.Component {
                         src={require("../../assets/img/profile.jpeg")}
                       />
                       <h4 className="title">{this.props.profile.profile.user.name}</h4>
-                      <Button ><Link to="/edit-profile" ><b style={{color:'white'}}>Edit Profile</b></Link></Button>
+                      <Link to="/edit-profile" ><Button ><b style={{color:'white'}}>Edit Profile</b></Button></Link>
                     </CardHeader>
                     <CardBody>
                       <Nav

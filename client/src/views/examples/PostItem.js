@@ -88,7 +88,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
         // their uploaded profile image
         src={require("../../assets/img/profile.jpeg")}
     />
-    <b style={{fontSize:'3em'}}>{title}</b> <span className="text-muted">{name}</span>
+    <b style={{fontSize:'3em'}}>{title}</b> <span className="text-muted">By: {name}</span>
 </CardHeader>
 
 <CardBody style={{color:'white', paddingTop:'0px'}}>
@@ -138,7 +138,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
         <Col>
         Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
         </Col>
-        {!auth.loading && user === auth.user._id ? (
+        {auth.isAuthenticated && !auth.loading && user === auth.user._id ? (
                   <button onClick={(e)=> deletePost(_id)}>delete
                 </button>
             ): null}
