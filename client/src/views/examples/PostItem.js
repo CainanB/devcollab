@@ -112,8 +112,17 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 </CardHeader>
 
 <CardBody style={{color:'white', paddingTop:'0px'}}>
-    <i className="tim-icons icon-settings" style={{display:'inline'}}></i><em> {technologies}</em><br/><br/>
-    <span>{text}</span>
+    
+    <Row className="mx-1 pl-2 pr-2 pt-0 justify-content-center">
+        <Col xs="12" className="mx-1 d-flex justify-content-center align-items-center pb-3">
+            <i className="tim-icons icon-settings mr-2" style={{display:'inline-block'}}></i><em style={{display:'wrap', width:'100%'}}> {technologies}</em>
+        </Col>
+        <Col xs="12">
+            {text}
+        </Col>
+
+    </Row>
+
 </CardBody>
 
 <CardFooter>
