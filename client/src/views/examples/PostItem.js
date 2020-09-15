@@ -21,11 +21,12 @@ import {
 import {Link} from 'react-router-dom'
 import Moment from 'react-moment'
 import {connect} from 'react-redux'
-import {addLike, removeLike} from '../../actions/post'
+import {addLike, removeLike, deletePost} from '../../actions/post'
 
-const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date}, auth,
+const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title}, auth,
     addLike,
-    removeLike
+    removeLike,
+    deletePost
     }) => {
     let [likeColor, setLikeColor] = useState("#6c757d")
     let [commentColor, setCommentColor] = useState('#6c757d')
@@ -87,10 +88,11 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date}, 
         // their uploaded profile image
         src={require("../../assets/img/profile.jpeg")}
     />
-    <b style={{fontSize:'3em'}}>Post Title</b> <span className="text-muted">{name}</span>
+    <b style={{fontSize:'3em'}}>{title}</b> <span className="text-muted">{name}</span>
 </CardHeader>
 
 <CardBody style={{color:'white', paddingTop:'0px'}}>
+    Technologies used: {technologies} <br/>
    {text}
 </CardBody>
 
@@ -137,7 +139,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date}, 
         Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
         </Col>
         {!auth.loading && user === auth.user._id ? (
-                  <button>delete
+                  <button onClick={(e)=> deletePost(_id)}>delete
                 </button>
             ): null}
     </Row>
@@ -156,4 +158,4 @@ const mapStateToProps = state =>{
     }
     
 }
-export default connect(mapStateToProps, {addLike, removeLike})(PostItem)
+export default connect(mapStateToProps, {addLike, removeLike, deletePost})(PostItem)
