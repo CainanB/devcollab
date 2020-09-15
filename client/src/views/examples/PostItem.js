@@ -79,6 +79,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
         <Card className="mt-5" id="! postID here !">
 
 <CardHeader>
+
     <Row>
         <Col xs={10} sm={10} md={10} lg={10} xl={10} className="pr-0">
             <img
@@ -109,6 +110,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
 
     </Row>
+
 </CardHeader>
 
 <CardBody style={{color:'white', paddingTop:'0px'}}>
