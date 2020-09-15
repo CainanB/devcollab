@@ -153,6 +153,58 @@ class CreateProfile extends React.Component {
 
     }
 
+    checkRequired = () => {
+
+        let jsx = null;
+
+        if(this.state.formData.skills === "" || this.state.status === '')
+        {
+            jsx = null;
+        }
+        else if(this.state.formData.skills !== "" && this.state.status !== '' && this.state.saved === false)
+        {
+            jsx = <><Button 
+            form="createForm" 
+            type="submit" 
+            className="btn-round" 
+            color="info" 
+            size="lg"
+            onClick={this.saveChanges}
+            >
+            {this.checkSaved()}
+        
+            </Button>
+
+            </>
+        }
+        else
+        {
+            jsx = <><Button 
+            form="createForm" 
+            type="submit" 
+            className="btn-round" 
+            color="info" 
+            size="lg"
+            onClick={this.saveChanges}
+            >
+            {this.checkSaved()}
+        
+            </Button>
+
+            <Link to='/profile-page'>
+                <Button className="btn-round" color="info" size="lg">
+
+                Go To Profile
+                </Button>
+            </Link>
+
+            </>
+
+        }
+
+        return jsx;
+    }
+
     // handleImgHover = (e) => {
 
     //     let image = document.getElementById('profImage')
@@ -231,7 +283,7 @@ class CreateProfile extends React.Component {
 
                                  {/* STATUS INPUT */}
 
-                                 <InputGroup
+                            <InputGroup
                             className={classnames({
                                 "input-group-focus": this.state.statusFocus
                             })}
@@ -255,7 +307,6 @@ class CreateProfile extends React.Component {
 
 
                             </InputGroup>
-                           
 
                         
 
@@ -279,7 +330,7 @@ class CreateProfile extends React.Component {
                             <Input
                                 name="skills"
                                 autoComplete="off"
-                                placeholder="Skills"
+                                placeholder="Skills (required)"
                                 type="text"
                                 onFocus={e => this.setState({ skillsFocus: true })}
                                 onBlur={e => this.setState({ skillsFocus: false })}
@@ -288,8 +339,6 @@ class CreateProfile extends React.Component {
                             />
                             </InputGroup>
 
-
-                       
 
                             {/* COMPANY INPUT */}
 
@@ -445,24 +494,9 @@ class CreateProfile extends React.Component {
                         </CardBody>
 
                         <CardFooter style={{marginTop:'-10px'}}>
-                            <Button 
-                                form="createForm"  
-                                type="submit" 
-                                className="btn-round" 
-                                color="info" 
-                                size="lg"
-                                onClick={this.saveChanges}
-                            >
-                                {this.checkSaved()}
-                            
-                            </Button>
 
-                            <Link to='/profile-page'>
-                            <Button className="btn-round" color="info" size="lg">
 
-                                Go To Profile
-                                </Button>
-                            </Link>
+                            {this.checkRequired()}
                             
                         </CardFooter>
 

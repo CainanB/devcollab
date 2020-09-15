@@ -2,7 +2,7 @@
 import React from "react";
 import classnames from "classnames";
 // import axios from 'axios';
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAlert} from '../../actions/alert'
 import {register} from '../../actions/auth'
@@ -99,7 +99,7 @@ class RegisterPage extends React.Component {
   };
   render() {
     if(this.props.isAuthenticated && this.props.isNewUser){
-      return <Redirect to="/profile-page"/>
+      return <Redirect to="/create-profile"/>
     }
     return (
       <>
@@ -224,9 +224,12 @@ class RegisterPage extends React.Component {
                         </Form>
                       </CardBody>
                       <CardFooter>
-                        <Button form="registerForm" type="submit" className="btn-round" color="info" size="lg">
+                      {/* <Link to="/create-profile"> */}
+                        <Button form="registerForm" type="submit" className="btn-round" color="info" size="lg"
+                        >
                           Get Started
                         </Button>
+                      {/* </Link> */}
                       </CardFooter>
                     </Card>
                   </Col>
