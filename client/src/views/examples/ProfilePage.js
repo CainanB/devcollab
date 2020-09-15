@@ -297,14 +297,14 @@ class ProfilePage extends React.Component {
           <section className="section pt-1">
             <Container>
               <Row>
-                <Col md="12" className="ml-0 pl-0">
+                <Col md="12" className="ml-0">
                   
                       {/* <h1 className="profile-title text-left">my</h1> */}
                       <h5 className="text-on-back">posts</h5>
                     
                 </Col>
 
-                <Card className="mt-1" id="! postID here !">
+                <Card className="mt-1" id="! postID here !" style={{marginLeft:'10px', marginRight:'10px'}}>
 
                     <CardHeader>
                         <img
