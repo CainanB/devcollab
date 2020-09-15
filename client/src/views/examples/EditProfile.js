@@ -169,6 +169,58 @@ class RegisterPage extends React.Component {
 
     }
 
+    checkRequired = () => {
+
+        let jsx = null;
+
+        if(this.state.formData.skills === "" || this.state.status === '')
+        {
+            jsx = null;
+        }
+        else if(this.state.formData.skills !== "" && this.state.status !== '' && this.state.saved === false)
+        {
+            jsx = <><Button 
+            form="createForm" 
+            type="submit" 
+            className="btn-round" 
+            color="info" 
+            size="lg"
+            onClick={this.saveChanges}
+            >
+            {this.checkSaved()}
+        
+            </Button>
+
+            </>
+        }
+        else
+        {
+            jsx = <><Button 
+            form="createForm" 
+            type="submit" 
+            className="btn-round" 
+            color="info" 
+            size="lg"
+            onClick={this.saveChanges}
+            >
+            {this.checkSaved()}
+        
+            </Button>
+
+            <Link to='/profile-page'>
+                <Button className="btn-round" color="info" size="lg">
+
+                Go To Profile
+                </Button>
+            </Link>
+
+            </>
+
+        }
+
+        return jsx;
+    }
+
     // handleImgHover = (e) => {
 
     //     let image = document.getElementById('profImage')
@@ -457,24 +509,7 @@ class RegisterPage extends React.Component {
 
                         <CardFooter style={{marginTop:'-10px'}}>
 
-                            <Button 
-                                    form="editForm"
-                                    type="submit"
-                                    className="btn-round" 
-                                    color="info" 
-                                    size="lg"
-                                    onClick={this.saveChanges}
-                            >
-                                {this.checkSaved()}
-                            </Button>
-
-
-                            <Link to='/profile-page'>
-                                <Button className="btn-round" color="info" size="lg">
-
-                                Go To Profile
-                                </Button>
-                            </Link>
+                            {this.checkRequired()}
 
                         </CardFooter>
 
