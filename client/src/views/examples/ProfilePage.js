@@ -134,9 +134,10 @@ class ProfilePage extends React.Component {
       <>
         {/* {this.props.profile.profile == null ? <Link to="/create-profile" ><Button ><b style={{color:'white'}}>Create Profile</b></Button></Link> :
         !this.props.profile.loading ? ( */}
-        {this.props.profile.loading && this.props.profile.profile == null ? "Loading" :(
+        {this.props.profile.profile == null ? "Loading" :(
            
           <>
+          
         <Navbar />
 
         <div className="wrapper">
