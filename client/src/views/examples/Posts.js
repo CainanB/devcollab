@@ -4,7 +4,7 @@ import classnames from "classnames";
 // import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import PostItem from './PostItem'
-import {getPosts} from '../../actions/post'
+import {getPosts, addPost} from '../../actions/post'
 
 import {Dropdown} from 'react-bootstrap';
 import {
@@ -37,7 +37,9 @@ class Posts extends React.Component {
         this.state = {
             showForm: false,
             tech: "",
-            techArray: []
+            techArray: [],
+            title: "",
+            text: ""
         }
     }
 
@@ -174,7 +176,8 @@ class Posts extends React.Component {
                         type="text"
                         onFocus={e => this.setState({ titleFocus: true })}
                         onBlur={e => this.setState({ titleFocus: false })}
-                        onChange={this.onFormChange}
+                        value={this.state.title}
+                        onChange={e=> this.setState({title: e.target.value})}
                     />
                     </InputGroup>
 
@@ -205,10 +208,27 @@ class Posts extends React.Component {
                         onBlur={e =>
                             this.setState({ textFocus: false })
                         }
-                        onChange={this.onFormChange}
+                        value={this.state.text}
+                        onChange={e=> this.setState({text: e.target.value})}
                     />
                     </InputGroup>
-
+                    <Button
+                        size='lg'
+                        color="success"
+                        onClick={e =>{this.props.addPost({
+                            title: this.state.title,
+                            technologies: this.state.techArray.toString(),
+                            text: this.state.text
+                        })
+                        this.setState({
+                            title: "",
+                            techArray: [],
+                            text: ""
+                        })
+                    }}
+                    >
+                        Submit
+                    </Button>
                     </Form>
         }
         else
@@ -278,4 +298,4 @@ const mapStateToProps = state => ({
     post: state.post
 })
 
-export default connect(mapStateToProps, {getPosts})(Posts)
+export default connect(mapStateToProps, {getPosts, addPost})(Posts)

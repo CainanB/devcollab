@@ -31,7 +31,9 @@ router.post('/', [auth, [
             text: req.body.text,
             name: user.name,
             avatar: user.avatar,
-            user: req.user.id
+            user: req.user.id,
+            title: req.body.title,
+            technologies: req.body.technologies
     
         })
         
