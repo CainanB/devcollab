@@ -301,7 +301,7 @@ class RegisterPage extends React.Component {
 
                                  {/* STATUS INPUT */}
 
-                                 <InputGroup
+                            <InputGroup
                             className={classnames({
                                 "input-group-focus": this.state.statusFocus
                             })}
