@@ -27,6 +27,7 @@ import Navbar from "../../components/Navbars/Navbar.js";
 import Footer from "../../components/Footer/Footer.js";
 import {getProfile} from '../../actions/profile'
 import {connect} from 'react-redux'
+import PostItem from './PostItem'
 
 let ps = null;
 
@@ -157,7 +158,7 @@ class ProfilePage extends React.Component {
                     />
                     <h4 className="title">{this.props.profile.profile.user.name}</h4>
 
-                    <h5 className="text-center"><i className="tim-icons icon-square-pin"></i> Houston</h5>
+      <h5 className="text-center"><i className="tim-icons icon-square-pin"></i>{this.props.profile.profile.location}</h5>
                     <Link to="/edit-profile" ><Button ><b style={{color:'white'}}>Edit Profile</b></Button></Link>
 
 
@@ -216,16 +217,16 @@ class ProfilePage extends React.Component {
                       {/* Personal Website Tab */}
                       <TabPane tabId="tab1" className="text-left" style={{fontSize:'1.2em'}}>
 
-                        <i className="tim-icons icon-single-02"></i><b> Portfolio </b> <a rel="noopener noreferrer" href="https://petersonprojects.github.io" target="_blank"> petersonprojects.github.io </a> <br/>
-                        <i className="fab fa-github"></i><b> Github </b> <a rel="noopener noreferrer" href="https://github.com/petersonprojects" target="_blank"> github.com/petersonprojects </a> <br/>
-                        <i className="tim-icons icon-bank"></i><b> Company </b> <a rel="noopener noreferrer" href="https://www.digitalcrafts.com/" target="_blank"> digitalcrafts.com </a>
+                        <i className="tim-icons icon-single-02"></i><b> Portfolio </b> <a rel="noopener noreferrer" href={this.props.profile.profile.website} target="_blank"> {this.props.profile.profile.website} </a> <br/>
+                        <i className="fab fa-github"></i><b> Github </b> <a rel="noopener noreferrer" href={`https://github.com/${this.props.profile.profile.githubusername}`} target="_blank"> github.com/{this.props.profile.profile.githubusername} </a> <br/>
+                        <i className="tim-icons icon-bank"></i><b> Company </b> <a rel="noopener noreferrer" href="https://www.digitalcrafts.com/" target="_blank"> {this.props.profile.profile.company} </a>
 
                       </TabPane>
 
                       {/* Skills Tab */}
                       <TabPane tabId="tab2" className="text-center" style={{fontSize:'1.5em'}}>
 
-                        <b>JavaScript, React, Redux, HTML, CSS</b>
+                        <b>{this.props.profile.profile.skills}</b>
                         
                       </TabPane>
 
@@ -290,57 +291,9 @@ class ProfilePage extends React.Component {
                     <h5 className="text-on-back">posts</h5>
                   
               </Col>
-
-              <Card className="mt-1" id="! postID here !">
-
-                  <CardHeader>
-                      <img
-                          alt="..."
-                          className="img-center img-fluid rounded-circle"
-                          width="50px"
-                          height="50px"
-                          style={{display:'inline-block', marginBottom:'35px', marginRight:'10px'}}
-                          // their uploaded profile image
-                          src={require("../../assets/img/profile.jpeg")}
-                      />
-                      <b style={{fontSize:'3em'}}>Post Title</b> <span className="text-muted">from Micah Peterson</span>
-                  </CardHeader>
-
-                  <CardBody style={{color:'white', paddingTop:'0px'}}>
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                  </CardBody>
-
-                  <CardFooter>
-
-
-                      {/* Likes */}
-                      <i 
-                          className="fa fa-thumbs-up fa-2x ml-2 iconHov"
-                          aria-hidden="true"
-                      >
-                      </i>
-                      <span> 15 {/* post num likes from DB */}</span>
-
-
-                      {/* Comments */}
-                      <i 
-                          className="fas fa-comments fa-2x ml-5 iconHov"
-                          aria-hidden="true"
-                          onClick={this.showComments}
-                          style={{color:color}}
-                      >
-                      </i>
-                      <span> 3 {/* num comments from DB */}</span>
-
-                      <Row className="mt-3">
-                          <Col>
-                              {this.state.textAreaJSX}
-                          </Col>
-                      </Row>
-
-                  </CardFooter>
-
-              </Card> 
+              {this.props.profile.profile.userPosts.map(post =>{
+                return <PostItem key={post._id} post={post}/>
+            })}
 
               {/* End of Single Post */}
               {/* Repeat for each post in DB */}
