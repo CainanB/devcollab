@@ -77,7 +77,7 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    if(this.props.isAuthenticated){
+    if(this.props.isAuthenticated && this.props.auth.user !== null){
       return <Redirect to="/profile-page" />
   }
     return (
@@ -463,7 +463,8 @@ class LandingPage extends React.Component {
 
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth
 })
 
 export default connect(mapStateToProps, {login})(LandingPage)
