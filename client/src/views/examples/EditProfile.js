@@ -196,7 +196,7 @@ class RegisterPage extends React.Component {
         else
         {
             jsx = <><Button 
-            form="createForm" 
+            form="editForm" 
             type="submit" 
             className="btn-round" 
             color="info" 
@@ -299,9 +299,9 @@ class RegisterPage extends React.Component {
                         <Form className="form" onSubmit={this.onFormSubmit} id="editForm">
 
 
-                                 {/* STATUS INPUT */}
+                            {/* STATUS INPUT */}
 
-                                 <InputGroup
+                            <InputGroup
                             className={classnames({
                                 "input-group-focus": this.state.statusFocus
                             })}
