@@ -1,13 +1,13 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {
     Button,
     CardHeader,
     CardFooter,
-    // Form,
+    Form,
     // FormGroup,
     // Label,
     // InputGroup,
-    // Input,
+    Input,
     // InputGroupAddon,
     // InputGroupText,
     Card,
@@ -30,8 +30,26 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     let [commentColor, setCommentColor] = useState('#6c757d')
     let [textAreaJSX, setTextAreaJSX] = useState(null)
 
+    let [commentText, setCommentText] = useState('');
+    let [commentToggle, setCommentToggle] = useState(false)
+    let [commentJSX, setCommentJSX] = useState(null);
+
+
+    const onFormSubmit = (e) => {
+
+        e.preventDefault();
+        // action to create comment here
+        // this.props.createComment(commentText)
+
+    }
+
+    const onCommentChange = (e) => {
+
+        setCommentText(e.target.value)
+    }
+
     const handlePostLike = (postID) => {
-        addLike(_id)
+
 
         // increase post likes by one using unique post ID
         // clicking second time will decrement postLikes by one
@@ -39,29 +57,76 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
         // like
         if(likeColor === '#6c757d')
         {
+            addLike(_id)
             // increment by one here
             setLikeColor('white')
         }
         // un-like
         else if(likeColor === 'white')
         {
+            removeLike(_id);
             // decrement by one here
             setLikeColor('#6c757d')
         }
 
     }
 
-    const showComments = (postID) => {
+    const showComments = () => {
 
-        
         // show comments by searching DB for post ID
 
         // temp is the JSX that displays information from the database
-        // let temp = <>
-        //     <span>Cainan Barboza - </span>
-        //     <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
-        // </>
+        let temp = null;
 
+        if(commentToggle === false)
+        {
+            setCommentToggle(true);
+            temp = <>
+
+                <Row >
+                    <Col>
+                        <span >Cainan Barboza - </span>
+                        <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
+                    </Col>
+                </Row>
+
+
+                <Row className="mt-3">
+                    <Col>
+                        <Form className="form" onSubmit={onFormSubmit} id="createComment">
+                            <Input
+                                name="comment"
+                                type="text"
+                                placeholder="leave a comment"
+                                autoComplete="off"
+                                onChange={(e)=>onCommentChange(e)}
+                            >
+                            </Input>
+
+                            <Row style={{marginLeft:'1px'}} className="justify-content-start">
+                                <Button
+                                    type="submit"
+                                >
+                                    Post Comment
+                                </Button>
+                            </Row>
+                        </Form>
+                    </Col>
+                </Row>
+
+
+            </>
+
+            setCommentJSX(temp);
+            setCommentColor('white')
+
+        }
+        else
+        {
+            setCommentJSX(null)
+            setCommentToggle(false)
+            setCommentColor('#6c757d')
+        }
 
 
     }
@@ -125,7 +190,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
     {/* Likes */}
     <i 
-        className="fa fa-thumbs-up fa-2x ml-2 iconHov"
+        className="fa fa-thumbs-up fa-2x ml-4 iconHov"
         aria-hidden="true"
         onClick={handlePostLike}
         style={{color:color}}
@@ -134,17 +199,6 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
   {" "}{likes.length > 0 && (
                 <span>{likes.length}</span>
               )} {/* post num likes from DB */}
-
-    {/* DisLikes */}
-    <span><i 
-        className="fa fa-thumbs-down fa-2x ml-2 iconHov"
-        aria-hidden="true"
-        onClick={()=>removeLike(_id)}
-        
-    >
-    </i></span>
-
-
 
     {/* Comments */}
     <i 
@@ -155,10 +209,18 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     >
     </i>
   {" "}{comments.length > 0 && (
-                  <span class='comment-count'>{comments.length}</span>
+                <span class='comment-count'>{comments.length}</span>
               )} {/* num comments from DB */}
 
     <Row className="mt-3">
+        <Col>
+            {commentJSX}
+        </Col>
+    </Row>
+
+
+    <Row className="mt-3">
+
         <Col>
             Posted on <Moment format='MM/DD/YYYY'>{date}</Moment> by <span className="text-muted">{name}</span>
         </Col>
