@@ -361,6 +361,33 @@ router.get('/github/:username', async (req, res)=>{
 
 
 
+// @route  PUT api/profile/upload
+// @desc   Add profile image
+// @access Private
+
+router.put('/upload',auth,async (req, res)=>{
+    
+  
+
+    const{
+        file
+    } = req.body
+
+   
+
+    try {
+        const profile = await Profile.findOne({user: req.user.id})
+        profile.profileimg = file;
+        await profile.save()
+        res.json(profile)
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send("server Error")
+    }
+});
+
+
+
 
 
 
