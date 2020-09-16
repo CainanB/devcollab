@@ -196,19 +196,7 @@ class ProfilePage extends React.Component {
                           Skills
                         </NavLink>
                       </NavItem>
-                      {/* <NavItem>
-                        <NavLink
-                          // className={classnames({
-                          //   active: this.state.tabs === 3
-                          // })}
-                          onClick={e => this.toggleTabs(e, "tabs", 3)}
-                          href="#"
-                          className="bg-dark text-light"
-                          style={{border:'gray 1px solid'}}
-                        >
-                          Experience
-                        </NavLink>
-                      </NavItem> */}
+                      
                     </Nav>
                     <TabContent
                       className="tab-subcategories"
@@ -219,7 +207,7 @@ class ProfilePage extends React.Component {
 
                         <i className="tim-icons icon-single-02"></i><b> Portfolio </b> <a rel="noopener noreferrer" href={this.props.profile.profile.website} target="_blank"> {this.props.profile.profile.website} </a> <br/>
                         <i className="fab fa-github"></i><b> Github </b> <a rel="noopener noreferrer" href={`https://github.com/${this.props.profile.profile.githubusername}`} target="_blank"> github.com/{this.props.profile.profile.githubusername} </a> <br/>
-                        <i className="tim-icons icon-bank"></i><b> Company </b> <a rel="noopener noreferrer" href="https://www.digitalcrafts.com/" target="_blank"> {this.props.profile.profile.company} </a>
+                        <i className="tim-icons icon-bank"></i><b> Company </b> {this.props.profile.profile.company}
 
                       </TabPane>
 
@@ -238,6 +226,7 @@ class ProfilePage extends React.Component {
                         <b>Skills: </b>baking, leadership, food-service, communication
                       
                       </TabPane> */}
+
                     </TabContent>
                   </CardBody>
                 </Card>
@@ -245,60 +234,24 @@ class ProfilePage extends React.Component {
             </Row>
           </Container>
         </div>
-        {/* <div className="section">
-          <Container>
-            <Row className="justify-content-between">
-              <Col md="5">
-                <Row className="justify-content-between align-items-center">
-                  <UncontrolledCarousel items={carouselItems} />
-                </Row>
-              </Col>
-              <Col md="6">
-                <h1 className="profile-title text-left">Projects</h1>
-                <h5 className="text-on-back">3</h5>
-                <p className="profile-description text-left">
-                  Short description about the focus of your projects.
-                  Three project pictures can be featured here.
-                </p>
-                <div className="btn-wrapper pt-3">
-                  <Button
-                    className="btn-simple"
-                    color="info"
-                    href="#"
-                    onClick={e => e.preventDefault()}
-                  >
-                    <i className="tim-icons icon-link-72" /> Connect
-                  </Button>
-                  <Button
-                    className="btn-simple"
-                    color="info"
-                    href="#"
-                    onClick={e => e.preventDefault()}
-                  >
-                    <i className="tim-icons icon-check-2" /> Follow
-                  </Button>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div> */}
+
         <section className="section pt-1">
           <Container>
+
             <Row>
+
               <Col md="12" className="ml-0 pl-0">
                 
-                    {/* <h1 className="profile-title text-left">my</h1> */}
                     <h5 className="text-on-back">posts</h5>
                   
               </Col>
-              {this.props.profile.profile.userPosts.map(post =>{
-                return <PostItem key={post._id} post={post}/>
-            })}
 
-              {/* End of Single Post */}
-              {/* Repeat for each post in DB */}
+                {this.props.profile.profile.userPosts.map(post =>{
+                  return <PostItem key={post._id} post={post}/>
+                })}
 
             </Row>
+
           </Container>
         </section>
         <Footer />
