@@ -45,6 +45,9 @@ class ProfilePage extends React.Component {
 
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    this.props.getProfile()
+  }
   componentDidMount()
   {
     
@@ -126,6 +129,7 @@ class ProfilePage extends React.Component {
     let jsx = null;
 
     let color = this.state.commentColor;
+    console.log(this.props.profile.profile)
 
     if(this.props.profile.profile !== null && this.props.profile.profile !== undefined && this.props.profile.profile.status !== undefined)
     {
