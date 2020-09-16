@@ -31,7 +31,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     let [textAreaJSX, setTextAreaJSX] = useState(null)
 
     const handlePostLike = (postID) => {
-        addLike(_id)
+
 
         // increase post likes by one using unique post ID
         // clicking second time will decrement postLikes by one
@@ -39,12 +39,14 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
         // like
         if(likeColor === '#6c757d')
         {
+            addLike(_id)
             // increment by one here
             setLikeColor('white')
         }
         // un-like
         else if(likeColor === 'white')
         {
+            removeLike(_id);
             // decrement by one here
             setLikeColor('#6c757d')
         }
@@ -134,17 +136,6 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
   {" "}{likes.length > 0 && (
                 <span>{likes.length}</span>
               )} {/* post num likes from DB */}
-
-    {/* DisLikes */}
-    <span><i 
-        className="fa fa-thumbs-down fa-2x ml-2 iconHov"
-        aria-hidden="true"
-        onClick={()=>removeLike(_id)}
-        
-    >
-    </i></span>
-
-
 
     {/* Comments */}
     <i 
