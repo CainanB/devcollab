@@ -2,23 +2,21 @@ import React,{useState} from 'react'
 import {
     Button,
     CardHeader,
-    CardImg,
     CardFooter,
-    Form,
-    FormGroup,
-    Label,
-    InputGroup,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
+    // Form,
+    // FormGroup,
+    // Label,
+    // InputGroup,
+    // Input,
+    // InputGroupAddon,
+    // InputGroupText,
     Card,
     CardBody,
-    CardTitle,
-    Container,
+    // CardTitle,
+    // Container,
     Row,
     Col
 } from "reactstrap";
-import {Link} from 'react-router-dom'
 import Moment from 'react-moment'
 import {connect} from 'react-redux'
 import {addLike, removeLike, deletePost} from '../../actions/post'
@@ -37,10 +35,6 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
         // increase post likes by one using unique post ID
         // clicking second time will decrement postLikes by one
-
-
-
-        // this code is used to toggle the colors (active inactive)
 
         // like
         if(likeColor === '#6c757d')
@@ -63,10 +57,10 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
         // show comments by searching DB for post ID
 
         // temp is the JSX that displays information from the database
-        let temp = <>
-            <span>Cainan Barboza - </span>
-            <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
-        </>
+        // let temp = <>
+        //     <span>Cainan Barboza - </span>
+        //     <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
+        // </>
 
 
 
@@ -91,7 +85,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
                 // their uploaded profile image
                 src={require("../../assets/img/profile.jpeg")}
             />
-            <b style={{fontSize:'2em'}}>{title}</b> <span className="text-muted">{name}</span>
+            <b style={{fontSize:'2em'}}>{title}</b>
         </Col>
 
         <Col xs={2} sm={2} md={2} lg={2} xl={2} className="d-flex justify-content-end pl-0">
@@ -166,7 +160,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
     <Row className="mt-3">
         <Col>
-            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
+            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment> by <span className="text-muted">{name}</span>
         </Col>
 
     </Row>

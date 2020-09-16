@@ -8,20 +8,13 @@ import {getPosts, addPost} from '../../actions/post'
 
 import {Dropdown} from 'react-bootstrap';
 import {
-    CardHeader,
-    CardFooter,
-    Card,
-    CardBody,
     Container,
-    Row,
     Button,
     Form,
-    FormControl,
     Input,
     InputGroup,
     InputGroupAddon,
-    InputGroupText,
-    Col
+    InputGroupText
 } from "reactstrap";
 
 // core components
@@ -164,12 +157,13 @@ class Posts extends React.Component {
                     <Input
                         name="title"
                         autoComplete="off"
-                        placeholder="Post Title"
+                        placeholder="Post Title (16 character max)"
                         type="text"
                         onFocus={e => this.setState({ titleFocus: true })}
                         onBlur={e => this.setState({ titleFocus: false })}
                         value={this.state.title}
                         onChange={e=> this.setState({title: e.target.value})}
+                        maxLength="16"
                     />
                     </InputGroup>
 
@@ -264,9 +258,10 @@ class Posts extends React.Component {
             </div>
 
             <Container >
-            {this.props.post.posts.map(post =>{
-                return <PostItem key={post._id} post={post}/>
-            })}
+
+                {this.props.post.posts.map(post =>{
+                    return <PostItem key={post._id} post={post}/>
+                })}
 
                 {/* End of Single Post */}
                 {/* Repeat for each post in DB */}

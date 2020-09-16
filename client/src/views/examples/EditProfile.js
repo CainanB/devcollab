@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 // import axios from 'axios';
-import {Redirect, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAlert} from '../../actions/alert'
 import {createProfile, getProfile} from '../../actions/profile'
