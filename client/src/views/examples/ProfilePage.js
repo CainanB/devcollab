@@ -115,7 +115,7 @@ class ProfilePage extends React.Component {
 
     let color = this.state.commentColor;
 
-    if(this.props.profile.profile !== null)
+    if(this.props.profile.profile !== null && this.props.profile.profile !== undefined && this.props.profile.profile.status !== undefined)
     {
       jsx =  <>
       {/* {this.props.profile.profile == null ? <Link to="/create-profile" ><Button ><b style={{color:'white'}}>Create Profile</b></Button></Link> :
