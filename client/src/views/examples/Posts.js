@@ -164,12 +164,13 @@ class Posts extends React.Component {
                     <Input
                         name="title"
                         autoComplete="off"
-                        placeholder="Post Title"
+                        placeholder="Post Title (16 character max)"
                         type="text"
                         onFocus={e => this.setState({ titleFocus: true })}
                         onBlur={e => this.setState({ titleFocus: false })}
                         value={this.state.title}
                         onChange={e=> this.setState({title: e.target.value})}
+                        maxLength="16"
                     />
                     </InputGroup>
 
