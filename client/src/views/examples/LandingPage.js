@@ -78,7 +78,7 @@ class LandingPage extends React.Component {
 
   render() {
     if(this.props.isAuthenticated && this.props.auth.user !== null){
-      return <Redirect to="/profile-page" />
+      return <Redirect to="/posts" />
   }
     return (
       <>
