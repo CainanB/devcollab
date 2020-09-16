@@ -8,20 +8,13 @@ import {getPosts, addPost} from '../../actions/post'
 
 import {Dropdown} from 'react-bootstrap';
 import {
-    CardHeader,
-    CardFooter,
-    Card,
-    CardBody,
     Container,
-    Row,
     Button,
     Form,
-    FormControl,
     Input,
     InputGroup,
     InputGroupAddon,
-    InputGroupText,
-    Col
+    InputGroupText
 } from "reactstrap";
 
 // core components
@@ -265,7 +258,7 @@ class Posts extends React.Component {
             </div>
 
             <Container >
-            
+
                 {this.props.post.posts.map(post =>{
                     return <PostItem key={post._id} post={post}/>
                 })}

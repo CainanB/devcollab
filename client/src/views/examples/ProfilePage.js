@@ -1,7 +1,6 @@
 
 
 import React from "react";
-// import classnames from "classnames";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import { Link } from "react-router-dom";
@@ -11,7 +10,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   NavItem,
   NavLink,
   Nav,
@@ -113,13 +111,11 @@ class ProfilePage extends React.Component {
 
     let jsx = null;
 
-    let color = this.state.commentColor;
+    // let color = this.state.commentColor;
 
     if(this.props.profile.profile !== null && this.props.profile.profile !== undefined && this.props.profile.profile.status !== undefined)
     {
       jsx =  <>
-      {/* {this.props.profile.profile == null ? <Link to="/create-profile" ><Button ><b style={{color:'white'}}>Create Profile</b></Button></Link> :
-      !this.props.profile.loading ? ( */}
 
       <Navbar />
 
@@ -172,9 +168,7 @@ class ProfilePage extends React.Component {
                     >
                       <NavItem>
                         <NavLink
-                          // className={classnames({
-                          //   active: this.state.tabs === 1
-                          // })}
+                          
                           onClick={e => this.toggleTabs(e, "tabs", 1)}
                           href="#"
                           className="bg-dark text-light"
@@ -185,9 +179,8 @@ class ProfilePage extends React.Component {
                       </NavItem>
                       <NavItem>
                         <NavLink
-                          // className={classnames({
-                          //   active: this.state.tabs === 2
-                          // })}
+                          
+                          
                           onClick={e => this.toggleTabs(e, "tabs", 2)}
                           href="#"
                           className="bg-dark text-light"
@@ -217,15 +210,6 @@ class ProfilePage extends React.Component {
                         <b>{this.props.profile.profile.skills}</b>
                         
                       </TabPane>
-
-                      {/* Experience Tab */}
-                      {/* <TabPane tabId="tab3" className="text-left">
-                      
-                        <b>Company: </b>Easy Tiger <br/>
-                        <b>Role: </b>Asst. Manager <br/>
-                        <b>Skills: </b>baking, leadership, food-service, communication
-                      
-                      </TabPane> */}
 
                     </TabContent>
                   </CardBody>
@@ -265,7 +249,6 @@ class ProfilePage extends React.Component {
 
     return jsx;
 
-
   }
 
   // start render
@@ -274,7 +257,10 @@ class ProfilePage extends React.Component {
 
     return (
 
+      // function with conditional profile rendering used to avoid annoying ternery syntax
+
       this.check()
+
     )
   }
 }
