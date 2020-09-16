@@ -265,9 +265,10 @@ class Posts extends React.Component {
             </div>
 
             <Container >
-            {this.props.post.posts.map(post =>{
-                return <PostItem key={post._id} post={post}/>
-            })}
+            
+                {this.props.post.posts.map(post =>{
+                    return <PostItem key={post._id} post={post}/>
+                })}
 
                 {/* End of Single Post */}
                 {/* Repeat for each post in DB */}

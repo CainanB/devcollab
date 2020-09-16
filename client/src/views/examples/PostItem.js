@@ -91,7 +91,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
                 // their uploaded profile image
                 src={require("../../assets/img/profile.jpeg")}
             />
-            <b style={{fontSize:'2em'}}>{title}</b> <span className="text-muted">{name}</span>
+            <b style={{fontSize:'2em'}}>{title}</b>
         </Col>
 
         <Col xs={2} sm={2} md={2} lg={2} xl={2} className="d-flex justify-content-end pl-0">
@@ -166,7 +166,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
     <Row className="mt-3">
         <Col>
-            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
+            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment> by <span className="text-muted">{name}</span>
         </Col>
 
     </Row>
