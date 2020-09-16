@@ -23,7 +23,7 @@ import {
 // core components
 import Navbar from "../../components/Navbars/Navbar.js";
 import Footer from "../../components/Footer/Footer.js";
-import {getProfile} from '../../actions/profile'
+import {getProfile, addProfileImage} from '../../actions/profile'
 import {connect} from 'react-redux'
 import PostItem from './PostItem'
 
@@ -37,11 +37,15 @@ class ProfilePage extends React.Component {
     this.state = {
       tabs: 1,
       commentColor: '#6c757d',
-      textAreaJSX: null
+      textAreaJSX: null,
+      profileimg: ""
     }
 
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    this.props.getProfile()
+  }
   componentDidMount()
   {
     
@@ -78,6 +82,17 @@ class ProfilePage extends React.Component {
     })
 
   }
+  uploadImage= async e => {
+    console.log(e.target.files)
+    const files = e.target.files
+
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'devcollab')
+    this.props.addProfileImage(data)
+
+
+}
 
   showComments = (postID) => {
 
@@ -111,7 +126,11 @@ class ProfilePage extends React.Component {
 
     let jsx = null;
 
+
     // let color = this.state.commentColor;
+
+    console.log(this.props.profile.profile)
+
 
     if(this.props.profile.profile !== null && this.props.profile.profile !== undefined && this.props.profile.profile.status !== undefined)
     {
@@ -150,8 +169,21 @@ class ProfilePage extends React.Component {
                       className="img-center img-fluid rounded-circle"
 
                       // their uploaded profile image
-                      src={require("../../assets/img/profile.jpeg")}
+                      
+                      src={
+                        this.props.profile.profile.profileimg ?
+                        this.props.profile.profile.profileimg :
+                        "https://coursereport-s3-production.global.ssl.fastly.net/rich/rich_files/rich_files/5668/s300/social-media.png"
+                      }
+                      // src={require("../../assets/img/profile.jpeg")}
+                      
                     />
+                      <input type="file" 
+                            name="file"
+                            placeholder="Upload an image"
+                            onChange={this.uploadImage}
+                            
+                            />
                     <h4 className="title">{this.props.profile.profile.user.name}</h4>
 
       <h5 className="text-center"><i className="tim-icons icon-square-pin"></i>{this.props.profile.profile.location}</h5>
@@ -274,4 +306,4 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps,{getProfile})(ProfilePage);
+export default connect(mapStateToProps,{getProfile, addProfileImage})(ProfilePage);
