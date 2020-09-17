@@ -141,11 +141,15 @@ router.get('/user/:user_id', async (req, res) =>{
             ).populate(
             'user', ['name', 'avatar']
         );
+        const posts = await Post.find().sort({
+            date: -1
+        })
+        const userPosts = posts.filter(post => post.user.toString() === req.params.user_id)
 
         if(!profile){
             return res.status(400).json({msg: "Profile not found"})
         }
-        res.json(profile)
+        res.json({profile, userPosts})
     } catch (err) {
         console.error(err.message)
         if(err.kind == 'ObjectId'){

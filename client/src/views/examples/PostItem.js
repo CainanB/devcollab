@@ -20,6 +20,7 @@ import {
 import Moment from 'react-moment'
 import {connect} from 'react-redux'
 import {addLike, removeLike, deletePost} from '../../actions/post'
+import { Link } from "react-router-dom";
 
 const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title}, auth,
     addLike,
@@ -141,6 +142,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
     <Row>
         <Col xs={10} sm={10} md={10} lg={10} xl={10} className="pr-0">
+            <Link to={`/publicprofile/${user}`}>
             <img
                 alt="..."
                 className="img-center img-fluid rounded-circle"
@@ -150,6 +152,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
                 // their uploaded profile image
                 src={require("../../assets/img/profile.jpeg")}
             />
+            </Link>
             <b style={{fontSize:'2em'}}>{title}</b>
         </Col>
 

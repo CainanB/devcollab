@@ -28,6 +28,7 @@ import LandingPage from "./views/examples/LandingPage.js";
 import RegisterPage from "./views/examples/RegisterPage.js";
 import ProfilePage from "./views/examples/ProfilePage.js";
 import EditProfile from "./views/examples/EditProfile.js";
+import PublicProfile from './views/examples/PublicProfile'
 
 import CreateProfile from "./views/examples/CreateProfile.js";
 
@@ -64,7 +65,13 @@ ReactDOM.render(
         render={props => <CreateProfile {...props} />}
 
       />
+      <Route
 
+        path="/publicprofile/:id"
+        render={props => <PublicProfile {...props} />}
+
+      />
+      
       <Route 
 
         path="/posts"
