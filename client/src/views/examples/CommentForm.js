@@ -43,13 +43,6 @@ const CommentForm = ({postId, comments, addComment}) => {
 
   return (
     <>
-           <Row >
-                    <Col>
-                    
-                    </Col>
-                </Row>
-
-
                 <Row className="mt-3">
                     <Col>
                         <Form className="form" onSubmit={onFormSubmit} id="createComment">
@@ -75,7 +68,7 @@ const CommentForm = ({postId, comments, addComment}) => {
                     </Col>
                 </Row>
     </>
-  )
+    )
 }
 
 export default connect(null,{addComment})(CommentForm)
