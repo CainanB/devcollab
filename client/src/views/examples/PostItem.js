@@ -21,6 +21,7 @@ import Moment from 'react-moment'
 import {connect} from 'react-redux'
 import {addLike, removeLike, deletePost, addComment, deleteComment} from '../../actions/post'
 import { Link } from "react-router-dom";
+import CommentForm from './CommentForm'
 
 const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title}, auth,
     addLike,
@@ -33,26 +34,15 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     let [commentColor, setCommentColor] = useState('#6c757d')
     let [textAreaJSX, setTextAreaJSX] = useState(null)
 
-    let [commentText, setCommentText] = useState('');
+    
     let [commentToggle, setCommentToggle] = useState(false)
     let [commentJSX, setCommentJSX] = useState(null);
 
+    
 
-    const onFormSubmit = (e) => {
 
-        e.preventDefault();
-        console.log(commentText)
-        // action to create comment here
-        addComment({commentText},_id)
 
-    }
-
-    const onCommentChange = (e) => {
-        console.log(e.target.value)
-        setCommentText(e.target.value)
-        console.log(commentText)
-    }
-
+   
     const handlePostLike = (postID) => {
 
 
@@ -88,38 +78,8 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
             setCommentToggle(true);
             temp = <>
 
-                <Row >
-                    <Col>
-                    
-                    </Col>
-                </Row>
-
-
-                <Row className="mt-3">
-                    <Col>
-                        <Form className="form" onSubmit={onFormSubmit} id="createComment">
-                            <Input
-                                name="comment"
-                                type="text"
-                                placeholder="leave a comment"
-                                autoComplete="off"
-                                value={commentText}
-                                onChange={(e)=>onCommentChange(e)}
-                                
-                            >
-                            </Input>
-
-                            <Row style={{marginLeft:'1px'}} className="justify-content-start">
-                                <Button
-                                    type="submit"
-                                >
-                                    Post Comment
-                                </Button>
-                            </Row>
-                        </Form>
-                    </Col>
-                </Row>
-
+           
+            <CommentForm postId={_id} comments={comments}/>
 
             </>
 
