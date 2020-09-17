@@ -13,6 +13,7 @@ import {
   NavItem,
   NavLink,
   Nav,
+  Input,
   TabContent,
   TabPane,
   Container,
@@ -175,19 +176,24 @@ class ProfilePage extends React.Component {
                         this.props.profile.profile.profileimg :
                         "https://coursereport-s3-production.global.ssl.fastly.net/rich/rich_files/rich_files/5668/s300/social-media.png"
                       }
-                      // src={require("../../assets/img/profile.jpeg")}
                       
                     />
-                      <input type="file" 
-                            name="file"
-                            placeholder="Upload an image"
-                            onChange={this.uploadImage}
-                            
-                            />
+                    <Row className="w-100 justify-content-end ml-0 mr-0">
+                        <Input type="file"
+                              name="file"
+                              placeholder="Upload an image"
+                              onChange={this.uploadImage}
+                        />
+                    </Row>
+
                     <h4 className="title">{this.props.profile.profile.user.name}</h4>
 
-      <h5 className="text-center"><i className="tim-icons icon-square-pin"></i>{this.props.profile.profile.location}</h5>
-                    <Link to="/edit-profile" ><Button ><b style={{color:'white'}}>Edit Profile</b></Button></Link>
+                    <h5 className="text-center"><i className="tim-icons icon-square-pin"></i>{this.props.profile.profile.location}</h5>
+
+                    <Row className="justify-content-center">
+                      <Link to="/edit-profile" ><Button ><b style={{color:'white'}}>Edit Profile</b></Button></Link>
+                    </Row>
+
 
 
                     {/* LOCATION */}
@@ -231,7 +237,7 @@ class ProfilePage extends React.Component {
                       <TabPane tabId="tab1" className="text-left" style={{fontSize:'1.2em'}}>
 
                         <i className="tim-icons icon-single-02"></i><b> Portfolio </b> <a rel="noopener noreferrer" href={this.props.profile.profile.website} target="_blank"> {this.props.profile.profile.website} </a> <br/>
-                        <i className="fab fa-github"></i><b> Github </b> <a rel="noopener noreferrer" href={`https://github.com/${this.props.profile.profile.githubusername}`} target="_blank"> github.com/{this.props.profile.profile.githubusername} </a> <br/>
+                        <i className="fab fa-github"></i><b> Github </b> <a rel="noopener noreferrer" href={`https://github.com/${this.props.profile.profile.githubusername}`} target="_blank">{this.props.profile.profile.githubusername} </a> <br/>
                         <i className="tim-icons icon-bank"></i><b> Company </b> {this.props.profile.profile.company}
 
                       </TabPane>

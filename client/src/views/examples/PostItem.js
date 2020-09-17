@@ -212,7 +212,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     >
     </i>
   {" "}{comments.length > 0 && (
-                <span class='comment-count'>{comments.length}</span>
+                <span className='comment-count'>{comments.length}</span>
               )} {/* num comments from DB */}
 
     <Row className="mt-3">
