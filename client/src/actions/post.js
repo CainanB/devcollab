@@ -6,7 +6,9 @@ import {
     POST_ERROR,
     UPDATE_LIKES,
     ADD_POST,
-    DELETE_POST
+    DELETE_POST,
+    ADD_COMMENT,
+    DELETE_COMMENT
    
 } from './constants'
 
@@ -94,6 +96,49 @@ export const addPost = (formData) => async dispatch =>{
             payload: res.data
         })
         dispatch(setAlert('Post Created', 'success'))
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: {msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
+
+// Add Comment
+export const addComment = (formData, postId) => async dispatch =>{
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try {
+        const res = await axios.post(`/api/posts/comment/${postId}`, formData, config)
+        dispatch({
+            type: ADD_COMMENT,
+            payload: res.data
+        })
+        dispatch(setAlert('Comment Added', 'success'))
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: {msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
+
+
+// Delete Comment
+export const deleteComment = (commentId, postId) => async dispatch =>{
+    
+
+    try {
+        const res = await axios.delete(`/api/posts/${postId}/delete/${commentId}`)
+        dispatch({
+            type: DELETE_COMMENT,
+            payload: commentId
+        })
+        dispatch(setAlert('Comment Added', 'success'))
     } catch (error) {
         dispatch({
             type: POST_ERROR,
