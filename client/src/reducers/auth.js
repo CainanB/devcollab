@@ -5,7 +5,8 @@ import{
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
-    LOGOUT
+    LOGOUT,
+    SET_PROFILE_IMAGE
 
 } from '../actions/constants'
 
@@ -46,6 +47,12 @@ export default function(state = initialState, action){
                 token: null,
                 isAuthenticated: false,
                 user: null,
+                loading: false
+            }
+        case SET_PROFILE_IMAGE:
+            return{
+                ...state,
+                user: {...state.user, profileimg: payload},
                 loading: false
             }
 
