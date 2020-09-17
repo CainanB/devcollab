@@ -188,12 +188,7 @@ class PublicProfile extends React.Component {
                     // src={require("../../assets/img/profile.jpeg")}
                     
                   />
-                    <input type="file" 
-                          name="file"
-                          placeholder="Upload an image"
-                          onChange={this.uploadImage}
-                          
-                          />
+
                   <h4 className="title">{this.props.profile.profile.user.name}</h4>
 
     <h5 className="text-center"><i className="tim-icons icon-square-pin"></i>{this.props.profile.profile.location}</h5>
