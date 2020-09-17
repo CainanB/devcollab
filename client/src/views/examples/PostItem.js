@@ -23,7 +23,7 @@ import {addLike, removeLike, deletePost, addComment, deleteComment} from '../../
 import { Link } from "react-router-dom";
 import CommentForm from './CommentForm'
 
-const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title}, auth,
+const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title, profileimg}, auth,
     addLike,
     removeLike,
     deletePost,
@@ -118,7 +118,9 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
                 height="50px"
                 style={{display:'inline-block', marginBottom:'35px', marginRight:'10px'}}
                 // their uploaded profile image
-                src={require("../../assets/img/profile.jpeg")}
+                src={ profileimg ?
+                    profileimg :
+                    "https://coursereport-s3-production.global.ssl.fastly.net/rich/rich_files/rich_files/5668/s300/social-media.png"}
             />
             </Link>
             <b style={{fontSize:'2em'}}>{title}</b>
