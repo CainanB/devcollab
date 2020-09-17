@@ -90,6 +90,7 @@ class LandingPage extends React.Component {
             <img
               alt="..."
               className="path"
+              height="660px"
               src={require("../../assets/img/blob.png")}
             />
             <img
@@ -120,9 +121,11 @@ class LandingPage extends React.Component {
             <div className="content-center">
               <Row style={{marginTop:'100px', marginBottom:'80px'}} className="row-grid justify-content-between align-items-center text-left">
                 <Col lg="5" md="5">
+                
                   <h1 className="text-white">
                     Welcome to <br />
                     <span className="text-white">Dev Collab</span>
+                    
                   </h1>
                   <p className="text-white mb-3">
                     Dev collab is a tool for developers to connect, talk about their projects and collaborate all in one convenient place.
@@ -237,8 +240,15 @@ class LandingPage extends React.Component {
                     </Card>
                 </Col>
               </Row>
+
+              
             </div>
+            
           </div>
+          <Row className="justify-content-center w-100">
+              <img src={require('../../assets/img/devcollab.png')}/> 
+          </Row>
+          
           <section className="section section-lg p-0">
             <section className="section p-0">
               <img

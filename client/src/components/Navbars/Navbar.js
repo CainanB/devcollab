@@ -131,7 +131,7 @@ class PagesNavbar extends React.Component {
   render() {
     return (
       <Navbar
-        className={"pb-0 pt-0 fixed-top " + this.state.color}
+        className={"w-100 pb-0 pt-0 fixed-top " + this.state.color}
         color-on-scroll="100"
         expand="lg"
       >
