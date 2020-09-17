@@ -19,13 +19,15 @@ import {
 } from "reactstrap";
 import Moment from 'react-moment'
 import {connect} from 'react-redux'
-import {addLike, removeLike, deletePost} from '../../actions/post'
+import {addLike, removeLike, deletePost, addComment, deleteComment} from '../../actions/post'
 import { Link } from "react-router-dom";
 
 const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title}, auth,
     addLike,
     removeLike,
-    deletePost
+    deletePost,
+    addComment,
+    deleteComment
     }) => {
     let [likeColor, setLikeColor] = useState("#6c757d")
     let [commentColor, setCommentColor] = useState('#6c757d')
@@ -39,14 +41,16 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     const onFormSubmit = (e) => {
 
         e.preventDefault();
+        console.log(commentText)
         // action to create comment here
-        // this.props.createComment(commentText)
+        addComment({commentText},_id)
 
     }
 
     const onCommentChange = (e) => {
-
+        console.log(e.target.value)
         setCommentText(e.target.value)
+        console.log(commentText)
     }
 
     const handlePostLike = (postID) => {
@@ -86,8 +90,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
                 <Row >
                     <Col>
-                        <span >Cainan Barboza - </span>
-                        <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
+                    
                     </Col>
                 </Row>
 
@@ -100,7 +103,9 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
                                 type="text"
                                 placeholder="leave a comment"
                                 autoComplete="off"
+                                value={commentText}
                                 onChange={(e)=>onCommentChange(e)}
+                                
                             >
                             </Input>
 
@@ -244,4 +249,4 @@ const mapStateToProps = state =>{
     }
     
 }
-export default connect(mapStateToProps, {addLike, removeLike, deletePost})(PostItem)
+export default connect(mapStateToProps, {addLike, removeLike, deletePost, addComment, deleteComment})(PostItem)

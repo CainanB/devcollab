@@ -203,8 +203,8 @@ router.put('/unlike/:id', auth, async (req, res) =>{
 // @desc   add a comment to post
 // @access Private
 
-router.put('/comment/:id', [auth, [
-    check('text', 'Text is required').not().isEmpty()
+router.post('/comment/:id', [auth, [
+    check('commentText', 'Text is required').not().isEmpty()
 ]], async (req, res) =>{
     const errors = validationResult(req)
     if (!errors.isEmpty()) {

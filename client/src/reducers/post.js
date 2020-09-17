@@ -3,7 +3,9 @@ import {
     POST_ERROR,
     UPDATE_LIKES,
     ADD_POST,
-    DELETE_POST
+    DELETE_POST,
+    ADD_COMMENT,
+    DELETE_COMMENT
 } from '../actions/constants'
 
 const initialState ={
@@ -50,6 +52,24 @@ export default function(state = initialState, action){
                     posts: [payload,...state.posts],
                     loading: false
                 }
+        case ADD_COMMENT:
+                return{
+                        ...state,
+                        post: {
+                            ...state.post,
+                            comments: payload.comments,
+                            loading: false
+                        }
+                    }
+        case DELETE_COMMENT:
+                return {
+                        ...state,
+                        post :{
+                            ...state.post,
+                            comments : state.post.comments.filter(com => com._id !== payload)
+                        },
+                        loading: false
+                    }
         default:
             return state
     }
