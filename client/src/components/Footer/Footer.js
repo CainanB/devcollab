@@ -44,17 +44,17 @@ class Footer extends React.Component {
             <Col md="3">
               <Nav>
                 <NavItem>
-                  <NavLink href="https://www.linkedin.com/search/results/all/?keywords=micah%20peterson%20OR%20cainan%20barboza&origin=GLOBAL_SEARCH_HEADER">
+                  <NavLink target="_blank" href="https://www.linkedin.com/search/results/all/?keywords=micah%20peterson%20OR%20cainan%20barboza&origin=GLOBAL_SEARCH_HEADER">
                     Contact Us
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="https://github.com/CainanB/devcollab">
+                  <NavLink target="_blank" href="https://github.com/CainanB/devcollab">
                     About Us
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="https://opensource.org/licenses/MIT">
+                  <NavLink target="_blank" href="https://opensource.org/licenses/MIT">
                     License
                   </NavLink>
                 </NavItem>

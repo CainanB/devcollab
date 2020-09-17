@@ -79,7 +79,7 @@ class LandingPage extends React.Component {
   render() {
     if(this.props.isAuthenticated && this.props.auth.user !== null){
       return <Redirect to="/posts" />
-  }
+    }
     return (
       <>
         <Navbar />
@@ -90,6 +90,7 @@ class LandingPage extends React.Component {
             <img
               alt="..."
               className="path"
+              height="660px"
               src={require("../../assets/img/blob.png")}
             />
             <img
@@ -118,11 +119,13 @@ class LandingPage extends React.Component {
               src={require("../../assets/img/cercuri.png")}
             />
             <div className="content-center">
-              <Row className="row-grid justify-content-between align-items-center text-left mb-5">
+              <Row style={{marginTop:'100px', marginBottom:'80px'}} className="row-grid justify-content-between align-items-center text-left">
                 <Col lg="5" md="5">
+                
                   <h1 className="text-white">
                     Welcome to <br />
                     <span className="text-white">Dev Collab</span>
+                    
                   </h1>
                   <p className="text-white mb-3">
                     Dev collab is a tool for developers to connect, talk about their projects and collaborate all in one convenient place.
@@ -150,14 +153,15 @@ class LandingPage extends React.Component {
                 </Col>
                 <Col lg="5" md="6">
                 <Card className="card-register">
-                      <CardHeader>
+                      <CardHeader className="pb-1">
                       <CardImg
                           alt="..."
+                          style={{marginTop:'-170px'}}
                           src={require("../../assets/img/square2.png")}
                         />
-                        <CardTitle tag="h4" style={{fontSize:'4em'}} className="ml-2 text-light">Sign in</CardTitle>
+                        <CardTitle tag="h4" style={{fontSize:'4em'}} className="ml-2 mb-0 text-light">Sign in</CardTitle>
                       </CardHeader>
-                      <CardBody>
+                      <CardBody className="pt-0">
                         {/* FORM START */}
                         <Form className="form" onSubmit={this.onFormSubmit} id="signinForm">
                           <InputGroup
@@ -228,7 +232,7 @@ class LandingPage extends React.Component {
                           </FormGroup>
                         </Form>
                       </CardBody>
-                      <CardFooter>
+                      <CardFooter className="pt-0 mt-0">
                         <Button form="signinForm" type="submit" className="btn-round" color="secondary" size="lg">
                           Sign in
                         </Button>
@@ -236,8 +240,15 @@ class LandingPage extends React.Component {
                     </Card>
                 </Col>
               </Row>
+
+              
             </div>
+            
           </div>
+          <Row className="justify-content-center w-100">
+              <img src={require('../../assets/img/devcollab.png')}/> 
+          </Row>
+          
           <section className="section section-lg p-0">
             <section className="section p-0">
               <img
@@ -245,7 +256,7 @@ class LandingPage extends React.Component {
                 className="path"
                 src={require("../../assets/img/path4.png")}
               />
-              <Container>
+              <Container className="mt-3">
                 <Row className="row-grid justify-content-between">
                   <Col className="mt-lg-5" md="5">
                     <Row>

@@ -84,7 +84,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
             setCommentToggle(true);
             temp = <>
 
-                <Row >
+                <Row>
                     <Col>
                         <span >Cainan Barboza - </span>
                         <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
