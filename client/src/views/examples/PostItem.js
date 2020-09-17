@@ -22,6 +22,7 @@ import {connect} from 'react-redux'
 import {addLike, removeLike, deletePost, addComment, deleteComment} from '../../actions/post'
 import { Link } from "react-router-dom";
 import CommentForm from './CommentForm'
+import Comment from './Comment'
 
 const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title, profileimg}, auth,
     addLike,
@@ -38,11 +39,31 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     let [commentToggle, setCommentToggle] = useState(false)
     let [commentJSX, setCommentJSX] = useState(null);
 
+    const getComments = () => {
+
+        let getAllComments = null;
+
+        let postComments = comments.filter(comment => {
+
+            return comment.id === _id
+        })
+
+        getAllComments = postComments.map(comment => {
+            return <Comment photo={avatar} name={name} comments={comments} deleteComment={deleteComment}/>
+        })
+
+        if(getAllComments.length < 1)
+        {
+            return null;
+        }
+        else
+        {
+            return getAllComments;
+        }
+
+    }
+
     
-
-
-
-   
     const handlePostLike = (postID) => {
 
 
@@ -78,11 +99,8 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
             setCommentToggle(true);
             temp = <>
 
-
-           
-            <CommentForm postId={_id} comments={comments}/>
-
-
+                {getComments()}
+                <CommentForm postId={_id} comments={comments}/>
 
             </>
 
@@ -182,7 +200,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     >
     </i>
   {" "}{comments.length > 0 && (
-                <span class='comment-count'>{comments.length}</span>
+                <span className='comment-count'>{comments.length}</span>
               )} {/* num comments from DB */}
 
     <Row className="mt-3">

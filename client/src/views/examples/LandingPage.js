@@ -128,7 +128,7 @@ class LandingPage extends React.Component {
                     
                   </h1>
                   <p className="text-white mb-3">
-                    Dev collab is a tool for developers to connect, talk about their projects and collaborate all in one convenient place.
+                    Dev collab is a tool for developers to connect with others, talk about their projects and collaborate all in one convenient place.
                     Keep scrolling if you aren't sold yet. Otherwise register an account by clicking "Get Started".
                   </p>
                   <div className="btn-wrapper mb-3">

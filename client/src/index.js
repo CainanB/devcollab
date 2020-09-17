@@ -31,9 +31,7 @@ import RegisterPage from "./views/examples/RegisterPage.js";
 import ProfilePage from "./views/examples/ProfilePage.js";
 import EditProfile from "./views/examples/EditProfile.js";
 import PublicProfile from './views/examples/PublicProfile'
-
 import CreateProfile from "./views/examples/CreateProfile.js";
-
 import Posts from "./views/examples/Posts.js";
 
 import {Provider} from 'react-redux'
