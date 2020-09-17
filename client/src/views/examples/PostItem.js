@@ -78,8 +78,11 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
             setCommentToggle(true);
             temp = <>
 
+
            
             <CommentForm postId={_id} comments={comments}/>
+
+
 
             </>
 

@@ -3,7 +3,7 @@
 import React from "react";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -287,6 +287,11 @@ class ProfilePage extends React.Component {
 
   render() {
 
+    if(this.props.isAuthenticated === false || this.props.isAuthenticated === null)
+    {
+      return <Redirect to="/landing-page"/>
+    }
+
     return (
 
       // function with conditional profile rendering used to avoid annoying ternery syntax
@@ -301,7 +306,8 @@ class ProfilePage extends React.Component {
 const mapStateToProps = state => {
   return{
     auth: state.auth,
-    profile: state.profile
+    profile: state.profile,
+    isAuthenticated: state.auth.isAuthenticated
   }
 
 }
