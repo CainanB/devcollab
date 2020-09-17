@@ -203,8 +203,8 @@ router.put('/unlike/:id', auth, async (req, res) =>{
 // @desc   add a comment to post
 // @access Private
 
-router.put('/comment/:id', [auth, [
-    check('text', 'Text is required').not().isEmpty()
+router.post('/comment/:id', [auth, [
+    check('commentText', 'Text is required').not().isEmpty()
 ]], async (req, res) =>{
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -218,7 +218,7 @@ router.put('/comment/:id', [auth, [
         const user = await User.findById(req.user.id).select('-password');
         const post = await Post.findById(req.params.id)
         const newComment = {
-            text: req.body.text,
+            text: req.body.commentText,
             name: user.name,
             avatar: user.avatar,
             user: req.user.id

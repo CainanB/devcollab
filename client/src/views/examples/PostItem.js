@@ -19,36 +19,30 @@ import {
 } from "reactstrap";
 import Moment from 'react-moment'
 import {connect} from 'react-redux'
-import {addLike, removeLike, deletePost} from '../../actions/post'
+import {addLike, removeLike, deletePost, addComment, deleteComment} from '../../actions/post'
 import { Link } from "react-router-dom";
+import CommentForm from './CommentForm'
 
 const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title}, auth,
     addLike,
     removeLike,
-    deletePost
+    deletePost,
+    addComment,
+    deleteComment
     }) => {
     let [likeColor, setLikeColor] = useState("#6c757d")
     let [commentColor, setCommentColor] = useState('#6c757d')
     let [textAreaJSX, setTextAreaJSX] = useState(null)
 
-    let [commentText, setCommentText] = useState('');
+    
     let [commentToggle, setCommentToggle] = useState(false)
     let [commentJSX, setCommentJSX] = useState(null);
 
+    
 
-    const onFormSubmit = (e) => {
 
-        e.preventDefault();
-        // action to create comment here
-        // this.props.createComment(commentText)
 
-    }
-
-    const onCommentChange = (e) => {
-
-        setCommentText(e.target.value)
-    }
-
+   
     const handlePostLike = (postID) => {
 
 
@@ -84,36 +78,10 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
             setCommentToggle(true);
             temp = <>
 
-                <Row>
-                    <Col>
-                        <span >Cainan Barboza - </span>
-                        <span style={{color:'white'}}>u srs with this crap? why are u even a tryin 2 be a developer bro u dont kno shit...</span>
-                    </Col>
-                </Row>
 
+           
+            <CommentForm postId={_id} comments={comments}/>
 
-                <Row className="mt-3">
-                    <Col>
-                        <Form className="form" onSubmit={onFormSubmit} id="createComment">
-                            <Input
-                                name="comment"
-                                type="text"
-                                placeholder="leave a comment"
-                                autoComplete="off"
-                                onChange={(e)=>onCommentChange(e)}
-                            >
-                            </Input>
-
-                            <Row style={{marginLeft:'1px'}} className="justify-content-start">
-                                <Button
-                                    type="submit"
-                                >
-                                    Post Comment
-                                </Button>
-                            </Row>
-                        </Form>
-                    </Col>
-                </Row>
 
 
             </>
@@ -244,4 +212,4 @@ const mapStateToProps = state =>{
     }
     
 }
-export default connect(mapStateToProps, {addLike, removeLike, deletePost})(PostItem)
+export default connect(mapStateToProps, {addLike, removeLike, deletePost, addComment, deleteComment})(PostItem)
