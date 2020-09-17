@@ -13,7 +13,7 @@ const Comment = ({avatar, name, comments}) => {
     <>
         <Row>
             <Col>
-                <p>{text}</p> <button onClick={deleteComment()}>X</button>
+                {/* <p>{text}</p> <button onClick={deleteComment()}>X</button> */}
             </Col>
         </Row>
     </>
