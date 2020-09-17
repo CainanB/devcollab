@@ -105,7 +105,7 @@ class Posts extends React.Component {
 
         if(this.state.showForm === true)
         {
-            jsx = <Form className="form" onSubmit={this.onFormSubmit} id="createPost">
+            jsx = <Form className="form" id="createPost">
                     {/* TECHNOLOGY INPUT */}
 
                         <InputGroup>
@@ -204,7 +204,8 @@ class Posts extends React.Component {
                         onClick={e =>{this.props.addPost({
                             title: this.state.title,
                             technologies: this.state.techArray.toString(),
-                            text: this.state.text
+                            text: this.state.text,
+                            profileimg: this.props.user.profileimg
                         })
                         this.setState({
                             title: "",
@@ -282,7 +283,8 @@ class Posts extends React.Component {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    post: state.post
+    post: state.post,
+    user: state.auth.user
 })
 
 export default connect(mapStateToProps, {getPosts, addPost})(Posts)

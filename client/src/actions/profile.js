@@ -2,7 +2,8 @@ import axios from 'axios'
 import {setAlert} from '../actions/alert'
 import{
     GET_PROFILE,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    SET_PROFILE_IMAGE
 
 } from '../actions/constants'
 
@@ -75,6 +76,10 @@ export const addProfileImage = (data) => async dispatch =>{
         }
         const response = await axios.put('/api/profile/upload', {file: file.secure_url}, config)
         console.log(response.data)
+        dispatch({
+            type: SET_PROFILE_IMAGE,
+            payload: file.secure_url
+        })
         dispatch({
             type: GET_PROFILE,
             payload: response.data
