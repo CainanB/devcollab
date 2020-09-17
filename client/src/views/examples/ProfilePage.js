@@ -39,7 +39,9 @@ class ProfilePage extends React.Component {
       tabs: 1,
       commentColor: '#6c757d',
       textAreaJSX: null,
-      profileimg: ""
+      profileimg: "",
+      hoverColor: 'white',
+      hoverSize: '15px'
     }
 
   }
@@ -92,6 +94,26 @@ class ProfilePage extends React.Component {
     data.append('upload_preset', 'devcollab')
     this.props.addProfileImage(data)
 
+
+}
+
+hoverEffect = () => {
+
+  console.log("inside hover")
+
+  this.setState({
+    hoverColor: '#ba54f5',
+    hoverSize: '17px'
+  })
+
+}
+
+revert = () => {
+
+  this.setState({
+    hoverColor: 'white',
+    hoverSize: '15px'
+  })
 
 }
 
@@ -178,9 +200,20 @@ class ProfilePage extends React.Component {
                       }
                       
                     />
-                    <Row className="w-100 justify-content-end ml-0 mr-0">
+                    <Row className="w-100 justify-content-center ml-0 mr-0 mt-1">
+                        <label 
+                          htmlFor="file" 
+                          style={{cursor:'pointer', color:this.state.hoverColor, fontSize:this.state.hoverSize}} 
+                          onMouseEnter={this.hoverEffect} 
+                          onMouseLeave={this.revert}
+                          >
+                          change profile photo
+                        </label>
+
                         <Input type="file"
                               name="file"
+                              id="file"
+                              style={{display:'none'}}
                               placeholder="Upload an image"
                               onChange={this.uploadImage}
                         />
