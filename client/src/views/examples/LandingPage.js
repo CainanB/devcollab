@@ -79,7 +79,7 @@ class LandingPage extends React.Component {
   render() {
     if(this.props.isAuthenticated && this.props.auth.user !== null){
       return <Redirect to="/posts" />
-  }
+    }
     return (
       <>
         <Navbar />
@@ -118,7 +118,7 @@ class LandingPage extends React.Component {
               src={require("../../assets/img/cercuri.png")}
             />
             <div className="content-center">
-              <Row className="row-grid justify-content-between align-items-center text-left mb-5">
+              <Row style={{marginTop:'100px', marginBottom:'80px'}} className="row-grid justify-content-between align-items-center text-left">
                 <Col lg="5" md="5">
                   <h1 className="text-white">
                     Welcome to <br />
@@ -150,14 +150,15 @@ class LandingPage extends React.Component {
                 </Col>
                 <Col lg="5" md="6">
                 <Card className="card-register">
-                      <CardHeader>
+                      <CardHeader className="pb-1">
                       <CardImg
                           alt="..."
+                          style={{marginTop:'-170px'}}
                           src={require("../../assets/img/square2.png")}
                         />
-                        <CardTitle tag="h4" style={{fontSize:'4em'}} className="ml-2 text-light">Sign in</CardTitle>
+                        <CardTitle tag="h4" style={{fontSize:'4em'}} className="ml-2 mb-0 text-light">Sign in</CardTitle>
                       </CardHeader>
-                      <CardBody>
+                      <CardBody className="pt-0">
                         {/* FORM START */}
                         <Form className="form" onSubmit={this.onFormSubmit} id="signinForm">
                           <InputGroup
@@ -228,7 +229,7 @@ class LandingPage extends React.Component {
                           </FormGroup>
                         </Form>
                       </CardBody>
-                      <CardFooter>
+                      <CardFooter className="pt-0 mt-0">
                         <Button form="signinForm" type="submit" className="btn-round" color="secondary" size="lg">
                           Sign in
                         </Button>
@@ -245,7 +246,7 @@ class LandingPage extends React.Component {
                 className="path"
                 src={require("../../assets/img/path4.png")}
               />
-              <Container>
+              <Container className="mt-3">
                 <Row className="row-grid justify-content-between">
                   <Col className="mt-lg-5" md="5">
                     <Row>

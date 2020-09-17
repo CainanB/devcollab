@@ -58,7 +58,7 @@ class PagesNavbar extends React.Component {
           className="nav-link d-lg-block"
           color="secondary"
         >
-          Profile
+          My Profile
         </Button>
         </Link>
       </NavItem>
@@ -131,7 +131,7 @@ class PagesNavbar extends React.Component {
   render() {
     return (
       <Navbar
-        className={"fixed-top " + this.state.color}
+        className={"pb-0 pt-0 fixed-top " + this.state.color}
         color-on-scroll="100"
         expand="lg"
       >
@@ -142,6 +142,7 @@ class PagesNavbar extends React.Component {
               id="navbar-brand"
               tag={Link}
             >
+              <img height='50px' width='50px' src={require('../../assets/img/devcollab.png')}/> 
               <span>DEV•</span>
               Collab
             </NavbarBrand>
