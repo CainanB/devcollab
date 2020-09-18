@@ -21,8 +21,8 @@ import Moment from 'react-moment'
 import {connect} from 'react-redux'
 import {addLike, removeLike, deletePost, addComment, deleteComment} from '../../actions/post'
 import { Link } from "react-router-dom";
-import CommentForm from './CommentForm'
-import Comment from './Comment'
+
+import CommentContainer from './CommentContainer'
 
 const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, technologies, title, profileimg}, auth,
     addLike,
@@ -39,27 +39,18 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     let [commentToggle, setCommentToggle] = useState(false)
     let [commentJSX, setCommentJSX] = useState(null);
 
-    const getComments = () => {
+    // const getComments = () => {
 
-        let getAllComments = null;
+    //     if(comments.length !== 0){
+    //         return comments.map(comment => {
 
-        let comments = ['this is dummmy comment', 'another dummy comment']
+    //             return <Comment photo={profileimg} name={comment.name} text={comment.text} user={comment.user} auth={auth} commentId={comment._id} postId={_id}/>
+    //         })
+    //     }
+    //     return null
+    
 
-        getAllComments = comments.map(comment => {
-
-            return <Comment photo={avatar} name={name} text={comment} deleteComment={deleteComment}/>
-        })
-
-        if(getAllComments.length === 0 || getAllComments === undefined)
-        {
-            return null;
-        }
-        else
-        {
-            return getAllComments;
-        }
-
-    }
+    // }
 
     
     const handlePostLike = (postID) => {
@@ -97,8 +88,9 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
             setCommentToggle(true);
             temp = <>
 
-                {getComments()}
-                <CommentForm postId={_id} comments={comments}/>
+                {/* {getComments()}
+                <CommentForm postId={_id} comments={comments}/> */}
+                <CommentContainer postId={_id}/>
 
             </>
 

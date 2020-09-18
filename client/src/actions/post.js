@@ -3,6 +3,7 @@ import {setAlert} from '../actions/alert'
 
 import {
     GET_POSTS,
+    GET_POST,
     POST_ERROR,
     UPDATE_LIKES,
     ADD_POST,
@@ -131,14 +132,31 @@ export const addComment = (formData, postId) => async dispatch =>{
 // Delete Comment
 export const deleteComment = (commentId, postId) => async dispatch =>{
     
-
+    console.log(commentId, postId)
     try {
-        const res = await axios.delete(`/api/posts/${postId}/delete/${commentId}`)
+        const res = await axios.delete(`/api/posts/comment/${postId}/delete/${commentId}`)
         dispatch({
             type: DELETE_COMMENT,
             payload: commentId
         })
-        dispatch(setAlert('Comment Added', 'success'))
+        dispatch(setAlert('Comment Deleted', 'success'))
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: {msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
+
+// Get post
+
+export const getPost = (id) => async dispatch =>{
+    try {
+        const res = await axios.get(`/api/posts/${id}`)
+        dispatch({
+            type: GET_POST,
+            payload: res.data
+        })
     } catch (error) {
         dispatch({
             type: POST_ERROR,

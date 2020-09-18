@@ -6,17 +6,27 @@ import {
     Col
 } from "reactstrap";
 
-const Comment = ({photo, name, text, deleteComment}) => {
+const Comment = ({commentId, postId, name, user, text, auth, deleteComment}) => {
 
     return (
     <>
         <Row>
             <Col className="d-flex justify-content-space-between">
-                <img height='25px' width='25px' src={photo}/><p>{text}</p> <button onClick={deleteComment()}>X</button>
+                <img height='25px' width='25px' src="" /><span>{name}</span><p>{text}</p> 
+                {!auth.loading && user === auth.user._id ? (
+                <button onClick={()=>deleteComment(commentId,postId)}>X</button>
+                ):null}
             </Col>
         </Row>
     </>
     )
 }
 
-export default connect(null,{deleteComment})(Comment)
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+    
+}
+
+export default connect(mapStateToProps,{deleteComment})(Comment)
