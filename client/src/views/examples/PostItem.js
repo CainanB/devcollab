@@ -43,16 +43,14 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
         let getAllComments = null;
 
-        let postComments = comments.filter(comment => {
+        let comments = ['this is dummmy comment', 'another dummy comment']
 
-            return comment.id === _id
+        getAllComments = comments.map(comment => {
+
+            return <Comment photo={avatar} name={name} text={comment} deleteComment={deleteComment}/>
         })
 
-        getAllComments = postComments.map(comment => {
-            return <Comment photo={avatar} name={name} comments={comments} deleteComment={deleteComment}/>
-        })
-
-        if(getAllComments.length < 1)
+        if(getAllComments.length === 0 || getAllComments === undefined)
         {
             return null;
         }
