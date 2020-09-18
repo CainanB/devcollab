@@ -41,14 +41,15 @@ class ProfilePage extends React.Component {
       textAreaJSX: null,
       profileimg: "",
       hoverColor: 'white',
-      hoverSize: '15px'
+      hoverSize: '15px',
+      img:{
+        changed: false
+      } 
     }
 
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    this.props.getProfile()
-  }
+
   componentDidMount()
   {
     
@@ -87,14 +88,14 @@ class ProfilePage extends React.Component {
   }
   uploadImage= async e => {
     console.log(e.target.files)
+  
     const files = e.target.files
 
     const data = new FormData()
     data.append('file', files[0])
     data.append('upload_preset', 'devcollab')
     this.props.addProfileImage(data)
-
-
+   
 }
 
 hoverEffect = () => {
