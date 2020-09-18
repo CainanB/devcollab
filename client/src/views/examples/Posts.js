@@ -205,7 +205,7 @@ class Posts extends React.Component {
                             title: this.state.title,
                             technologies: this.state.techArray.toString(),
                             text: this.state.text,
-                            profileimg: this.props.user.profileimg
+                            profileimg: this.props.profileimg
                         })
                         this.setState({
                             title: "",
@@ -284,7 +284,8 @@ class Posts extends React.Component {
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     post: state.post,
-    user: state.auth.user
+    user: state.auth.user,
+    profileimg: state.profile.profile.profileimg
 })
 
 export default connect(mapStateToProps, {getPosts, addPost})(Posts)
