@@ -191,7 +191,7 @@ revert = () => {
                     <img
                       alt="..."
                       className="img-center img-fluid rounded-circle"
-
+                      style={{minHeight:'125px'}}
                       // their uploaded profile image
                       
                       src={
