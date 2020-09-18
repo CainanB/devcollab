@@ -6,14 +6,13 @@ import {
     Col
 } from "reactstrap";
 
-const Comment = ({avatar, name, comments}) => {
-
+const Comment = ({photo, name, text, deleteComment}) => {
 
     return (
     <>
         <Row>
-            <Col>
-                {/* <p>{text}</p> <button onClick={deleteComment()}>X</button> */}
+            <Col className="d-flex justify-content-space-between">
+                <img height='25px' width='25px' src={photo}/><p>{text}</p> <button onClick={deleteComment()}>X</button>
             </Col>
         </Row>
     </>
