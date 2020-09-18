@@ -1,8 +1,6 @@
-# Digitalcrafts Capstone Project
-
 <h1>Dev Collab<h1>
 
-<img src="./readmeImages/home">
+<img src="./readmeImages/home.png">
 
 <h2><u>Overview:</u><h2>
 
@@ -37,8 +35,8 @@
 Other Tools:
 
 <ul>
-    <li>React<li>
-    <li>Redux<li>
+    <li>React</li>
+    <li>Redux</li>
     <li>React-Bootstrap</li>
     <li>JSON Web Tokens (authentication)</li>
     <li>mongoDB (database)</li>
@@ -48,11 +46,11 @@ Other Tools:
 
 <h3><u>Base Objectives:</u></h3>
 <ul>
-    <li>Users have the ability to buy, sell, or keep individual stocks and liquid cash</li>
-    <li>Deliver stock prices in real time</li>
-    <li>Provide an easy-search function for finding stocks</li>
-    <li>Display up-to-date stock information alongside current financial holdings</li>
-    <li>Track investment data over time using data persistence</li>
+    <li>Landing page with explanation of site</li>
+    <li>Profile page with information about the unique user</li>
+    <li>Ability to edit profile information</li>
+    <li>Create unique posts with tech, title and post text</li>
+    <li>Ability to view others profile and follow them to connect</li>
 </ul>
 
 </br>
@@ -60,17 +58,15 @@ Other Tools:
 <h2><u>Flex Goals Completed:</u></h2>
 <ul>
     <li>Provide universal login from anywhere </li>
-    <li>Smoothen out navigation for natural UI experience </li>
+    <li>Smoothen out navigation for natural user experience </li>
 </ul>
 
 </br>
 
 <h2><u>Stretch Goals Future</u></h2>
 <ul>
-    <li>Provide percentage growth/loss for individual stock holding</li>
-    <li>Provide individual growth/loss tracking graphs for unique holdings</li>
-    <li>Allow for competitive play against friends</li>
-    <li>Provide purchasable icons and UI upgrades available for purchase (with in-game virtual earnings)</li>
+    <li>Ability to direct message followed users via socket server chat engine</li>
+    <li>Ability to filter projects by tech used or text</li>
 </ul>
 
 </br>
@@ -78,15 +74,16 @@ Other Tools:
 <h2><u>Challenges & Solutions:</u><h2>
 <h3>Some of the biggest challenges we faced with this project build included:</h2>
 
-<b>Challenge: Version and Merge Control</b>
+<b>Challenge: React Lifecycle Methods</b>
 <br>
-<b>Solution: After much trial and error, our Git/GitHub procedures and skills were greatly refined and allowed for much smoother interaction between developers.</b>
+<b>Solution: Understanding the flow of the lifecycle methods and how they are called is an interesting trait of doing a project in React.
+After much trial and error, we figured out that we were running several functions in the wrong portion of the cycle, causing too many re-renders of the DOM.  </b>
 
 </br>
 
 <h2><u>Code Snippets:</u></h2>
 
-<h4>This snippet showcases the declaration of our user Class (including methods and attributes), and demonstrates OOP concepts.</h4>
+<h4>Explain code snippet...</h4>
 
 ```
 
@@ -114,15 +111,15 @@ Other Tools:
 
 <h2>Screenshots:</h2>
 
-<img src="images/loginPage.png">
+<img src="readmeImages/createpost.png">
 <h4>Explain screenshot1</h4>
 
 <br />
 
-<img src="images/graphs.png">
+<img src="readmeImages/profileposts.png">
 <h4>Explain screenshot2</h4>
 
 <br />
 
-<img src="images/checkoutPage.png">
+<img src="readmeImages/">
 <h4>Explain screenshot3</h4>
