@@ -80,10 +80,7 @@ export const addProfileImage = (data) => async dispatch =>{
             type: SET_PROFILE_IMAGE,
             payload: file.secure_url
         })
-        // dispatch({
-        //     type: GET_PROFILE,
-        //     payload: response.data
-        // })
+      
         dispatch(setAlert("Profile Image Added",'success'))
    
             
