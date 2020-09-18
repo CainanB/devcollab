@@ -191,7 +191,7 @@ revert = () => {
                     <img
                       alt="..."
                       className="img-center img-fluid rounded-circle"
-
+                      style={{minHeight:'125px'}}
                       // their uploaded profile image
                       
                       src={
@@ -227,10 +227,6 @@ revert = () => {
                     <Row className="justify-content-center">
                       <Link to="/edit-profile" ><Button ><b style={{color:'white'}}>Edit Profile</b></Button></Link>
                     </Row>
-
-
-
-                    {/* LOCATION */}
 
                   </CardHeader>
                   <CardBody>
