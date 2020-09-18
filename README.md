@@ -209,5 +209,5 @@ export const addProfileImage = (data) => async dispatch =>{
 
 <br />
 
-<img src="readmeImages/profile">
+<img src="readmeImages/profile.png">
 <h4>Profile information includes a bio, name, location, websites, company, skills and the user's posts</h4>
