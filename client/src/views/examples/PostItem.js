@@ -125,21 +125,22 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 <CardHeader>
 
     <Row>
-        <Col xs={10} sm={10} md={10} lg={10} xl={10} className="pr-0">
+        <Col xs={10} sm={10} md={10} lg={10} xl={10} className="pr-0" style={{paddingLeft:'2.3rem'}}>
             <Link to={`/publicprofile/${user}`}>
             <img
                 alt="..."
                 className="img-center img-fluid rounded-circle"
                 width="50px"
                 height="50px"
-                style={{display:'inline-block', marginBottom:'35px', marginRight:'10px'}}
+                style={{display:'inline-block', marginBottom:'5px', marginRight:'10px', marginLeft:'25px'}}
                 // their uploaded profile image
                 src={ profileimg ?
                     profileimg :
                     "https://coursereport-s3-production.global.ssl.fastly.net/rich/rich_files/rich_files/5668/s300/social-media.png"}
             />
+            <p className="text-muted mb-3">{name}</p>
             </Link>
-            <b style={{fontSize:'2em'}}>{title}</b>
+
         </Col>
 
         <Col xs={2} sm={2} md={2} lg={2} xl={2} className="d-flex justify-content-end pl-0">
@@ -155,6 +156,13 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
                     ): null}
 
         </Col>
+
+    </Row>
+
+
+    <Row className="justify-content-start ml-4">
+
+        <b style={{fontSize:'2em', textDecoration:'underline'}}>{title}</b>
 
     </Row>
 
@@ -211,7 +219,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     <Row className="mt-3">
 
         <Col>
-            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment> by <span className="text-muted">{name}</span>
+            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
         </Col>
 
     </Row>
