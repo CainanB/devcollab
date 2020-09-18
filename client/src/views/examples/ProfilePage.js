@@ -228,10 +228,6 @@ revert = () => {
                       <Link to="/edit-profile" ><Button ><b style={{color:'white'}}>Edit Profile</b></Button></Link>
                     </Row>
 
-
-
-                    {/* LOCATION */}
-
                   </CardHeader>
                   <CardBody>
                     <Nav
