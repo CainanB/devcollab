@@ -39,6 +39,27 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     let [commentToggle, setCommentToggle] = useState(false)
     let [commentJSX, setCommentJSX] = useState(null);
 
+    let getTech = () => {
+
+        if(technologies === undefined)
+        {
+            return null;
+        }
+        let temp = [...technologies]
+
+        if(temp.length === 0)
+        {
+            return null;
+        }
+        else
+        {
+            let array = temp.map(tech => {
+                return <>{tech} </>
+            })
+            return array;
+        }
+    }
+
     // const getComments = () => {
 
     //     if(comments.length !== 0){
@@ -164,7 +185,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     
     <Row className="mx-1 pl-2 pr-2 pt-0 justify-content-center">
         <Col xs="12" className="mx-1 d-flex justify-content-center align-items-center pb-3">
-            <i className="tim-icons icon-settings mr-2" style={{display:'inline-block'}}></i><em style={{display:'wrap', width:'100%'}}> {technologies}</em>
+            <i className="tim-icons icon-settings mr-2" style={{display:'inline-block'}}></i><em style={{display:'wrap', width:'100%'}}> {getTech()}</em>
         </Col>
         <Col xs="12">
             {text}

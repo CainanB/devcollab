@@ -275,7 +275,9 @@ revert = () => {
                       {/* Skills Tab */}
                       <TabPane tabId="tab2" className="text-center" style={{fontSize:'1.5em'}}>
 
-                        <b>{this.props.profile.profile.skills}</b>
+                        <b>{this.props.profile.profile.skills.map(skill => {
+                          return <>{skill} </>
+                        })}</b>
                         
                       </TabPane>
 

@@ -1,7 +1,7 @@
 
 import React from "react";
 import classnames from "classnames";
-// import {Link, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import PostItem from './PostItem'
 import {getPosts, addPost} from '../../actions/post'
