@@ -21,7 +21,7 @@ const CommentContainer = ({getPost, postId, post, clearPost}) => {
       {post.loading || post.post === null ? "Loading" :( 
           <>
           {post.post.comments.map(comment =>{
-              return <Comment key={comment._id} commentId={comment._id} postId={postId} name={comment.name} user={comment.user} text={comment.text}/>
+              return <Comment key={comment._id} commentId={comment._id} postId={postId} name={comment.name} user={comment.user} text={comment.text} profileimg={comment.profileimg}/>
           })}  
           <CommentForm postId={postId}/>
       </>
