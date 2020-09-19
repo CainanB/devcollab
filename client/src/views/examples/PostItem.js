@@ -39,6 +39,27 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     let [commentToggle, setCommentToggle] = useState(false)
     let [commentJSX, setCommentJSX] = useState(null);
 
+    let getTech = () => {
+
+        if(technologies === undefined)
+        {
+            return null;
+        }
+        let temp = [...technologies]
+
+        if(temp.length === 0)
+        {
+            return null;
+        }
+        else
+        {
+            let array = temp.map(tech => {
+                return <>{tech} </>
+            })
+            return array;
+        }
+    }
+
     // const getComments = () => {
 
     //     if(comments.length !== 0){
@@ -117,21 +138,22 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 <CardHeader>
 
     <Row>
-        <Col xs={10} sm={10} md={10} lg={10} xl={10} className="pr-0">
+        <Col xs={10} sm={10} md={10} lg={10} xl={10} className="pr-0" style={{paddingLeft:'2.3rem'}}>
             <Link to={`/publicprofile/${user}`}>
             <img
                 alt="..."
                 className="img-center img-fluid rounded-circle"
                 width="50px"
                 height="50px"
-                style={{display:'inline-block', marginBottom:'35px', marginRight:'10px'}}
+                style={{display:'inline-block', marginBottom:'5px', marginRight:'10px', marginLeft:'25px'}}
                 // their uploaded profile image
                 src={ profileimg ?
                     profileimg :
                     "https://coursereport-s3-production.global.ssl.fastly.net/rich/rich_files/rich_files/5668/s300/social-media.png"}
             />
+            <p className="text-muted mb-3">{name}</p>
             </Link>
-            <b style={{fontSize:'2em'}}>{title}</b>
+
         </Col>
 
         <Col xs={2} sm={2} md={2} lg={2} xl={2} className="d-flex justify-content-end pl-0">
@@ -150,13 +172,20 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
 
     </Row>
 
+
+    <Row className="justify-content-start ml-4">
+
+        <b style={{fontSize:'2em', textDecoration:'underline'}}>{title}</b>
+
+    </Row>
+
 </CardHeader>
 
 <CardBody style={{color:'white', paddingTop:'0px'}}>
     
     <Row className="mx-1 pl-2 pr-2 pt-0 justify-content-center">
         <Col xs="12" className="mx-1 d-flex justify-content-center align-items-center pb-3">
-            <i className="tim-icons icon-settings mr-2" style={{display:'inline-block'}}></i><em style={{display:'wrap', width:'100%'}}> {technologies}</em>
+            <i className="tim-icons icon-settings mr-2" style={{display:'inline-block'}}></i><em style={{display:'wrap', width:'100%'}}> {getTech()}</em>
         </Col>
         <Col xs="12">
             {text}
@@ -203,7 +232,7 @@ const PostItem = ({post:{_id, text, name, avatar, user, likes, comments, date, t
     <Row className="mt-3">
 
         <Col>
-            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment> by <span className="text-muted">{name}</span>
+            Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
         </Col>
 
     </Row>
