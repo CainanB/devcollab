@@ -1,6 +1,7 @@
 <h1>Dev Collab<h1>
 
 <img src="./readmeImages/home.png">
+<img src="./readmeImages/home2.png">
 
 <h2><u>Overview:</u><h2>
 
