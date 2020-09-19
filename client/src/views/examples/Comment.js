@@ -14,12 +14,11 @@ const Comment = ({commentId, postId, name, user, text, auth, deleteComment}) => 
         <Row>
             <Col className="d-flex justify-content-space-between">
 
-                <img height='25px' width='25px' src="" /><span>{name}</span><p>{text}</p> 
+                <img height='25px' width='25px' src={user.profileimg} /><span> {name}</span><p> {text}</p> 
                 {!auth.loading && user === auth.user._id ? (
-                <button onClick={()=>deleteComment(commentId,postId)}>X</button>
+                    <Button size="sm" onClick={()=>deleteComment(commentId,postId)}>X</Button>
                 ):null}
 
-     
             </Col>
         </Row>
     </>
