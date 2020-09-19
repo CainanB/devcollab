@@ -9,7 +9,8 @@ import {
     ADD_POST,
     DELETE_POST,
     ADD_COMMENT,
-    DELETE_COMMENT
+    DELETE_COMMENT,
+    CLEAR_POST
    
 } from './constants'
 
@@ -148,6 +149,22 @@ export const deleteComment = (commentId, postId) => async dispatch =>{
     }
 }
 
+// Clear post
+
+export const clearPost = () => async dispatch =>{
+    try {
+        
+        dispatch({
+            type: CLEAR_POST
+            
+        })
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: {msg: error.response.statusText, status: error.response.status}
+        })
+    }
+}
 // Get post
 
 export const getPost = (id) => async dispatch =>{
