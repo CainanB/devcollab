@@ -3,7 +3,8 @@ import {setAlert} from '../actions/alert'
 import{
     GET_PROFILE,
     PROFILE_ERROR,
-    SET_PROFILE_IMAGE
+    SET_PROFILE_IMAGE,
+    GET_PROFILE_BY_ID
 
 } from '../actions/constants'
 
@@ -103,7 +104,7 @@ export const getProfileById = (userID) => async dispatch =>{
     try {
         const res = await axios.get(`/api/profile/user/${userID}`);
         dispatch({
-            type: GET_PROFILE,
+            type: GET_PROFILE_BY_ID,
             payload: res.data
         })
     } catch (error) {
