@@ -2,13 +2,18 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import CommentForm from './CommentForm'
 import Comment from './Comment'
-import {getPost} from '../../actions/post'
+import {getPost, clearPost} from '../../actions/post'
 
 
-const CommentContainer = ({getPost, postId, post}) => {
+
+const CommentContainer = ({getPost, postId, post, clearPost}) => {
+
 
     useEffect(()=>{
         getPost(postId)
+        return ()=>{
+            clearPost()
+        }
     },[getPost]) 
     
   return (
@@ -31,4 +36,4 @@ const mapStateToProps = state =>{
     }
 }
 
-export default connect(mapStateToProps,{getPost})(CommentContainer)
+export default connect(mapStateToProps,{getPost, clearPost})(CommentContainer)
