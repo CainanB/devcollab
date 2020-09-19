@@ -16,7 +16,7 @@ const Comment = ({commentId, postId, name, user, text, auth, deleteComment}) => 
 
                 <img height='25px' width='25px' src={user.profileimg} /><span className="pl-2"> {name}</span><p className="pl-4"> {text}</p> 
                 {!auth.loading && user === auth.user._id ? (
-                    <Button className="ml-2" style={{marginTop:'-5px'}} size="sm" onClick={()=>deleteComment(commentId,postId)}>X</Button>
+                    <Button className="ml-auto" style={{marginTop:'-5px'}} size="sm" onClick={()=>deleteComment(commentId,postId)}>X</Button>
                 ):null}
 
             </Col>
