@@ -35,7 +35,7 @@ class Posts extends React.Component {
             text: ""
         }
     }
-
+ 
     componentDidMount = () => {
         this.props.getPosts()
     }
@@ -205,7 +205,7 @@ class Posts extends React.Component {
                             title: this.state.title,
                             technologies: this.state.techArray.toString(),
                             text: this.state.text,
-                            profileimg: this.props.profileimg
+                            profileimg: this.props.profile.profile.profileimg
                         })
                         this.setState({
                             title: "",
@@ -230,8 +230,12 @@ class Posts extends React.Component {
 
 
     render() {
+        if(this.props.isAuthenticated === null){
+            return <Redirect to="/landing-page" />
+        }
 
     return (
+
 
         <>
         {this.props.post.loading ? "Loading" : (
@@ -285,7 +289,7 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     post: state.post,
     user: state.auth.user,
-    profileimg: state.profile.profile.profileimg
+    profile: state.profile
 })
 
 export default connect(mapStateToProps, {getPosts, addPost})(Posts)

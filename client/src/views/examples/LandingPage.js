@@ -81,7 +81,10 @@ class LandingPage extends React.Component {
       return <Redirect to="/profile-page" />
     }
     return (
+
       <>
+
+     
         <Navbar />
 
         <div className="wrapper">
