@@ -1,7 +1,8 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, SET_PROFILE_IMAGE, DELETE_POST } from "../actions/constants"
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, SET_PROFILE_IMAGE, DELETE_POST, GET_PROFILE_BY_ID } from "../actions/constants"
 
 const initialState = {
     profile: null,
+    profilebyid:null,
     profiles: [],
     repos: [],
     loading: true,
@@ -18,6 +19,12 @@ export default function(state = initialState, action){
             return{
                 ...state,
                 profile: {...payload.profile, userPosts: payload.userPosts},
+                loading: false
+            }
+        case GET_PROFILE_BY_ID:
+            return{
+                ...state,
+                profilebyid: {...payload.profile, userPosts: payload.userPosts},
                 loading: false
             }
         case SET_PROFILE_IMAGE:
