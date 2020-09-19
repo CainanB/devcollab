@@ -20,7 +20,7 @@ import {
     Col
 } from "reactstrap";
 
-const CommentForm = ({postId, comments, addComment}) => {
+const CommentForm = ({postId, comments, addComment, profile}) => {
 
     let [commentText, setCommentText] = useState('');
 
@@ -36,7 +36,7 @@ const CommentForm = ({postId, comments, addComment}) => {
         e.preventDefault();
        
         // action to create comment here
-        addComment({commentText},postId)
+        addComment({commentText, profileimg: profile.profile.profileimg},postId)
         setCommentText('')
 
     }
@@ -71,4 +71,10 @@ const CommentForm = ({postId, comments, addComment}) => {
     )
 }
 
-export default connect(null,{addComment})(CommentForm)
+const mapStateToProps = state => {
+    return {
+        profile: state.profile
+    }
+}
+
+export default connect(mapStateToProps,{addComment})(CommentForm)

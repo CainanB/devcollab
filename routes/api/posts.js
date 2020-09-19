@@ -220,11 +220,11 @@ router.post('/comment/:id', [auth, [
         const newComment = {
             text: req.body.commentText,
             name: user.name,
-            avatar: user.avatar,
+            profileimg: req.body.profileimg,
             user: req.user.id
     
         }
-        post.comments.unshift(newComment)
+        post.comments.push(newComment)
         
         await post.save()
         res.json(post)
