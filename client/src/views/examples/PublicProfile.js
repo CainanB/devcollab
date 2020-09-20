@@ -45,7 +45,7 @@ class PublicProfile extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     ("component did update")
-    console.log(this.props.profile)
+    console.log(this.props.profilebyid)
   }
   componentWillMount(){
     // this.props.getProfileById(this.props.match.params.id)
@@ -142,7 +142,7 @@ class PublicProfile extends React.Component {
     return (
 
      <>   
-    { this.props.profile.profile === null || this.props.profile.loading ? "Loading" : <>
+    { this.props.profile.profilebyid === null || this.props.profile.loading ? "Loading" : <>
     
      
 
@@ -164,10 +164,10 @@ class PublicProfile extends React.Component {
         <Container className="align-items-center mb-5">
           <Row>
             <Col lg="5" md="5">
-              <h1 className="profile-title text-left">{this.props.profile.profile.status.split(" ")[0]}</h1>
+              <h1 className="profile-title text-left">{this.props.profile.profilebyid.status.split(" ")[0]}</h1>
               <h5 className="text-on-back">Dev</h5>
               <p className="profile-description">
-                {this.props.profile.profile.bio}
+                {this.props.profile.profilebyid.bio}
               </p>
 
             </Col>
@@ -181,17 +181,17 @@ class PublicProfile extends React.Component {
                     // their uploaded profile image
                     
                     src={
-                      this.props.profile.profile.profileimg ?
-                      this.props.profile.profile.profileimg :
+                      this.props.profile.profilebyid.profileimg ?
+                      this.props.profile.profilebyid.profileimg :
                       "https://coursereport-s3-production.global.ssl.fastly.net/rich/rich_files/rich_files/5668/s300/social-media.png"
                     }
                     // src={require("../../assets/img/profile.jpeg")}
                     
                   />
 
-                  <h4 className="title">{this.props.profile.profile.user.name}</h4>
+                  <h4 className="title">{this.props.profile.profilebyid.user.name}</h4>
 
-    <h5 className="text-center"><i className="tim-icons icon-square-pin"></i>{this.props.profile.profile.location}</h5>
+    <h5 className="text-center"><i className="tim-icons icon-square-pin"></i>{this.props.profile.profilebyid.location}</h5>
 
 
                   {/* LOCATION */}
@@ -234,16 +234,16 @@ class PublicProfile extends React.Component {
                     {/* Personal Website Tab */}
                     <TabPane tabId="tab1" className="text-left" style={{fontSize:'1.2em'}}>
 
-                      <i className="tim-icons icon-single-02"></i><b> Portfolio </b> <a rel="noopener noreferrer" href={this.props.profile.profile.website} target="_blank"> {this.props.profile.profile.website} </a> <br/>
-                      <i className="fab fa-github"></i><b> Github </b> <a rel="noopener noreferrer" href={`https://github.com/${this.props.profile.profile.githubusername}`} target="_blank"> github.com/{this.props.profile.profile.githubusername} </a> <br/>
-                      <i className="tim-icons icon-bank"></i><b> Company </b> {this.props.profile.profile.company}
+                      <i className="tim-icons icon-single-02"></i><b> Portfolio </b> <a rel="noopener noreferrer" href={this.props.profile.profilebyid.website} target="_blank"> {this.props.profile.profilebyid.website} </a> <br/>
+                      <i className="fab fa-github"></i><b> Github </b> <a rel="noopener noreferrer" href={`https://github.com/${this.props.profile.profilebyid.githubusername}`} target="_blank"> github.com/{this.props.profile.profilebyid.githubusername} </a> <br/>
+                      <i className="tim-icons icon-bank"></i><b> Company </b> {this.props.profile.profilebyid.company}
 
                     </TabPane>
 
                     {/* Skills Tab */}
                     <TabPane tabId="tab2" className="text-center" style={{fontSize:'1.5em'}}>
 
-                      <b>{this.props.profile.profile.skills}</b>
+                      <b>{this.props.profile.profilebyid.skills}</b>
                       
                     </TabPane>
 
@@ -266,7 +266,7 @@ class PublicProfile extends React.Component {
                 
             </Col>
 
-              {this.props.profile.profile.userPosts.map(post =>{
+              {this.props.profile.profilebyid.userPosts.map(post =>{
                 return <PostItem key={post._id} post={post}/>
               })}
 
