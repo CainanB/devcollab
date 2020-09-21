@@ -166,7 +166,7 @@ class LandingPage extends React.Component {
                       </CardHeader>
                       <CardBody className="pt-0">
                         {/* FORM START */}
-                        <Form className="form" onSubmit={this.onFormSubmit} id="signinForm">
+                        <Form className="form" ref="signinform" onSubmit={this.onFormSubmit} id="signinForm">
                           <InputGroup
                             className={classnames({
                               "input-group-focus": this.state.fullNameFocus

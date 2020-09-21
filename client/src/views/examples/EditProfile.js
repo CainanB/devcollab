@@ -72,7 +72,7 @@ class RegisterPage extends React.Component {
     componentDidMount() {
         document.body.classList.toggle("register-page");
         document.documentElement.addEventListener("mousemove", this.followCursor);
-        this.props.getProfile();
+        // this.props.getProfile();
         this.setState({
             formData: {
                 ...this.state.formData,
@@ -267,23 +267,23 @@ class RegisterPage extends React.Component {
                                         src={require("../../assets/img/square2.png")}
                                     />
                                 </Col>
-                                <Col xl={3} lg={3} md={3} sm={3} xs={3}>
+                                {/* <Col xl={3} lg={3} md={3} sm={3} xs={3}>
                                     <img
                                     alt="..."
                                     // onHover={(e)=>this.handleImgHover(e)}
                                     // id="profImage"
                                     className="img-fluid rounded-circle shadow-lg"
                                     style={{height:'150px', marginTop:'15px', width:'150px', border:'2px black solid'}}
-                                    src={require("../../assets/img/profile.jpeg")}
+                                    src={this.props.profile.profile.profileimg}
                                     />
-                                </Col>
+                                </Col> */}
                             </Row>
 
 
 
 
                             <CardTitle tag="h4" className="ml-2">
-                                {this.props.profile == null ? "Create" : "Edit"}
+                                Edit
                                 </CardTitle>
 
 

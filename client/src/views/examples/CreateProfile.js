@@ -249,23 +249,14 @@ class CreateProfile extends React.Component {
                                         src={require("../../assets/img/square2.png")}
                                     />
                                 </Col>
-                                <Col xl={3} lg={3} md={3} sm={3} xs={3}>
-                                    <img
-                                    alt="..."
-                                    // onHover={(e)=>this.handleImgHover(e)}
-                                    // id="profImage"
-                                    className="img-fluid rounded-circle shadow-lg"
-                                    style={{height:'150px', marginTop:'15px', width:'150px', border:'2px black solid'}}
-                                    src={require("../../assets/img/profile.jpeg")}
-                                    />
-                                </Col>
+                         
                             </Row>
 
 
 
 
                             <CardTitle tag="h4" className="ml-2">
-                                {this.props.profile == null ? "Create" : "Edit"}
+                                Create
                                 </CardTitle>
 
 
