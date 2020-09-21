@@ -1,5 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://cainan:cainan123@devsocialnetwork.wy4ps.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken",
-    "githubToken":"5df1465826d6b888509639ea1d481cab52fd683d"
-}

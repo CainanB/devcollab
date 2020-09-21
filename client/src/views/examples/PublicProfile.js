@@ -1,6 +1,7 @@
 
 
 import React from "react";
+import Loading from './Loading'
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import { Link } from "react-router-dom";
@@ -142,7 +143,7 @@ class PublicProfile extends React.Component {
     return (
 
      <>   
-    { this.props.profile.profilebyid === null || this.props.profile.loading ? "Loading" : <>
+    { this.props.profile.profilebyid === null || this.props.profile.loading ? <Loading/> : <>
     
      
 
