@@ -86,13 +86,11 @@ to be called during every re-render.  </b>
 <b>Challenge: Working with a React theme</b>
 <br/> <br/>
 <b>Solution:  Initially, we believed using a theme was going to make it much easier on front-end, but we found that as we tried to create our own
-unique components it became difficult to overwrite pre-existing properties on the components. The documentation was great, but the theme was a beast
-of an application with thousands of line of CSS to sift through.</b>
+unique components it became difficult to overwrite pre-existing properties on the components. But the theme did help provide consistency throughout the site.</b>
 
 <b>Challenge: Functional or Class?</b>
 <br/> <br/>
-<b>Solution:  When creating a new React component, a developer has a relatively difficult choice to make. Should the component be functional or class-based? The answer is we still don't know. But we found that visually it was easier to read and navigate the code of a class component, but that it also lacked the simplistic natures of the useEffect function. This
- may have been due to limited knowledge and expertise, but eventually we just decided that pages should be class-based and smaller components within
+<b>Solution:  When creating a new React component, a developer has a relatively difficult choice to make. Should the component be functional or class-based? The answer is we still don't know. But we found that visually it was easier to read and navigate the code of a class component, but that it also lacked the simplistic natures of the useEffect function. Eventually we just decided that pages should be class-based and smaller components within
  the page should generally be functional.</b>
 
 </br>
