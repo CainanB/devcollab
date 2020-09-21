@@ -5,6 +5,7 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import PostItem from './PostItem'
 import {getPosts, addPost} from '../../actions/post'
+import Loading from './Loading'
 
 import {Dropdown} from 'react-bootstrap';
 import {
@@ -238,7 +239,7 @@ class Posts extends React.Component {
 
 
         <>
-        {this.props.post.loading ? "Loading" : (
+        {this.props.post.loading ? <Loading/> : (
             <>
         <Navbar />
 

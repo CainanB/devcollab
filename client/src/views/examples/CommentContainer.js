@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import CommentForm from './CommentForm'
 import Comment from './Comment'
 import {getPost, clearPost} from '../../actions/post'
+import Loading from './Loading'
 
 
 
@@ -18,7 +19,7 @@ const CommentContainer = ({getPost, postId, post, clearPost}) => {
     
   return (
     <>
-      {post.loading || post.post === null ? "Loading" :( 
+      {post.loading || post.post === null ? <Loading/> :( 
           <>
           {post.post.comments.map(comment =>{
               return <Comment key={comment._id} commentId={comment._id} postId={postId} name={comment.name} user={comment.user} text={comment.text} profileimg={comment.profileimg}/>

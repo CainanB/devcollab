@@ -1,6 +1,7 @@
 
 
 import React from "react";
+import Loading from './Loading'
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import { Redirect, Link } from "react-router-dom";
@@ -314,7 +315,7 @@ revert = () => {
     }
     else
     {
-      jsx = <>loading</>
+      jsx = <><Loading/></>
     }
 
     return jsx;
