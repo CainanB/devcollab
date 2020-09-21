@@ -138,11 +138,11 @@
 }
 
 .card:hover{
-  // transform: scale(1.05);
-  // transition-duration: 0.5s;
-  // -webkit-font-smoothing: antialised;
-  // backface-visibility: hidden;
-  // -webkit-font-smoothing: subpixel-antialiased;
+  transform: scale(1.05);
+  transition-duration: 0.5s;
+  -webkit-font-smoothing: antialised;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
   background-color: #14213d;
 }
 
