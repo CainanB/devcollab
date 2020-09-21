@@ -61,13 +61,7 @@ class RegisterPage extends React.Component {
           })
           
   }
-  componentWillMount(){
-    if(this.props.isAuthenticated && this.props.isNewUser){
-      return <Redirect to="/edit-profile"/>
-    }else{
-      return <Redirect to="/profile-page"/>
-    }
-  }
+ 
   componentDidMount() {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
