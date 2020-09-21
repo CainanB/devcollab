@@ -89,7 +89,7 @@ class LandingPage extends React.Component {
 
         <div className="wrapper">
 
-          <div className="page-header">
+          <div className="page-header" style={{minHeight:'130vh'}}>
             <img
               alt="..."
               className="path"
